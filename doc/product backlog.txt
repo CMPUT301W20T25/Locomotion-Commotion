@@ -29,39 +29,39 @@ medium risk (have not learned this yet)
 
 US 01.04.01
 As a rider, I want to cancel requests.
-in case the information is wrong or you change your mind
+Because if the information is wrong or I change my mind I want the option
 this will take about 4 hours
-medium risk (need to be able to communicate that request is canceled)
+medium risk 
 
 
 US 01.05.01
 As a rider, I want to be able to phone or email the driver who accepted a request.
-to talk about specific details. should be able to view that information and use it to contact driver 
+Because I would like to be able to talk about specific details.
 this will take less than 4 hours
 low risk
 
 US 01.07.01
 As a rider, I want to confirm the completion of a request and enable payment.
-so that the driver can't say they have driven them the route without actually doing it.
+because otherwise the driver could say they drove the route without actually doing it.
 this will take about 4 hours
 high risk (interacts with many parts)
 
 US 01.08.01
 As a rider, I want to cancel a ride before the rider picks me up.
-If a driver has already accepted the ride and the rider changes their mind or realizes information is wrong
+Because if a rider changes their mind or realizes the information is wrong they should be able to change their mind
 this will take less than 4 hours
 low risk (should be able to use similar infrastucture to confirm completion of ride.
 
 
 US 1.10.01
 As a rider, I want to see the driver's profile and ratings.
-to be able to acertain whether i want them as a driver
+Because i want be able to acertain whether i want them as a driver based on the ratings
 this will take less than 4 hours.
 low risk (should be able to do at the same time as accessing driver's email and phone)
 
 US 1.11.01
 As a rider, I want to rate a driver for his/her service thumbs up or thumbs down.
-so that others can see if the driver was good or not.
+Because I want to let others know if the driver was good or not.
 this will take about 4 hours
 medium risk (similar to getting driver ratings but need to adjust data rather than just get the data)
 
@@ -69,7 +69,7 @@ Status
 
 US 02.01.01
 As a rider or driver, I want to see the status of a request that I am involved in
-in order to review information and check if it has been accepted
+Because i want to review information and check if it has been accepted by the other user
 this will take more than 4 hours
 high risk (this is important for many other tasks and other things will depend on it)
 
@@ -77,19 +77,19 @@ User profile
 
 US 03.01.01
 As a user, I want a profile with a unique username and my contact information.
-in order to be able for me to be found and contacted
+Because I want to be able to be found and contacted
 less than 4 hours
 medium risk (many other parts will be dependant on profiles)
 
 US 03.02.01
 As a user, I want to edit the contact information in my profile.
-if your phone number changes or you put it in wrong
+Because if my phone number changes or I put it in wrong
 less than 4 hours
 low risk (not important to function)
 
 US 03.03.01
 As a user, I want to, when a username is presented for a thing, retrieve and show its contact information.
-in order to contact the other user.
+because I would like to contact the other user.
 less than 4 hours
 low risk
 
@@ -98,7 +98,7 @@ Searching
 
 US 04.01.01
 As a driver, I want to browse and search for open requests by geo-location.
-in order to find requests closest to you or by somewhere you are already going.
+because I want to find requests closest to me or by somewhere I am already going.
 more than 4 hours
 high risk (compilicated and important)
 
@@ -107,13 +107,13 @@ Accepting
 
 US 05.01.01
 As a driver,  I want to accept a request I agree with and accept that offered payment upon completion.
-be able to see what the route is, who the person is and the payment for it before accepting.
+Because I want to see what the route is, who the person is and what the payment is before accepting.
 about 4 hours
 high risk (interacts with many things and is important)
 
 US 05.02.01
 As a driver, I want to view the current active request.
-view information same as 05.01.01
+Because I want to see the route and double check the locations and details
 less than 4 hours
 low risk (should be able to use infrastructure built in 05.01.01)
 
