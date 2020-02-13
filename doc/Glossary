@@ -12,19 +12,19 @@ MIT license
 
 People:
 User: Any person or organization that uses LocomotionCommotion. This can be a driver or a rider. 
-Driver: A person who drives a vehicle transporting people. 
-Rider: A person who rides in the vehicle of a driver. 
+Driver: A person who drives a vehicle transporting people. [1]
+Rider: A person who rides in the vehicle of a driver. [2]
 
 User Profile
-Username: A unique sequence of characters that the user can use to identify themselves and display for others. 
+Username: A unique sequence of characters that the user can use to identify themselves and display for others. [3]
 Contact Information: A method of communication that drivers and riders can use to reach each other. 
-Rating: Reputation of a driver based on the number of “thumbs-up” and “thumbs-down” a driver has. 
+Rating: Reputation of a driver based on the number of “thumbs-up” and “thumbs-down” a driver has. [4]
 Thumbs-up: A positive score for the driver.
 Thumbs-down: A negative score for the driver. 
 
 Process
 Register: The process of creating an account.
-Login: The act of logging in to LocomotionCommotion through the input of username.
+Login: The act of logging in to LocomotionCommotion through the input of username. [5]
 Ride Request: The act of asking for a driver to drive a rider between two locations. 
 Cancel Request: To make void of a previously open ride request. 
 Contact Driver: To communicate with the driver by means of phone or email. 
@@ -39,4 +39,13 @@ Ride Offer: The information a driver receives from a ride request. This includes
 Location
 Pick-up: The location where the rider would like the driver to start at. 
 Drop-off: The location where the rider would like the driver to stop at. 
+
+
+
+References:
+[1] https://www.dictionary.com/browse/driver
+[2] https://www.dictionary.com/browse/rider
+[3] https://www.dictionary.com/browse/username
+[4] https://www.dictionary.com/browse/login
+[5] https://www.dictionary.com/browse/rating
 
