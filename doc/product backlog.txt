@@ -1,10 +1,5 @@
 Product Backlog
 
-name 
-story
-rationale
-size in story points
-risk level (low, medium, high)
 
 Requests
 
