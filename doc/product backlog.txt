@@ -119,31 +119,53 @@ low risk (should be able to use infrastructure built in 05.01.01)
 
 US 05.03.01
 As a driver, I want to be notified if my ride offer was accepted.
+Because I will need to drive there as soon as possible
+less than 4 hours
+medium risk (communicating a change in state)
 
 
 
 Offline behavior
+
 US 06.01.01
 As an driver, I want to see requests that I already accepted while offline.
+Because I might not have internet access while on the road
+about 4 hours
+medium risk (storing the data locally)
+
 US 06.02.01
 As a rider, I want to see the current request, even if I am offline.
+because I want to double check the information or make sure it is correct
+less than 4 hours
+low risk (similar infrastructure as 06.01.01)
+
 Location
+
 US 07.01.01
 As a rider, I want to specify a start and end geo locations on a map for a request.
+Becuase I don't know the coordinates for the locations and it is easier to find on a map
+about 4 hours
+high risk 
 
 US 07.02.01
-
 As a driver, I want to view start and end geo locations on a map for a request.
+Because I want to better visualise where the locations are
+less than 4 hours
+medium risk (similar to 07.01.01)
 
 Payment
 
 US 08.01.01
-
 As a rider I wish to generate a QR-Bucks QR Code for my driver to scan to pay them.
+because I need an easy way to pay the driver
+more than 4 hours
+medium risk (need to learn how to generate QR codes and integrate into app)
 
 US 08.02.01
-
 As a driver I want to scan my rider's QR-Bucks to get paid!
+Because I need to recieve the money to continue work and pay bills
+about 4 hours
+medium risk
 
 
 
