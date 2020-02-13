@@ -1,0 +1,30 @@
+People:
+User: Any person or organization that uses LocomotionCommotion. This can be a driver or a rider. 
+Driver: A person who drives a vehicle transporting people. 
+Rider: A person who rides in the vehicle of a driver. 
+
+User Profile
+Username: A unique sequence of characters that the user can use to identify themselves and display for others. 
+Contact Information: A method of communication that drivers and riders can use to reach each other. 
+Rating: Reputation of a driver based on the number of “thumbs-up” and “thumbs-down” a driver has. 
+Thumbs-up: A positive score for the driver.
+Thumbs-down: A negative score for the driver. 
+
+Process
+Register: The process of creating an account.
+Login: The act of logging in to LocomotionCommotion through the input of username.
+Ride Request: The act of asking for a driver to drive a rider between two locations. 
+Cancel Request: To make void of a previously open ride request. 
+Contact Driver: To communicate with the driver by means of phone or email. 
+Estimate Fare: The approximate amount of money the driver should receive for a ride. 
+Offer Fare: An amount the rider can add to the estimated fare for the driver. 
+Cancel Ride: To make void of an accepted ride request before the driver arrives.
+Status: The current state of a request which can vary from accepted, transporting passenger, and completed. 
+QR-Bucks: a QR code generated that a driver can scan to accept payment. 
+Ride Offer: The information a driver receives from a ride request. This includes the rider information, location, and offered payment. 
+
+
+Location
+Pick-up: The location where the rider would like the driver to start at. 
+Drop-off: The location where the rider would like the driver to stop at. 
+
