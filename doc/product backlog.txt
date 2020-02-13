@@ -1,0 +1,155 @@
+Product Backlog
+
+name 
+story
+rationale
+size in story points
+risk level (low, medium, high)
+
+Requests
+
+US 01.01.01
+As a rider, I want to request rides between two locations.
+Because a rider should be able to choose two locations (not neccesarily where they are) and send that request.
+This will take less than 4 hours to complete
+low risk
+
+US 01.02.01
+As a rider, I want to see current request I have open.
+Because I want to make sure that the request has the correct information
+this will take less than 4 hours to complete
+low risk (done in lab)
+
+
+US 01.03.01
+As a rider, I want to be notified if my request is accepted.
+Becuase I wnat to know when my ride is arriving
+this will take about 4 hours
+medium risk (have not learned this yet)
+
+US 01.04.01
+As a rider, I want to cancel requests.
+in case the information is wrong or you change your mind
+this will take about 4 hours
+medium risk (need to be able to communicate that request is canceled)
+
+
+US 01.05.01
+As a rider, I want to be able to phone or email the driver who accepted a request.
+to talk about specific details. should be able to view that information and use it to contact driver 
+this will take less than 4 hours
+low risk
+
+US 01.07.01
+As a rider, I want to confirm the completion of a request and enable payment.
+so that the driver can't say they have driven them the route without actually doing it.
+this will take about 4 hours
+high risk (interacts with many parts)
+
+US 01.08.01
+As a rider, I want to cancel a ride before the rider picks me up.
+If a driver has already accepted the ride and the rider changes their mind or realizes information is wrong
+this will take less than 4 hours
+low risk (should be able to use similar infrastucture to confirm completion of ride.
+
+
+US 1.10.01
+As a rider, I want to see the driver's profile and ratings.
+to be able to acertain whether i want them as a driver
+this will take less than 4 hours.
+low risk (should be able to do at the same time as accessing driver's email and phone)
+
+US 1.11.01
+As a rider, I want to rate a driver for his/her service thumbs up or thumbs down.
+so that others can see if the driver was good or not.
+this will take about 4 hours
+medium risk (similar to getting driver ratings but need to adjust data rather than just get the data)
+
+Status
+
+US 02.01.01
+As a rider or driver, I want to see the status of a request that I am involved in
+in order to review information and check if it has been accepted
+this will take more than 4 hours
+high risk (this is important for many other tasks and other things will depend on it)
+
+User profile
+
+US 03.01.01
+As a user, I want a profile with a unique username and my contact information.
+in order to be able for me to be found and contacted
+less than 4 hours
+medium risk (many other parts will be dependant on profiles)
+
+US 03.02.01
+As a user, I want to edit the contact information in my profile.
+if your phone number changes or you put it in wrong
+less than 4 hours
+low risk (not important to function)
+
+US 03.03.01
+As a user, I want to, when a username is presented for a thing, retrieve and show its contact information.
+in order to contact the other user.
+less than 4 hours
+low risk
+
+
+Searching
+
+US 04.01.01
+As a driver, I want to browse and search for open requests by geo-location.
+in order to find requests closest to you or by somewhere you are already going.
+more than 4 hours
+high risk (compilicated and important)
+
+
+Accepting
+
+US 05.01.01
+As a driver,  I want to accept a request I agree with and accept that offered payment upon completion.
+be able to see what the route is, who the person is and the payment for it before accepting.
+about 4 hours
+high risk (interacts with many things and is important)
+
+US 05.02.01
+As a driver, I want to view the current active request.
+view information same as 05.01.01
+less than 4 hours
+low risk (should be able to use infrastructure built in 05.01.01)
+
+US 05.03.01
+As a driver, I want to be notified if my ride offer was accepted.
+
+
+
+Offline behavior
+US 06.01.01
+As an driver, I want to see requests that I already accepted while offline.
+US 06.02.01
+As a rider, I want to see the current request, even if I am offline.
+Location
+US 07.01.01
+As a rider, I want to specify a start and end geo locations on a map for a request.
+
+US 07.02.01
+
+As a driver, I want to view start and end geo locations on a map for a request.
+
+Payment
+
+US 08.01.01
+
+As a rider I wish to generate a QR-Bucks QR Code for my driver to scan to pay them.
+
+US 08.02.01
+
+As a driver I want to scan my rider's QR-Bucks to get paid!
+
+
+
+
+
+
+
+
+
