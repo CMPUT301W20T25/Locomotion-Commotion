@@ -13,7 +13,49 @@
         android:layout_marginTop="16dp"
         android:text="Username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pickup-textView"
+        android:layout_width="95dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Pick up location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view-driver-request-username" />
+
+    <TextView
+        android:id="@+id/view-driver-request-pshow-pick-up-location"
+        android:layout_width="259dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:text="coordinates"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toEndOf="@+id/pickup-textView"
+        app:layout_constraintTop_toBottomOf="@+id/view-driver-request-username" />
+
+    <TextView
+        android:id="@+id/view-driver-request-drop-off-location-textView"
+        android:layout_width="98dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Drop off location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickup-textView" />
+
+    <TextView
+        android:id="@+id/view-driver-request-show-drop-off-location"
+        android:layout_width="257dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="coordinates"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toEndOf="@+id/view-driver-request-drop-off-location-textView"
+        app:layout_constraintTop_toBottomOf="@+id/view-driver-request-pshow-pick-up-location" />
 </androidx.constraintlayout.widget.ConstraintLayout>
