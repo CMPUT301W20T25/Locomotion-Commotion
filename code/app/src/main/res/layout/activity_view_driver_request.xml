@@ -78,16 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/view-driver-request-price-title"
-        android:layout_width="88dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="88dp"
-        android:text="Total price"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/view-driver-request-price-text-view"
         android:layout_width="178dp"
         android:layout_height="39dp"
@@ -97,4 +87,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view-driver-request-price-title"
+        android:layout_width="88dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="88dp"
+        android:text="Total price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
