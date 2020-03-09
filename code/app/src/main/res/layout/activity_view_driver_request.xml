@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewDriverRequest">
+
+    <TextView
+        android:id="@+id/view-driver-request-drop-off-location"
+        android:layout_width="80dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="176dp"
+        android:text="Location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Pick-up-location"
+        android:layout_width="126dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="176dp"
+        android:text="Drop off location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/view-driver-request-username"
+        android:layout_width="178dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:text="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/view-driver-request-drop-off-text-view"
+        android:layout_width="130dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="100dp"
+        android:text="Pick up location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/view-driver-request-pick-up-lat"
+        android:layout_width="80dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="100dp"
+        android:text="Location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/view-driver-request-back-button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/view-driver-request-accept-button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/view-driver-request-price-title"
+        android:layout_width="88dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="88dp"
+        android:text="Total price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view-driver-request-price-text-view"
+        android:layout_width="178dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="84dp"
+        android:text="price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
