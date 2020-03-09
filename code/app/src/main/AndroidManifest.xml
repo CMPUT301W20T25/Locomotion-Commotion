@@ -13,6 +13,7 @@
         <activity android:name=".UserProfile" />
         <activity android:name=".ViewDriverRequest" />
         <activity android:name=".DriverRequestsAll" />
+        <activity android:name=".createRequest"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,23 +1,21 @@
 package com.example.locomotioncommotion;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
+public class Rider extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
+        setContentView(R.layout.rider);
     }
 
-    public void confirmLogin(View view){
-        Intent intent = new Intent(this, DriverOrRider.class);
+    public void create(View view){
+        Intent intent = new Intent(this, createRequest.class);
         startActivity(intent);
     }
+
 }
