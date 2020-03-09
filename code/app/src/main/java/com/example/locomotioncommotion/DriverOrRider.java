@@ -18,4 +18,9 @@ class DriverOrRider extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void driverClick(View view) {
+        Intent intent = new Intent(this,DriverRequestsAll.class );
+        startActivity(intent);
+    }
+
 }
