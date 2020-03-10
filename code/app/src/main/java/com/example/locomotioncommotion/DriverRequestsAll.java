@@ -15,8 +15,12 @@ public class DriverRequestsAll extends AppCompatActivity {
     }
 
     public void goToRequestFinder(View view) {
-        Intent intent = new Intent(this,DriverRequestsAll.class);
+        Intent intent = new Intent(this,RequestFinderList.class);
         startActivity(intent);
 
+    }
+
+    public void backButton(View view) {
+        finish();
     }
 }

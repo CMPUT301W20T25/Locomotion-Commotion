@@ -25,7 +25,12 @@ public class DriverOrRider extends AppCompatActivity {
     }
 
     public void riderClick(View view){
-        Intent intent = new Intent(this, Rider.class);
+        Intent intent = new Intent(this, RiderMain.class);
+        startActivity(intent);
+    }
+
+    public void driverClick(View view) {
+        Intent intent = new Intent(this,DriverRequestsAll.class );
         startActivity(intent);
     }
 

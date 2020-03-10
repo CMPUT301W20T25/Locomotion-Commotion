@@ -6,16 +6,31 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Rider extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.rider);
+public class Rider {
+    private Request currentRequest;
+
+    public Rider(){
+        this.currentRequest = null;
     }
 
-    public void create(View view){
-        Intent intent = new Intent(this, createRequest.class);
-        startActivity(intent);
+    public Request createRequest(Location start, Location end, Integer fare){
+        return null;
+    }
+
+    public Request getCurrentRequest(){
+        return this.currentRequest;
+    }
+
+    public void notifyRequestComplete(){
+        int a = 0;
+    }
+
+    public String requestStatus(){
+        return "On fire";
+    }
+
+    public QRCode generateQRPrice(){
+        return null;
     }
 
 }
