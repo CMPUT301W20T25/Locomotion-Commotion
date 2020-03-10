@@ -19,4 +19,8 @@ public class DriverRequestsAll extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void backButton(View view) {
+        finish();
+    }
 }
