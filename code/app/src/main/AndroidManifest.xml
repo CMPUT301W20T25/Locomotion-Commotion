@@ -18,6 +18,7 @@
         <activity android:name=".createRequest"></activity>
         <activity android:name=".DriverOrRider"></activity>
         <activity android:name=".RiderMain"></activity>
+        <activity android:name=".QRCode"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
