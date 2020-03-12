@@ -8,6 +8,14 @@ public class User {
     private Driver driver;
     private Rider rider;
 
+    public User () {
+        this.userName = "";
+        this.passWord = "";
+        this.email = "";
+        this.phoneNumber = "";
+        this.driver = null;
+        this.rider = null;
+    }
     public User(String userName, String passWord){
         this.userName = userName;
         this.passWord = passWord;
