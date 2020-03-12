@@ -25,15 +25,7 @@ public class createRequest extends AppCompatActivity implements confirmRequestFr
     }
 
     @Override
-    public void onOkPressed(){
-
+    public void onOkPressed(String startLocation, String endLocation, String cost){
+        Request request = new Request(new Rider(), new Location(), new Location(), Integer.parseInt(cost));
     }
-
-
-
-
-
-
-
-
 }

@@ -25,7 +25,7 @@ public class confirmRequestFragment extends DialogFragment {
     private OnFragmentInteractionListener listener;
 
     public interface OnFragmentInteractionListener {
-        void onOkPressed();
+        void onOkPressed(String startLocation, String endLocation, String cost);
     }
     @NonNull
     @Override
@@ -46,6 +46,7 @@ public class confirmRequestFragment extends DialogFragment {
                         String est = estPrice.getText().toString();
                         String add = addPrice.getText().toString();
                         String total = totalPrice.getText().toString();
+                        listener.onOkPressed(startLocation, endLocation, total);
                     }
                 }).create();
     }
