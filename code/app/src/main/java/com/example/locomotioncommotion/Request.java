@@ -8,6 +8,14 @@ public class Request {
     private int fareOffered;
     private String status;
 
+    public Request() {
+        this.currentRider = null;
+        this.currentDriver = null;
+        this.startLocation = null;
+        this.endLocation = null;
+        this.fareOffered = 0;
+        this.status = "Pending"; //TODO: check that this makes sense
+    }
     public Request(Rider rider, Location startLocation, Location endLocation, int fareOffered){
         this.currentRider = rider;
         this.currentDriver = null;
