@@ -15,6 +15,19 @@
         android:textSize="24dp" />
 
     <Button
+        android:id="@+id/qrCodeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="64dp"
+        android:text="Test QR" />
+
+
+
+    <Button
         android:id="@+id/driver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,4 +49,5 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:text="Rider" />
+
 </LinearLayout>
