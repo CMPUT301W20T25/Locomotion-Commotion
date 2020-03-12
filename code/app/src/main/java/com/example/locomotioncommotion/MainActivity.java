@@ -9,13 +9,14 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginButton = (Button) findViewById(R.id.login);
+        loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,10 +24,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        registerButton = findViewById(R.id.register);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register(v);
+            }
+        });
     }
 
     public void confirmLogin(View view){
         Intent intent = new Intent(this, DriverOrRider.class);
+        startActivity(intent);
+    }
+
+    public void register(View view){
+        Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
 }
