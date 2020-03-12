@@ -42,10 +42,10 @@ public class User {
     public synchronized static User getInstance(String userName, String passWord, String email, String phonenumber, Driver driver, Rider rider){
         if(User.userInstance == null){
             User.userInstance = new User(userName, passWord);
-            User.userInstance.email = email;
-            User.userInstance.phoneNumber = phonenumber;
-            User.userInstance.driver = driver;
-            User.userInstance.rider = rider;
+            User.userInstance.setEmail(email);
+            User.userInstance.setPhoneNumber(phonenumber);
+            User.userInstance.setDriver(driver);
+            User.userInstance.setRider(rider);
             return User.userInstance;
         } else{
             return User.userInstance;
