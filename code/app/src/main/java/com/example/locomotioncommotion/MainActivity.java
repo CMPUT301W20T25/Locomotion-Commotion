@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
+    private Button registerButton;
     private EditText userNameField;
     private EditText passWordField;
 
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         userNameField = findViewById(R.id.username);
         passWordField = findViewById(R.id.password);
 
+        registerButton = findViewById(R.id.register);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register(v);
+            }
+        });
     }
 
     public void confirmLogin(View view){
@@ -37,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         String passWord = passWordField.getText().toString();
         User.getInstance(userName, passWord); //TODO: Make sure this doesn't break logging out and then logging back in!
         Intent intent = new Intent(this, DriverOrRider.class);
+        startActivity(intent);
+    }
+
+    public void register(View view){
+        Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
 }
