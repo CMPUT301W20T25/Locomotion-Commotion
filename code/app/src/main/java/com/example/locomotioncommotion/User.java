@@ -102,26 +102,23 @@ public class User {
     }
 
     public int getThumbsUp(){
-        driver = this.getDriver();
-        if(driver == null){
+        if(this.getDriver()== null){
             return -1;
         } else{
-            return this.driver.getPositiveRatings();
+            return this.getDriver().getPositiveRatings();
         }
     }
 
     public void setThumbsUp(int thumbs){
-        driver = this.getDriver();
-        if(driver == null){
-            //TODO: Have this throw an error?
-        } else{
+        if(this.getDriver()== null){
+            //TODO: Have this throw an error or something
+        }else{
             this.driver.setPositiveRatings(thumbs);
         }
     }
 
     public int getThumbsDown(){
-        driver = this.getDriver();
-        if(driver == null){
+        if(this.getDriver() == null){
             return -1;
         } else{
             return this.driver.getNegativeRatings();
@@ -129,8 +126,7 @@ public class User {
     }
 
     public void setThumbsDown(int thumbs){
-        driver = this.getDriver();
-        if(driver == null){
+        if(this.getDriver() == null){
             //TODO: Have this throw an error?
         } else{
             this.driver.setNegativeRatings(thumbs);

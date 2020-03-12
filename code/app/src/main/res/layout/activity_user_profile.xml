@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/user_profile_thumbs_down"
+            android:id="@+id/user_profile_thumbs_down1"
             android:layout_width="111dp"
             android:layout_height="26dp"
             android:layout_marginTop="384dp"
