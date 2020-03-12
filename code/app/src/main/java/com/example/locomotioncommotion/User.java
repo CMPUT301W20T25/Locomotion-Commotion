@@ -101,4 +101,39 @@ public class User {
         this.driver = driver;
     }
 
+    public int getThumbsUp(){
+        driver = this.getDriver();
+        if(driver == null){
+            return -1;
+        } else{
+            return this.driver.getPositiveRatings();
+        }
+    }
+
+    public void setThumbsUp(int thumbs){
+        driver = this.getDriver();
+        if(driver == null){
+            //TODO: Have this throw an error?
+        } else{
+            this.driver.setPositiveRatings(thumbs);
+        }
+    }
+
+    public int getThumbsDown(){
+        driver = this.getDriver();
+        if(driver == null){
+            return -1;
+        } else{
+            return this.driver.getNegativeRatings();
+        }
+    }
+
+    public void setThumbsDown(int thumbs){
+        driver = this.getDriver();
+        if(driver == null){
+            //TODO: Have this throw an error?
+        } else{
+            this.driver.setNegativeRatings(thumbs);
+        }
+    }
 }
