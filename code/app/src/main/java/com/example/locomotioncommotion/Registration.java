@@ -30,8 +30,32 @@ public class Registration extends AppCompatActivity {
         EditText userName = findViewById(R.id.registration_username);
         EditText password = findViewById(R.id.registration_password);
         EditText email = findViewById(R.id.registration_email);
-        User user = User.getInstance(userName.getText().toString(), password.getText().toString());
-        user.setEmail(email.getText().toString());
+
+        String userString = userName.getText().toString();
+        String passString = password.getText().toString();
+        String emailString = email.getText().toString();
+
+        boolean valid = true;
+
+        if(userString.equals("")){
+            userName.setError("Required");
+            valid = false;
+        }
+        if(passString.equals("")){
+            password.setError("Required");
+            valid = false;
+        }
+        if(emailString.equals("")){
+            email.setError("Required");
+            valid = false;
+        }
+
+        if(!valid){
+            return;
+        }
+
+        User user = User.getInstance(userString, passString);
+        user.setEmail(emailString);
         db = FirebaseFirestore.getInstance();
         db.collection("Users").document(user.getUserName()).set(user);
         finish();
