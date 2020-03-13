@@ -6,33 +6,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class createRequest extends AppCompatActivity implements confirmRequestFragment.OnFragmentInteractionListener{
+import java.util.ArrayList;
+
+public class createRequest extends AppCompatActivity {
+    ArrayList<Request> requestDataList;
+    private String starting;
+    private String ending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_request);
+        starting = findViewById(R.id.start_edit_create).toString();
+        ending = findViewById(R.id.end_edit_create).toString();
 
-        final FloatingActionButton confirmButton = findViewById(R.id.nextToConfirm);
-        confirmButton.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View view){
-                new confirmRequestFragment().show(getSupportFragmentManager(),"Confirm Request");
-            }
-        });
-    }
-
-    @Override
-    public void onOkPressed(){
 
     }
-
-
-
-
-
 
 
 
