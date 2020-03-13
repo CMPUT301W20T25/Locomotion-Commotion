@@ -9,6 +9,9 @@ import android.widget.EditText;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Controller to allow the person to register an account
+ */
 public class Registration extends AppCompatActivity {
     FirebaseFirestore db;
 
@@ -18,6 +21,11 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.registration);
     }
 
+    /**
+     * Creates an account and uploads it to the firebase
+     * @param view
+     *      the current view
+     */
     public void createAccount(View view){
         EditText userName = findViewById(R.id.registration_username);
         EditText password = findViewById(R.id.registration_password);
