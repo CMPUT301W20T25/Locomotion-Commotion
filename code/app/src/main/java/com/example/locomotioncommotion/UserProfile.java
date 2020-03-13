@@ -85,6 +85,7 @@ public class UserProfile extends AppCompatActivity {
 
         user = User.getInstance();
         email.setText(newAddress);
+        email.setText("");
         user.setEmail(newAddress);
     }
 
@@ -98,6 +99,7 @@ public class UserProfile extends AppCompatActivity {
 
         user = User.getInstance();
         phoneNumber.setText(newPhone);
+        phoneNumberField.setText("");
         user.setPhoneNumber(newPhone);
     }
 
