@@ -1,5 +1,10 @@
 package com.example.locomotioncommotion;
 
+/**
+ * Rider
+ *
+ * Keeps track of Rider information and methods for it
+ * */
 
 public class Rider {
     private Request currentRequest;

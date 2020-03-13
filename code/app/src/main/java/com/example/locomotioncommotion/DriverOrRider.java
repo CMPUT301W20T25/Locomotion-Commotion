@@ -9,6 +9,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * DriverOrRider
+ *
+ * Class associated with rider_or_driver.xml
+ * chooses between different modes for the user
+ */
 public class DriverOrRider extends AppCompatActivity {
     private Button riderSide;
     private Button driverSide;

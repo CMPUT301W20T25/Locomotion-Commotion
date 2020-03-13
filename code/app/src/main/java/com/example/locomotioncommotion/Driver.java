@@ -1,5 +1,10 @@
+/**
+ * Driver
+ *
+ * This class holds the information related to a driver
+ * it is not implemented at the moment
+ */
 package com.example.locomotioncommotion;
-
 public class Driver {
 
     private int positiveRatings;
