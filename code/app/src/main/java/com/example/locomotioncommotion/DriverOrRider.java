@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DriverOrRider extends AppCompatActivity {
     private Button riderSide;
+    private Button driverSide;
+    private Button profileButton;
+
     private Button qrTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,22 @@ public class DriverOrRider extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 riderClick(v);
+            }
+        });
+
+        driverSide = findViewById(R.id.driver);
+        driverSide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                driverClick(v);
+            }
+        });
+
+        profileButton = findViewById(R.id.profile);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profileClick(v);
             }
         });
 
@@ -43,6 +62,12 @@ public class DriverOrRider extends AppCompatActivity {
         Intent intent = new Intent(this,DriverRequestsAll.class );
         startActivity(intent);
     }
+
+    public void profileClick(View view) {
+        Intent intent = new Intent(this,UserProfile.class );
+        startActivity(intent);
+    }
+
     public void qrClick(View view){
         Intent intent = new Intent(this, QRCode.class);
         startActivity(intent);

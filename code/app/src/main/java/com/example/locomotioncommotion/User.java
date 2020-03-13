@@ -1,5 +1,8 @@
 package com.example.locomotioncommotion;
 
+//Singleton implementation based on
+//https://stackoverflow.com/a/12587124
+
 public class User {
     private String userName;
     private String passWord;
@@ -7,22 +10,46 @@ public class User {
     private String email;
     private Driver driver;
     private Rider rider;
+    private static User userInstance;
 
-    public User () {
-        this.userName = "";
-        this.passWord = "";
-        this.email = "";
-        this.phoneNumber = "";
-        this.driver = null;
-        this.rider = null;
-    }
-    public User(String userName, String passWord){
+    private User(String userName, String passWord){
         this.userName = userName;
         this.passWord = passWord;
         this.email = "";
         this.phoneNumber = "";
         this.driver = null;
         this.rider = null;
+    }
+
+    public synchronized static User getInstance(){
+        if(User.userInstance == null){
+            //TODO; make this throw an error
+            return null;
+        } else{
+            return User.userInstance;
+        }
+    }
+
+    public synchronized static User getInstance(String userName, String passWord){
+        if(User.userInstance == null){
+            User.userInstance = new User(userName, passWord);
+            return User.userInstance;
+        } else{
+            return User.userInstance;
+        }
+    }
+
+    public synchronized static User getInstance(String userName, String passWord, String email, String phonenumber, Driver driver, Rider rider){
+        if(User.userInstance == null){
+            User.userInstance = new User(userName, passWord);
+            User.userInstance.setEmail(email);
+            User.userInstance.setPhoneNumber(phonenumber);
+            User.userInstance.setDriver(driver);
+            User.userInstance.setRider(rider);
+            return User.userInstance;
+        } else{
+            return User.userInstance;
+        }
     }
 
     public String getUserName(){
@@ -74,4 +101,35 @@ public class User {
         this.driver = driver;
     }
 
+    public int getThumbsUp(){
+        if(this.getDriver()== null){
+            return -1;
+        } else{
+            return this.getDriver().getPositiveRatings();
+        }
+    }
+
+    public void setThumbsUp(int thumbs){
+        if(this.getDriver()== null){
+            //TODO: Have this throw an error or something
+        }else{
+            this.driver.setPositiveRatings(thumbs);
+        }
+    }
+
+    public int getThumbsDown(){
+        if(this.getDriver() == null){
+            return -1;
+        } else{
+            return this.driver.getNegativeRatings();
+        }
+    }
+
+    public void setThumbsDown(int thumbs){
+        if(this.getDriver() == null){
+            //TODO: Have this throw an error?
+        } else{
+            this.driver.setNegativeRatings(thumbs);
+        }
+    }
 }

@@ -5,51 +5,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfile">
-
-    <TextView
-        android:id="@+id/user-profile-thumbs-down2"
-        android:layout_width="111dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="384dp"
-        android:layout_marginEnd="52dp"
-        android:text="Thumbs down"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/user-profile-phone-number2"
-        android:layout_width="110dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="312dp"
-        android:text="phone number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/user-profile-email2"
-        android:layout_width="110dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="240dp"
-        android:text="email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/user-profile-name2"
-        android:layout_width="83dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="120dp"
-        android:text="name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_profile_thumbs_down1"
+            android:layout_width="111dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="384dp"
+            android:layout_marginEnd="52dp"
+            android:text="Thumbs down"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/user_profile_thumbs_down2"
+            android:layout_width="111dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="52dp"
+            android:text="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_profile_phone_number1"
+            android:layout_width="110dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="312dp"
+            android:text="phone number:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/user_profile_phone_number2"
+            android:layout_width="110dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="4dp"
+            android:text="(123) 123-5678"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/user_profile_phone_number_edit"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="New email address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_profile_email1"
+            android:layout_width="110dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="240dp"
+            android:text="email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/user_profile_email2"
+            android:layout_width="110dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="4dp"
+            android:text="awoo@snek.com"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_profile_name1"
+            android:layout_width="83dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="120dp"
+            android:text="name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/user_profile_name2"
+            android:layout_width="83dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:text="Bruce Wayne"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
     <Button
-        android:id="@+id/user-profile-back-button2"
+        android:id="@+id/user_profile_back_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,14 +121,27 @@
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/user-profile-thumbs-down"
-        android:layout_width="107dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="384dp"
-        android:text="Thumbs up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_profile_thumbs_up1"
+            android:layout_width="107dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="434dp"
+            android:text="Thumbs up"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/user_profile_thumbs_up2"
+            android:layout_width="107dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="0dp"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

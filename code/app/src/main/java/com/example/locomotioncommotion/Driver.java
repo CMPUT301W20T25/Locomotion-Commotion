@@ -24,13 +24,19 @@ public class Driver {
         return this.negativeRatings;
     }
 
+    public void setNegativeRatings(int rating) {this.negativeRatings = rating;}
+
     public int getPositiveRatings(){
         return this.positiveRatings;
     }
 
+    public void setPositiveRatings(int rating) {this.positiveRatings = rating;}
+
     public Request getCurrentRequest(){
         return this.currentRequest;
     }
+
+    public void setCurrentRequest(Request request){this.currentRequest = request;}
 
     public String scanQR(){
         return "scan failed";
