@@ -4,15 +4,16 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/qrcode"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="4dp"
         android:layout_gravity="center"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="64dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/qrcode"
+        />
 
     <EditText
         android:layout_width="match_parent"
