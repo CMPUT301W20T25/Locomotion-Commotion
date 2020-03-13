@@ -53,13 +53,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void register(View view){
-        Intent intent = new Intent(this, Registration.class);        EditText userName = findViewById(R.id.username);
+        Intent intent = new Intent(this, Registration.class);
+        /*
+        EditText userName = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
         User user = User.getInstance(userName.getText().toString(), password.getText().toString());
         db = FirebaseFirestore.getInstance();
         //final CollectionReference collectionReference = db.collection("Users");
         db.collection("Users").document(user.getUserName()).set(user);
-
+        */
         startActivity(intent);
     }
 }
