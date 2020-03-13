@@ -17,6 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
+/**
+ * QRCode
+ * class for generating a QR code with provided text
+ */
 public class QRCode extends AppCompatActivity {
     String TAG = "GenerateQRCode";
     EditText editValue;

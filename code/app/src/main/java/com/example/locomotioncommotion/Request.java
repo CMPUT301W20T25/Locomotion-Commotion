@@ -1,5 +1,9 @@
 package com.example.locomotioncommotion;
 
+/**
+ * Request
+ * keeping track of all information about rider requests
+ */
 public class Request {
     private Rider currentRider;
     private Driver currentDriver;

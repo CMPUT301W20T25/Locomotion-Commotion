@@ -3,6 +3,11 @@ package com.example.locomotioncommotion;
 //Singleton implementation based on
 //https://stackoverflow.com/a/12587124
 
+/**
+ * User
+ * All data associated with Users
+ * implements a singleton so it can be accessed anywhere
+ */
 public class User {
     private String userName;
     private String passWord;
@@ -11,6 +16,15 @@ public class User {
     private Driver driver;
     private Rider rider;
     private static User userInstance;
+
+    public User() {
+        this.userName = null;
+        this.passWord = null;
+        this.email = null;
+        this.phoneNumber = null;
+        this.driver = null;
+        this.rider = null;
+    }
 
     private User(String userName, String passWord){
         this.userName = userName;
@@ -23,7 +37,6 @@ public class User {
 
     public synchronized static User getInstance(){
         if(User.userInstance == null){
-            //TODO; make this throw an error
             return null;
         } else{
             return User.userInstance;
