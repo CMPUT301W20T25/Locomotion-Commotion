@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class UserProfile extends AppCompatActivity {
+
 
     private TextView thumbsDown1;
     private TextView thumbsDown2;
@@ -21,6 +23,8 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+
 
         user = User.getInstance(); //TODO: Make sure that it's impossible for no userInstance to exist when this line runs
 
@@ -48,6 +52,7 @@ public class UserProfile extends AppCompatActivity {
         phoneNumber.setText(user.getPhoneNumber());
 
     }
+
 
     public void backButton (View view) {
         finish();
