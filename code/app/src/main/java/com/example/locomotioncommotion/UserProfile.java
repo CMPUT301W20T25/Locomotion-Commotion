@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserProfile extends AppCompatActivity {
 
@@ -17,14 +20,16 @@ public class UserProfile extends AppCompatActivity {
     private TextView name;
     private TextView email;
     private TextView phoneNumber;
+    private EditText phoneNumberField;
+    private EditText emailField;
+    private Button emailChangeButton;
+    private Button phoneChangeButton;
     private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
-
 
         user = User.getInstance(); //TODO: Make sure that it's impossible for no userInstance to exist when this line runs
 
@@ -35,6 +40,8 @@ public class UserProfile extends AppCompatActivity {
         name = findViewById(R.id.user_profile_name2);
         email = findViewById(R.id.user_profile_email2);
         phoneNumber = findViewById(R.id.user_profile_phone_number2);
+        phoneNumberField = findViewById(R.id.user_profile_phone_number_edit);
+        emailField = findViewById(R.id.user_profile_email_edit);
 
         int posRating = user.getThumbsUp();
         if(posRating != -1){
@@ -51,8 +58,48 @@ public class UserProfile extends AppCompatActivity {
         email.setText(user.getEmail());
         phoneNumber.setText(user.getPhoneNumber());
 
+        emailChangeButton = findViewById(R.id.user_profile_email_button);
+        emailChangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeEmail(v);
+            }
+        });
+
+        phoneChangeButton = findViewById(R.id.user_profile_phone_button);
+        phoneChangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changePhone(v);
+            }
+        });
     }
 
+    public void changeEmail(View view){
+        String newAddress = emailField.getText().toString();
+
+        if(newAddress.equals("")){
+            emailField.setError("Required");
+            return;
+        }
+
+        user = User.getInstance();
+        email.setText(newAddress);
+        user.setEmail(newAddress);
+    }
+
+    public void changePhone(View view){
+        String newPhone = phoneNumberField.getText().toString();
+
+        if(newPhone.equals("")){
+            phoneNumberField.setError("Required");
+            return;
+        }
+
+        user = User.getInstance();
+        phoneNumber.setText(newPhone);
+        user.setPhoneNumber(newPhone);
+    }
 
     public void backButton (View view) {
         finish();
