@@ -44,9 +44,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void confirmLogin(View view){
-        //TODO: Check for whether password is a match
         String userName = userNameField.getText().toString();
         String passWord = passWordField.getText().toString();
+
+        if(userName.equals("")){
+            userNameField.setError("Required");
+            return;
+        }
+
+        db = FirebaseFirestore.getInstance();
+
         User.getInstance(userName, passWord); //TODO: Make sure this doesn't break logging out and then logging back in!
         Intent intent = new Intent(this, DriverOrRider.class);
         startActivity(intent);
