@@ -37,7 +37,7 @@ public class QRCode extends AppCompatActivity {
         qrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputValue = editValue.getText().toString().trim();
+                inputValue = editValue.getText().toString();
                 if (inputValue.length() > 0){
                     WindowManager manager = (WindowManager)getSystemService(WINDOW_SERVICE);
                     Display display = manager.getDefaultDisplay();
@@ -46,7 +46,7 @@ public class QRCode extends AppCompatActivity {
                     int width = point.x;
                     int height = point.y;
                     int smallerDimension = width<height ? width:height;
-                    smallerDimension = smallerDimension * (3 / 4);
+                    smallerDimension = smallerDimension * 3 / 4;
                     qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
 
                     try {
