@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        userNameField = findViewById(R.id.username);
+        passWordField = findViewById(R.id.password);
+
         loginButton = findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 confirmLogin(v);
             }
         });
-        userNameField = findViewById(R.id.username);
-        passWordField = findViewById(R.id.password);
 
         registerButton = findViewById(R.id.register);
         registerButton.setOnClickListener(new View.OnClickListener() {
