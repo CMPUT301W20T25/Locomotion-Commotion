@@ -24,8 +24,9 @@ public class RiderMain extends AppCompatActivity {
 
         requestDataList = new ArrayList<>();
 
-
         requestArrayAdapter = new RequestList(this, requestDataList);
+        //show the data on this layout??
+        requestList.setAdapter(requestArrayAdapter);
     }
 
     public void create(View view){

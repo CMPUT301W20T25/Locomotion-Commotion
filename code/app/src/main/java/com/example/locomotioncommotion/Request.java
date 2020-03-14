@@ -7,8 +7,8 @@ package com.example.locomotioncommotion;
 public class Request {
     private Rider currentRider;
     private Driver currentDriver;
-    private Location startLocation;
-    private Location endLocation;
+    private String startLocation;
+    private String endLocation;
     private int fareOffered;
     private String status;
 
@@ -20,7 +20,7 @@ public class Request {
         this.fareOffered = 0;
         this.status = "Pending"; //TODO: check that this makes sense
     }
-    public Request(Rider rider, Location startLocation, Location endLocation, int fareOffered){
+    public Request(Rider rider, String startLocation, String endLocation, int fareOffered){
         this.currentRider = rider;
         this.currentDriver = null;
         this.startLocation = startLocation;
@@ -45,20 +45,20 @@ public class Request {
         this.currentDriver = driver;
     }
 
-    public Location getStartLocation(){
+    public String getStartLocation(){
         return this.startLocation;
     }
 
-    public Location getEndLocation(){
+    public String getEndLocation(){
         return this.endLocation;
     }
 
     //Not actually sure if these location setters are needed, but just in case here they are
-    public void setStartLocation(Location location){
+    public void setStartLocation(String location){
         this.startLocation = location;
     }
 
-    public void setEndLocation(Location location){
+    public void setEndLocation(String location){
         this.endLocation = location;
     }
 
