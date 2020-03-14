@@ -25,7 +25,7 @@ public class Driver {
 
     public String requestStatus(){
         if(this.currentRequest == null) {
-            return "No active est";
+            return "No active request";
         } else{
             return this.currentRequest.getStatus();
         }
