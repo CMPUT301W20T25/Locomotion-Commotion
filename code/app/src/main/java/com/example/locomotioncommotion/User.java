@@ -17,15 +17,6 @@ public class User {
     private Rider rider;
     private static User userInstance;
 
-    public User() {
-        this.userName = null;
-        this.passWord = null;
-        this.email = null;
-        this.phoneNumber = null;
-        this.driver = null;
-        this.rider = null;
-    }
-
     private User(String userName, String passWord){
         this.userName = userName;
         this.passWord = passWord;
