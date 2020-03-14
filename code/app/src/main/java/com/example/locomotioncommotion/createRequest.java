@@ -52,7 +52,7 @@ public class createRequest extends AppCompatActivity {
                 Request request = new Request(User.getInstance(), start, end, 0);
 //                Request request = User.getInstance().getRider().createRequest(start, end, 0);
 
-                DocumentReference newCityRef = db.collection("requests").document();
+//                DocumentReference newCityRef = db.collection("requests").document();
 
                 db.collection("requests")
                         .add(request)
