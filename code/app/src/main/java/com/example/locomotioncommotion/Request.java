@@ -12,6 +12,9 @@ public class Request {
     private int fareOffered;
     private String status;
 
+    /**
+     * Constructor for the request class. Just makes a blank request
+     */
     public Request() {
         this.currentRider = null;
         this.currentDriver = null;
@@ -20,6 +23,19 @@ public class Request {
         this.fareOffered = 0;
         this.status = "Pending"; //TODO: check that this makes sense
     }
+
+    /**
+     * Constructor for the request class. Takes all attributes but driver and status.
+     * Driver and status are set to null and pending, respectively
+     * @param rider
+     *      The rider who issued the request
+     * @param startLocation
+     *      The start location of the request
+     * @param endLocation
+     *      The ultimate destination of the request
+     * @param fareOffered
+     *      The amount of money offered for this request
+     */
     public Request(Rider rider, Location startLocation, Location endLocation, int fareOffered){
         this.currentRider = rider;
         this.currentDriver = null;
@@ -29,43 +45,91 @@ public class Request {
         this.status = "Pending"; //TODO: check that this makes sense
     }
 
+    /**
+     * Returns the rider currently attached to the request
+     * @return
+     *      The current rirder
+     */
     public Rider getCurrentRider(){
         return this.currentRider;
     }
 
+    /**
+     * Sets the rider associated with the request
+     * @param rider
+     *      The new rider to associate with this request
+     */
     public void setCurrentRider(Rider rider){
         this.currentRider = rider;
     }
 
+    /**
+     * Gets the driver currently associated with the request
+     * @return
+     *      The attached driver
+     */
     public Driver getCurrentDriver(){
         return this.currentDriver;
     }
-
+    /**
+     * Sets the driver associated with the request
+     * @param driver
+     *      The new driver to associate with this request
+     */
     public void setCurrentDriver(Driver driver){
         this.currentDriver = driver;
     }
-
+    /**
+     * Gets the start location of the request
+     * @return
+     *      The start location of the request
+     */
     public Location getStartLocation(){
         return this.startLocation;
     }
 
+    /**
+     * Gets the end location of the request
+     * @return
+     *      The end location of the request
+     */
     public Location getEndLocation(){
         return this.endLocation;
     }
 
-    //Not actually sure if these location setters are needed, but just in case here they are
+    /**
+     * Sets the start location of the request
+     * @param location
+     *      The new location to set as the request's start location
+     */
     public void setStartLocation(Location location){
         this.startLocation = location;
     }
 
+    /**
+     * Sets the end location of the request
+     * @param location
+     *      The new location to set as the request's end location
+     */
     public void setEndLocation(Location location){
         this.endLocation = location;
     }
 
+    /**
+     * Gets the status of the request
+     * @return
+     *      The status of the request
+     */
     public String getStatus(){
         return this.status;
     }
 
+    /**
+     * Sets the status of the request
+     * TODO: Maybe nnforce only a few allowed strings as valid request statuses?
+     * @param status
+     *      The new status of the request
+     */
     public void setStatus(String status){
         this.status = status;
     }
