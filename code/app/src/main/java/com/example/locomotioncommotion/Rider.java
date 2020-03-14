@@ -17,20 +17,20 @@ public class Rider {
         this.currentRequest = null;
     }
 
-    /**
-     * Creates a new request for this rider
-     * @param start
-     *      The start location of the request
-     * @param end
-     *      The final destination of the request
-     * @param fare
-     *      The amount of money to be offered for the completion of the request
-     * @return
-     *      A request object with the above parameters and the issuing rider as attributes
-     */
-    public Request createRequest(Location start, Location end, Integer fare){
-        return new Request(this, start, end, fare);
-    }
+//    /**
+//     * Creates a new request for this rider
+//     * @param start
+//     *      The start location of the request
+//     * @param end
+//     *      The final destination of the request
+//     * @param fare
+//     *      The amount of money to be offered for the completion of the request
+//     * @return
+//     *      A request object with the above parameters and the issuing rider as attributes
+//     */
+//    public Request createRequest(String start, String end, Integer fare){
+//        return new Request(this, start, end, fare);
+//    }
 
     /**
      * Gets the current request of the rider
