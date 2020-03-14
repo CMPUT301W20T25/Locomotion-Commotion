@@ -143,6 +143,14 @@ public class Request {
     public long getTimestamp() {
         return this.timestamp;
     }
+
+    /**
+     * Gets the fare amount offered
+     * @return
+     */
+    public int getFareOffered() {
+        return this.fareOffered;
+    }
 }
 
 
