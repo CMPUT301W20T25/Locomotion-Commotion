@@ -145,6 +145,15 @@ public class Request {
     }
 
     /**
+     * Sets the timestamp used for sorting
+     * @param timestamp
+     */
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+
+    /**
      * Gets the fare amount offered
      * @return
      */

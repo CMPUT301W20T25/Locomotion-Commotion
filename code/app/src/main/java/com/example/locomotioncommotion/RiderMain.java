@@ -59,7 +59,10 @@ public class RiderMain extends AppCompatActivity {
                             String start = (String) doc.getData().get("startLocation");
                             String end = (String) doc.getData().get("endLocation");
                             int fare = Math.toIntExact((Long) doc.getData().get("fareOffered"));
-                            requestDataList.add(new Request(User.getInstance(), start, end, fare));
+                            long timestamp = (Long) doc.getData().get("timestamp");
+                            Request request = new Request(User.getInstance(), start, end, fare);
+                            request.setTimestamp(timestamp);
+                            requestDataList.add(request);
                         }
                         requestArrayAdapter.notifyDataSetChanged();
                     }
