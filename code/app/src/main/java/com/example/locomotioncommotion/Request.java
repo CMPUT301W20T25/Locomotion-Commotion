@@ -5,12 +5,13 @@ package com.example.locomotioncommotion;
  * keeping track of all information about rider requests
  */
 public class Request {
-    private Rider currentRider;
+    private User currentRider;
     private Driver currentDriver;
-    private Location startLocation;
-    private Location endLocation;
+    private String startLocation;
+    private String endLocation;
     private int fareOffered;
     private String status;
+    private long timestamp;
 
     /**
      * Constructor for the request class. Just makes a blank request
@@ -36,13 +37,14 @@ public class Request {
      * @param fareOffered
      *      The amount of money offered for this request
      */
-    public Request(Rider rider, Location startLocation, Location endLocation, int fareOffered){
+    public Request(User rider, String startLocation, String endLocation, int fareOffered){
         this.currentRider = rider;
         this.currentDriver = null;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
         this.status = "Pending"; //TODO: check that this makes sense
+        this.timestamp = System.currentTimeMillis();
     }
 
     /**
@@ -50,7 +52,7 @@ public class Request {
      * @return
      *      The current rirder
      */
-    public Rider getCurrentRider(){
+    public User getCurrentRider(){
         return this.currentRider;
     }
 
@@ -59,7 +61,7 @@ public class Request {
      * @param rider
      *      The new rider to associate with this request
      */
-    public void setCurrentRider(Rider rider){
+    public void setCurrentRider(User rider){
         this.currentRider = rider;
     }
 
@@ -84,7 +86,7 @@ public class Request {
      * @return
      *      The start location of the request
      */
-    public Location getStartLocation(){
+    public String getStartLocation(){
         return this.startLocation;
     }
 
@@ -93,7 +95,7 @@ public class Request {
      * @return
      *      The end location of the request
      */
-    public Location getEndLocation(){
+    public String getEndLocation(){
         return this.endLocation;
     }
 
@@ -102,7 +104,7 @@ public class Request {
      * @param location
      *      The new location to set as the request's start location
      */
-    public void setStartLocation(Location location){
+    public void setStartLocation(String location){
         this.startLocation = location;
     }
 
@@ -111,7 +113,7 @@ public class Request {
      * @param location
      *      The new location to set as the request's end location
      */
-    public void setEndLocation(Location location){
+    public void setEndLocation(String location){
         this.endLocation = location;
     }
 
@@ -133,4 +135,14 @@ public class Request {
     public void setStatus(String status){
         this.status = status;
     }
+
+    /**
+     * Gets the UNIX timestamp from when the request was made
+     * @return
+     */
+    public long getTimestamp() {
+        return this.timestamp;
+    }
 }
+
+
