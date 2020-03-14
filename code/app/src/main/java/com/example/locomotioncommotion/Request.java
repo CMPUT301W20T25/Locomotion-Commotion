@@ -11,6 +11,7 @@ public class Request {
     private String endLocation;
     private int fareOffered;
     private String status;
+    private long timestamp;
 
     public Request() {
         this.currentRider = null;
@@ -27,6 +28,7 @@ public class Request {
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
         this.status = "Pending"; //TODO: check that this makes sense
+        this.timestamp = System.currentTimeMillis();
     }
 
     public Rider getCurrentRider(){
@@ -69,4 +71,10 @@ public class Request {
     public void setStatus(String status){
         this.status = status;
     }
+
+    public long getTimestamp() {
+        return this.timestamp;
+    }
 }
+
+
