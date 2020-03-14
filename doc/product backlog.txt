@@ -8,12 +8,14 @@ As a rider, I want to request rides between two locations.
 Because a rider should be able to choose two locations (not neccesarily where they are) and send that request.
 This will take less than 4 hours to complete
 low risk
+Completed
 
 US 01.02.01
 As a rider, I want to see current request I have open.
 Because I want to make sure that the request has the correct information
 this will take less than 4 hours to complete
 low risk (done in lab)
+Completed
 
 
 US 01.03.01
