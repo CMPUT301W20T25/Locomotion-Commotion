@@ -65,37 +65,6 @@ public class User {
     }
 
     /**
-     * Gets an instance of the logged-in user. If there isn't one then set the instance to be a new user with all the provided attributes
-     * Intended to be used when loading a pre-existing user object fom the database
-     * May not actually be a good idea, but oh well
-     * @param userName
-     *      The username of the user to be created if there isn't already a logged-in user
-     * @param passWord
-     *      The password of the user to be created if there isn't already a logged-in user
-     * @param email
-     *      The email address of the user to be created if there isn't already a logged-in user
-     * @param phonenumber
-     *      The phone number of the user to be created if there isn't already a logged-in user
-     * @param driver
-     *      The driver object associated with the user to be created if there isn't already a logged-in user
-     * @param rider
-     *      The rider object associated with the user to be created if there isn't already a logged-in user
-     * @return
-     */
-    public synchronized static User getInstance(String userName, String passWord, String email, String phonenumber, Driver driver, Rider rider){
-        if(User.userInstance == null){
-            User.userInstance = new User(userName, passWord);
-            User.userInstance.setEmail(email);
-            User.userInstance.setPhoneNumber(phonenumber);
-            User.userInstance.setDriver(driver);
-            User.userInstance.setRider(rider);
-            return User.userInstance;
-        } else{
-            return User.userInstance;
-        }
-    }
-
-    /**
      * Gets the username of the user
      * @return
      *      The username of the user

@@ -126,7 +126,7 @@ public class Request {
 
     /**
      * Sets the status of the request
-     * TODO: Maybe nnforce only a few allowed strings as valid request statuses?
+     * TODO: Maybe enforce only a few allowed strings as valid request statuses?
      * @param status
      *      The new status of the request
      */
