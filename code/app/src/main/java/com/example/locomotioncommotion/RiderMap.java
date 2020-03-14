@@ -11,6 +11,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * Fragment for selecting locations using the map
+ */
+
 public class RiderMap extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

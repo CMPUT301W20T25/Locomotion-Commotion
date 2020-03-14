@@ -18,6 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+/**
+ * Activity for creating a request, as a rider.
+ * Currently just a stub/placeholder
+ */
 public class createRequest extends AppCompatActivity {
     ArrayList<Request> requestDataList;
     ArrayAdapter<Request> requestArrayAdapter;
