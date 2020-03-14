@@ -43,6 +43,7 @@ public class DriverOrRider extends AppCompatActivity {
         });
 
         profileButton = findViewById(R.id.profile);
+        profileButton.setText(User.getInstance().getUserName());
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +58,8 @@ public class DriverOrRider extends AppCompatActivity {
                 qrClick(v);
             }
         });
+
+
     }
 
     public void riderClick(View view){

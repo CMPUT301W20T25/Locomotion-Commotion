@@ -2,7 +2,6 @@ package com.example.locomotioncommotion;
 
 /**
  * Rider
- *
  * Keeps track of Rider information and methods for it
  * */
 
@@ -49,6 +48,18 @@ public class Rider {
             //TODO: Throw an error here
         } else {
             this.currentRequest.setStatus("Completed"); //TODO: Ensure consistency with status codes
+        }
+    }
+
+    /**
+     * Sets the rider's current request status to "Cancelled" and delinks it from the rider
+     */
+    public void cancelRequest(){
+        if(this.currentRequest == null){
+            //TODO: Throw an error here, maybe? Cancelling a request doesn't seeeem too bad at first glance.
+        } else {
+            this.currentRequest.setStatus("Cancelled"); //TODO: Ensure consistency with status codes
+            this.currentRequest = null;
         }
     }
 
