@@ -10,6 +10,11 @@ import android.widget.EditText;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * The starting screen and main activity
+ * Prompts the user to log in or register
+ */
+
 public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;

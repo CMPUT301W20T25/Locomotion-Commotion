@@ -12,6 +12,10 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ * Custom list class for displaying request objeects
+ */
+
 public class RequestList extends ArrayAdapter<Request> {
     private ArrayList<Request> requests;
     private Context context;

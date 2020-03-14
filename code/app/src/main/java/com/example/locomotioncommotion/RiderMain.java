@@ -10,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+/**
+ * Hub area for rider functionality, where they view their requests and create them
+ */
+
 public class RiderMain extends AppCompatActivity {
     ListView requestList;
     ArrayAdapter<Request> requestArrayAdapter;
