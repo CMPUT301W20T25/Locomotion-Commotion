@@ -9,7 +9,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-//Activity to handle viewing and changing user attributes like contact information, ratings and username
+
+/**
+ * Activity to handle viewing and changing user attributes like contact information, ratings and username
+ */
 public class UserProfile extends AppCompatActivity {
 
 
