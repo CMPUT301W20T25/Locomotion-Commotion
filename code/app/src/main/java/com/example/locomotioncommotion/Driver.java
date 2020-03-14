@@ -18,11 +18,17 @@ public class Driver {
     }
 
     public void acceptRequest(Request request){
-        int a = 0;
+        this.currentRequest = request;
+        //TODO: Check that there isn't already a current request
+        //TODO: Update the status of the accepted request
     }
 
     public String requestStatus(){
-        return "choo choo";
+        if(this.currentRequest == null) {
+            return "No active request";
+        } else{
+            return this.currentRequest.getStatus();
+        }
     }
 
     public int getNegativeRatings(){
@@ -40,8 +46,6 @@ public class Driver {
     public Request getCurrentRequest(){
         return this.currentRequest;
     }
-
-    public void setCurrentRequest(Request request){this.currentRequest = request;}
 
     public String scanQR(){
         return "scan failed";

@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-
+//Activity to handle viewing and changing user attributes like contact information, ratings and username
 public class UserProfile extends AppCompatActivity {
 
 
@@ -26,6 +26,11 @@ public class UserProfile extends AppCompatActivity {
     private Button phoneChangeButton;
     private User user;
 
+    /**
+     * Creates the class and handles references to and visibility of the views in the activity
+     * @param savedInstanceState
+     *      The saved instance of the previous activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +80,11 @@ public class UserProfile extends AppCompatActivity {
         });
     }
 
+    /**
+     * Function for the button that lets the user apply a chosen new email address to their account
+     * @param view
+     *      This is the button that calls this function
+     */
     public void changeEmail(View view){
         String newAddress = emailField.getText().toString();
 
@@ -89,6 +99,11 @@ public class UserProfile extends AppCompatActivity {
         user.setEmail(newAddress);
     }
 
+    /**
+     * Function for the button that lets the user apply a chosen new phone number to their accoumt
+     * @param view
+     *      This is the button that calls this function
+     */
     public void changePhone(View view){
         String newPhone = phoneNumberField.getText().toString();
 
@@ -103,6 +118,11 @@ public class UserProfile extends AppCompatActivity {
         user.setPhoneNumber(newPhone);
     }
 
+    /**
+     *  Function for the back button, that ends the user profile activity and returns them to the previous activity
+     * @param view
+     *      This is the button that calls this function
+     */
     public void backButton (View view) {
         finish();
     }
