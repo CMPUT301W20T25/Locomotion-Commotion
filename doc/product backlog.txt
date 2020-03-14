@@ -91,6 +91,7 @@ As a user, I want to, when a username is presented for a thing, retrieve and sho
 because I would like to contact the other user.
 less than 4 hours
 low risk
+completed
 
 
 Searching
@@ -159,6 +160,7 @@ As a rider I wish to generate a QR-Bucks QR Code for my driver to scan to pay th
 because I need an easy way to pay the driver
 more than 4 hours
 medium risk (need to learn how to generate QR codes and integrate into app)
+completed
 
 US 08.02.01
 As a driver I want to scan my rider's QR-Bucks to get paid!
