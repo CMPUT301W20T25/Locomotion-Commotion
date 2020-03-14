@@ -163,12 +163,3 @@ As a driver I want to scan my rider's QR-Bucks to get paid!
 Because I need to recieve the money to continue work and pay bills
 about 4 hours
 medium risk
-
-
-
-
-
-
-
-
-
