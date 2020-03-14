@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-//TODO: ADD INFO ABOUT THIS CLASS
+//Activity to handle viewing and changing user attributes like contact information, ratings and username
 public class UserProfile extends AppCompatActivity {
 
 
@@ -27,7 +27,7 @@ public class UserProfile extends AppCompatActivity {
     private User user;
 
     /**
-     * Activity to handle viewing and changing user attributes like contact information, ratings and username
+     * Creates the class and handles references to and visibility of the views in the activity
      * @param savedInstanceState
      *      The saved instance of the previous activity, if any
      */
