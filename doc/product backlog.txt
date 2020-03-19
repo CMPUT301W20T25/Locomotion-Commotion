@@ -8,14 +8,14 @@ As a rider, I want to request rides between two locations.
 Because a rider should be able to choose two locations (not neccesarily where they are) and send that request.
 This will take less than 4 hours to complete
 low risk
-completed
+Completed
 
 US 01.02.01
 As a rider, I want to see current request I have open.
 Because I want to make sure that the request has the correct information
 this will take less than 4 hours to complete
 low risk (done in lab)
-completed
+Completed
 
 
 US 01.03.01
@@ -91,7 +91,6 @@ As a user, I want to, when a username is presented for a thing, retrieve and sho
 because I would like to contact the other user.
 less than 4 hours
 low risk
-completed
 
 
 Searching
@@ -160,7 +159,6 @@ As a rider I wish to generate a QR-Bucks QR Code for my driver to scan to pay th
 because I need an easy way to pay the driver
 more than 4 hours
 medium risk (need to learn how to generate QR codes and integrate into app)
-completed
 
 US 08.02.01
 As a driver I want to scan my rider's QR-Bucks to get paid!
