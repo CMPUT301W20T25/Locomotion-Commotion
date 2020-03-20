@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Locomotion-Commotion.iml" filepath="$PROJECT_DIR$/Locomotion-Commotion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Locomotion-Commotion.iml" filepath="$PROJECT_DIR$/Locomotion-Commotion.iml" group="Locomotion-Commotion" />
     </modules>
   </component>
 </project>
