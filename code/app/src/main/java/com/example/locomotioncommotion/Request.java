@@ -14,6 +14,14 @@ public class Request {
     private long timestamp;
 
     /**
+     * test constructor temporary
+     */
+    public Request(String startLocation, String endLocation) {
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+    }
+
+    /**
      * Constructor for the request class. Just makes a blank request
      */
     public Request() {

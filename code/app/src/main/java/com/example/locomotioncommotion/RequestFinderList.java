@@ -12,6 +12,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -31,22 +32,31 @@ public class RequestFinderList extends AppCompatActivity {
         Request r = new Request();
         r.setStartLocation("Here");
         r.setEndLocation("There");
+
+
         requestDataList = new ArrayList<>();
         requestDataList.add(r);
+
 
         requestAdapter = new RequestList(this, requestDataList);
         requestList.setAdapter(requestAdapter);
 
 
-       // db = FirebaseFirestore.getInstance();
-        //final CollectionReference collectionReference = db.collection("requests");
+        db = FirebaseFirestore.getInstance();
+        final CollectionReference collectionReference = db.collection("requests");
 
-       // collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-           // @Override
-          //  public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-
-          //  }
-       // });
+        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                requestDataList.clear();
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    String start = (String) doc.getData().get("startLocation");
+                    String end = (String) doc.getData().get("endLocation");
+                    requestDataList.add(new Request(start,end));
+                }
+                requestAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 
