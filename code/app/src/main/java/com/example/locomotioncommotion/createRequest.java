@@ -70,6 +70,8 @@ public class createRequest extends AppCompatActivity {
                         });
 
                 finish();
+                //db = FirebaseFirestore.getInstance();
+               // db.collection("Users").document(user.getUserName()).set(user);
             }
         });
     }
