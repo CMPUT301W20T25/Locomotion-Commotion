@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -57,10 +59,22 @@ public class RequestFinderList extends AppCompatActivity {
                 requestAdapter.notifyDataSetChanged();
             }
         });
+
+        requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("TESTITEMCLICK","I am here");
+                Log.d("TESTITEMCLICK", requestDataList.get(position).getStartLocation());
+                Log.d("TESTITEMCLICK", requestDataList.get(position).getCurrentRider().getUserName());
+
+            }
+        });
     }
 
 
     public void backButton(View view) {
         finish();
     }
+
+
 }
