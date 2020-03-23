@@ -65,7 +65,7 @@ public class RequestFinderList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("TESTITEMCLICK","I am here");
                 Log.d("TESTITEMCLICK", requestDataList.get(position).getStartLocation());
-                Log.d("TESTITEMCLICK", requestDataList.get(position).getCurrentRider().getUserName());
+                Log.d("TESTITEMCLICK", requestDataList.get(position).getRiderUsername());
 
             }
         });

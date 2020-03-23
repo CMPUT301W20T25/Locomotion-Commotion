@@ -60,7 +60,7 @@ public class RiderMain extends AppCompatActivity {
 
                             String start = (String) doc.getData().get("startLocation");
                             String end = (String) doc.getData().get("endLocation");
-                            requestDataList.add(new Request(User.getInstance(), start, end, 0));
+                            requestDataList.add(new Request(User.getInstance().getUserName(), start, end, 0));
                         }
                         requestArrayAdapter.notifyDataSetChanged();
                     }

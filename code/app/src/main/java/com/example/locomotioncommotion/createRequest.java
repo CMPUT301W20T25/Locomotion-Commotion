@@ -49,13 +49,13 @@ public class createRequest extends AppCompatActivity {
                 final String start = starting.getText().toString();
                 final String end = ending.getText().toString();
 
-                Request request = new Request(User.getInstance(), start, end, 0);
+                Request request = new Request(User.getInstance().getUserName(), start, end, 0);
 //                Request request = User.getInstance().getRider().createRequest(start, end, 0);
 
 //                DocumentReference newCityRef = db.collection("requests").document();
 
                 db.collection("requests")
-                        .document(request.getCurrentRider().getUserName())
+                        .document(request.getRiderUsername())
                         .set(request);
                         //.addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                           //  @Override
