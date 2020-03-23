@@ -3,6 +3,7 @@ package com.example.locomotioncommotion;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,7 +66,13 @@ public class RequestFinderList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("TESTITEMCLICK","I am here");
                 Log.d("TESTITEMCLICK", requestDataList.get(position).getStartLocation());
-                Log.d("TESTITEMCLICK", requestDataList.get(position).getRiderUsername());
+                //Log.d("TESTITEMCLICK", requestDataList.get(position).getRiderUsername());
+                //Intent intent = new Intent (this, ViewDriverRequest.class);
+                //Intent intent = new Intent(this , ViewDriverRequest.class );
+                //startActivity(intent);
+                //Intent intent = new Intent(this,ViewDriverRequest.class );
+                Request request = requestDataList.get(position);
+                User.getInstance().getDriver().acceptRequest(request);
 
             }
         });
