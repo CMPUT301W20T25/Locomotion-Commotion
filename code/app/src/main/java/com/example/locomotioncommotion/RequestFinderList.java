@@ -65,14 +65,14 @@ public class RequestFinderList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("TESTITEMCLICK","I am here");
-                Log.d("TESTITEMCLICK", requestDataList.get(position).getStartLocation());
+                //Log.d("TESTITEMCLICK", requestDataList.get(position).getStartLocation());
                 //Log.d("TESTITEMCLICK", requestDataList.get(position).getRiderUsername());
                 //Intent intent = new Intent (this, ViewDriverRequest.class);
                 //Intent intent = new Intent(this , ViewDriverRequest.class );
                 //startActivity(intent);
                 //Intent intent = new Intent(this,ViewDriverRequest.class );
-                Request request = requestDataList.get(position);
-                User.getInstance().getDriver().acceptRequest(request);
+                //Request request = requestDataList.get(position);
+                //User.getInstance().getDriver().acceptRequest(request);
 
             }
         });
