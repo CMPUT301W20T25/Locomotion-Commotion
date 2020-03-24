@@ -1,10 +1,12 @@
 package com.example.locomotioncommotion;
 
+import java.io.Serializable;
+
 /**
  * Request
  * keeping track of all information about rider requests
  */
-public class Request {
+public class Request implements Serializable {
     private String riderUsername;
     private String driverUsername;
     private String startLocation;
