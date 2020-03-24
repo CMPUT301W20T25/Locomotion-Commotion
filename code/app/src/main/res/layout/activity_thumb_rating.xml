@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ThumbRating">
+
+    <TextView
+        android:id="@+id/RateDriverTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="173dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
+        android:text="Ride finished.
+        How would you rate the driver today?"
+        android:textSize="36dp" />
+
+    <Button
+        android:id="@+id/thumbsUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="12dp"
+        android:text="Thumbs Up" />
+    <Button
+        android:id="@+id/thumbsDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="12dp"
+        android:text="Thumbs Down" />
+
+
+</LinearLayout>
