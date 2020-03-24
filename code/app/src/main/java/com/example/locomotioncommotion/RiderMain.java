@@ -47,12 +47,12 @@ public class RiderMain extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         db.collection("requests")
-                .whereEqualTo("currentRider", User.getInstance())
+                .whereEqualTo("riderUsername", User.getInstance().getUserName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         requestDataList.clear();
-
+                        
                         for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
                             Log.d(TAG, String.valueOf(doc.getData().get("province_name")));
 //                            String city = doc.getId();
