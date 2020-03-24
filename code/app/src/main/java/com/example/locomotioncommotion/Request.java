@@ -55,6 +55,16 @@ public class Request {
         this.timestamp = System.currentTimeMillis();
     }
 
+    public Request(String rider, String startLocation, String endLocation, int fareOffered, long timestamp){
+        this.riderUsername = rider;
+        this.driverUsername = null;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+        this.fareOffered = fareOffered;
+        this.status = "Pending"; //TODO: check that this makes sense
+        this.timestamp = timestamp;
+    }
+
     /**
      * Returns the rider currently attached to the request
      * @return
@@ -150,6 +160,14 @@ public class Request {
      */
     public long getTimestamp() {
         return this.timestamp;
+    }
+
+    /**
+     * Gets the fare amount offered
+     * @return
+     */
+    public int getFareOffered() {
+        return this.fareOffered;
     }
 }
 
