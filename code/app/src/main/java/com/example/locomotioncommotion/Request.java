@@ -12,8 +12,8 @@ import androidx.core.app.NotificationManagerCompat;
  * keeping track of all information about rider requests
  */
 public class Request {
-    private User currentRider;
-    private Driver currentDriver;
+    private String riderUsername;
+    private String driverUsername;
     private String startLocation;
     private String endLocation;
     private int fareOffered;
@@ -21,11 +21,19 @@ public class Request {
     private long timestamp;
 
     /**
+     * test constructor temporary
+     */
+    public Request(String startLocation, String endLocation) {
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+    }
+
+    /**
      * Constructor for the request class. Just makes a blank request
      */
     public Request() {
-        this.currentRider = null;
-        this.currentDriver = null;
+        this.riderUsername = null;
+        this.driverUsername = null;
         this.startLocation = null;
         this.endLocation = null;
         this.fareOffered = 0;
@@ -44,14 +52,24 @@ public class Request {
      * @param fareOffered
      *      The amount of money offered for this request
      */
-    public Request(User rider, String startLocation, String endLocation, int fareOffered){
-        this.currentRider = rider;
-        this.currentDriver = null;
+    public Request(String rider, String startLocation, String endLocation, int fareOffered){
+        this.riderUsername = rider;
+        this.driverUsername = null;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
         this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = System.currentTimeMillis();
+    }
+
+    public Request(String rider, String startLocation, String endLocation, int fareOffered, long timestamp){
+        this.riderUsername = rider;
+        this.driverUsername = null;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+        this.fareOffered = fareOffered;
+        this.status = "Pending"; //TODO: check that this makes sense
+        this.timestamp = timestamp;
     }
 
     /**
@@ -100,8 +118,8 @@ public class Request {
      * @return
      *      The current rider
      */
-    public User getCurrentRider(){
-        return this.currentRider;
+    public String getRiderUsername(){
+        return this.riderUsername;
     }
 
     /**
@@ -109,8 +127,8 @@ public class Request {
      * @param rider
      *      The new rider to associate with this request
      */
-    public void setCurrentRider(User rider){
-        this.currentRider = rider;
+    public void setRiderUsername(String rider){
+        this.riderUsername = rider;
     }
 
     /**
@@ -118,16 +136,16 @@ public class Request {
      * @return
      *      The attached driver
      */
-    public Driver getCurrentDriver(){
-        return this.currentDriver;
+    public String getDriverUsername(){
+        return this.driverUsername;
     }
     /**
      * Sets the driver associated with the request
      * @param driver
      *      The new driver to associate with this request
      */
-    public void setCurrentDriver(Driver driver){
-        this.currentDriver = driver;
+    public void setDriverUsername(String driver){
+        this.driverUsername = driver;
     }
     /**
      * Gets the start location of the request
@@ -190,6 +208,14 @@ public class Request {
      */
     public long getTimestamp() {
         return this.timestamp;
+    }
+
+    /**
+     * Gets the fare amount offered
+     * @return
+     */
+    public int getFareOffered() {
+        return this.fareOffered;
     }
 }
 

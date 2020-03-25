@@ -47,20 +47,20 @@ public class RiderMain extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         db.collection("requests")
-                .whereEqualTo("currentRider", User.getInstance())
+                .whereEqualTo("riderUsername", User.getInstance().getUserName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         requestDataList.clear();
-
+                        
                         for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
                             Log.d(TAG, String.valueOf(doc.getData().get("province_name")));
-//                            String city = doc.getId();
-//                            String province = (String) doc.getData().get("province_name");
 
                             String start = (String) doc.getData().get("startLocation");
                             String end = (String) doc.getData().get("endLocation");
-                            requestDataList.add(new Request(User.getInstance(), start, end, 0));
+                            int fare = Math.toIntExact((Long) doc.getData().get("fareOffered"));
+                            long timestamp = (Long) doc.getData().get("timestamp");
+                            requestDataList.add(new Request(User.getInstance().getUserName(), start, end, fare, timestamp));
                         }
                         requestArrayAdapter.notifyDataSetChanged();
                     }
