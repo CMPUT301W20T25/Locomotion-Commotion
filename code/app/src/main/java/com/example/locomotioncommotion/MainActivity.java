@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        User.getInstance(userName, passWord); //TODO: Make sure this doesn't break logging out and then logging back in!
+        User newUser = new User(userName, passWord);
+        CurrentUser.getInstance(newUser); //TODO: Make sure this doesn't break logging out and then logging back in!
         Intent intent = new Intent(this, DriverOrRider.class);
         startActivity(intent);
     }
