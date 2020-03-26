@@ -7,11 +7,13 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.io.Serializable;
+
 /**
  * Request
  * keeping track of all information about rider requests
  */
-public class Request {
+public class Request implements Serializable {
     private String riderUsername;
     private String driverUsername;
     private String startLocation;
@@ -19,6 +21,7 @@ public class Request {
     private int fareOffered;
     private String status;
     private long timestamp;
+    private String firebaseID;
 
     /**
      * test constructor temporary
@@ -217,6 +220,10 @@ public class Request {
     public int getFareOffered() {
         return this.fareOffered;
     }
+
+    public String getFirebaseID() {return this.firebaseID; }
+
+    public void setFirebaseID(String id) {this.firebaseID = id; }
 }
 
 

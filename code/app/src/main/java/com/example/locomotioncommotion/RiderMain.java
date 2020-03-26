@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  */
 
 public class RiderMain extends AppCompatActivity {
-
+    public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
     String TAG = "Get_request_list";
     ListView requestList;
     ArrayAdapter<Request> requestArrayAdapter;
@@ -52,19 +53,32 @@ public class RiderMain extends AppCompatActivity {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         requestDataList.clear();
-                        
-                        for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
-                            Log.d(TAG, String.valueOf(doc.getData().get("province_name")));
 
-                            String start = (String) doc.getData().get("startLocation");
-                            String end = (String) doc.getData().get("endLocation");
-                            int fare = Math.toIntExact((Long) doc.getData().get("fareOffered"));
-                            long timestamp = (Long) doc.getData().get("timestamp");
-                            requestDataList.add(new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, fare, timestamp));
+                        for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
+                            // Only displays requests not completed
+                            if (!"Completed".equals((String) doc.getData().get("status"))) {
+                                String start = (String) doc.getData().get("startLocation");
+                                String end = (String) doc.getData().get("endLocation");
+                                int fare = Math.toIntExact((Long) doc.getData().get("fareOffered"));
+                                long timestamp = (Long) doc.getData().get("timestamp");
+                                Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, fare, timestamp);
+                                request.setFirebaseID(doc.getId());
+                                requestDataList.add(request);
+                            }
                         }
                         requestArrayAdapter.notifyDataSetChanged();
                     }
                 });
+
+        requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), RequestManager.class);
+                Request request = requestArrayAdapter.getItem(position);
+                intent.putExtra(REQUEST_MANAGE_MESSAGE, request);
+                startActivity(intent);
+            }
+        });
 
     }
 

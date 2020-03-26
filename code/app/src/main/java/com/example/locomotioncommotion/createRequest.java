@@ -50,9 +50,6 @@ public class createRequest extends AppCompatActivity {
                 final String end = ending.getText().toString();
 
                 Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
-//                Request request = User.getInstance().getRider().createRequest(start, end, 0);
-
-//                DocumentReference newCityRef = db.collection("requests").document();
 
                 db.collection("requests")
                         .add(request)
@@ -70,8 +67,6 @@ public class createRequest extends AppCompatActivity {
                        });
 
                 finish();
-                //db = FirebaseFirestore.getInstance();
-               // db.collection("Users").document(user.getUserName()).set(user);
             }
         });
     }
