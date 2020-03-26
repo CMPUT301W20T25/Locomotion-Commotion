@@ -69,7 +69,7 @@ public class RiderMain extends AppCompatActivity {
     }
 
     public void create(View view){
-        Intent intent = new Intent(this, createRequest.class);
+        Intent intent = new Intent(this, RiderMap.class);
         startActivity(intent);
     }
 
