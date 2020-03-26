@@ -54,7 +54,7 @@ public class Registration extends AppCompatActivity {
             return;
         }
 
-        User user = User.getInstance(userString, passString);
+        User user = new User(userString, passString);
         user.setEmail(emailString);
         db = FirebaseFirestore.getInstance();
         db.collection("Users").document(user.getUserName()).set(user);
