@@ -1,0 +1,22 @@
+All in attendance 
+
+Tianze 4.1 and continue what doing 
+Location class
+
+Alex N working on request details stuff tianze add map to that 
+
+Wilson phone and email 1.5 intent tests(maybe)
+simon keep working on what already doing 
+
+Alex stuff already and 6.1 6.2
+
+
+
+states for requests
+
+pending
+driver accept
+in transit 
+complete
+
+talk again on friday, 

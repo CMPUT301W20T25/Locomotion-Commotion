@@ -1,12 +1,8 @@
 package com.example.locomotioncommotion;
 
-//Singleton implementation based on
-//https://stackoverflow.com/a/12587124
-
 /**
  * User
  * All data associated with Users
- * implements a singleton so it can be accessed anywhere
  */
 public class User {
     private String userName;
@@ -18,50 +14,19 @@ public class User {
     private static User userInstance;
 
     /**
-     * Makes a new user. Private, as this is a singleton class.
+     * Makes a new user.
      * @param userName
      *      The username of the user
      * @param passWord
      *      The password of the user
      */
-    private User(String userName, String passWord){
+    public User(String userName, String passWord){
         this.userName = userName;
         this.passWord = passWord;
         this.email = "";
         this.phoneNumber = "";
         this.driver = null;
         this.rider = null;
-    }
-
-    /**
-     * Gets an instance of the logged-in user. If there isn't one then return null, since a user with no username makes no sense
-     * @return
-     *      Returns the logged-in user object, or null if there is no logged-in user
-     */
-    public synchronized static User getInstance(){
-        if(User.userInstance == null){
-            return null;
-        } else{
-            return User.userInstance;
-        }
-    }
-
-    /**
-     * Gets an instance of the logged-in user. If there isn't one then set the instance to be a new user with the provided username and password.
-     * @param userName
-     *      The username of the user to be created if there isn't already a logged-in user
-     * @param passWord
-     *      The password of the user to be created if there isn't already a logged-in user
-     * @return
-     *      Returns the logged-in user object
-     */
-    public synchronized static User getInstance(String userName, String passWord){
-        if(User.userInstance == null){
-            User.userInstance = new User(userName, passWord);
-            return User.userInstance;
-        } else{
-            return User.userInstance;
-        }
     }
 
     /**

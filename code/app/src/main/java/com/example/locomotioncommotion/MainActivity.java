@@ -1,8 +1,13 @@
 package com.example.locomotioncommotion;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 register(v);
             }
         });
+
+        developNotificationInfrastructure(this);
     }
 
     public void confirmLogin(View view){
@@ -59,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        User.getInstance(userName, passWord); //TODO: Make sure this doesn't break logging out and then logging back in!
+        User newUser = new User(userName, passWord);
+        CurrentUser.getInstance(newUser); //TODO: Make sure this doesn't break logging out and then logging back in!
         Intent intent = new Intent(this, DriverOrRider.class);
         startActivity(intent);
     }
@@ -68,4 +76,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
+
+    public void developNotificationInfrastructure(Context context){
+        String channelID = "LocomotionCommotion";
+        String channelName = "Locomotion Request Channel";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(channelID, channelName, importance);
+        }
+        //If the API is below 26 then notifications don't need a channel, happy ending
+    }
+
 }
