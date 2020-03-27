@@ -64,10 +64,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                 final String start = starting.getText().toString();
                 final String end = ending.getText().toString();
 
-                Request request = new Request(User.getInstance(), start, end, 0);
-//                Request request = User.getInstance().getRider().createRequest(start, end, 0);
-
-//                DocumentReference newCityRef = db.collection("requests").document();
+                Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
 
                 db.collection("requests")
                         .add(request)
@@ -82,7 +79,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                             public void onFailure(@NonNull Exception e) {
                                 Log.w(TAG, "Error adding document", e);
                             }
-                        });
+                       });
 
                 finish();
             }

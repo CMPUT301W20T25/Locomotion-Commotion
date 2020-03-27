@@ -21,6 +21,7 @@ public class DriverOrRider extends AppCompatActivity {
     private Button profileButton;
 
     private Button qrTest;
+    private Button scanCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class DriverOrRider extends AppCompatActivity {
         });
 
         profileButton = findViewById(R.id.profile);
-        profileButton.setText(User.getInstance().getUserName());
+        profileButton.setText(CurrentUser.getInstance().getUser().getUserName());
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +59,16 @@ public class DriverOrRider extends AppCompatActivity {
                 qrClick(v);
             }
         });
+
+        scanCode = findViewById(R.id.scanQRButton);
+        scanCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                scanQR(v);
+            }
+        });
+
+
 
 
     }
@@ -79,6 +90,11 @@ public class DriverOrRider extends AppCompatActivity {
 
     public void qrClick(View view){
         Intent intent = new Intent(this, QRCode.class);
+        startActivity(intent);
+    }
+
+    public void scanQR(View view){
+        Intent intent = new Intent(this, QRCodeScanner.class);
         startActivity(intent);
     }
 }

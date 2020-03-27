@@ -1,0 +1,34 @@
+Present Members: Alex S, Alex N, Wilson Q, Tianze C
+
+What we did:
+Alex S: 
+  Close to finishing 2-3 user stories. 1.02 5.01 5.02 (Just one bug and after should be fine. 
+  Bug on call request driver (breaks on null object reference)
+  
+Wilson
+  Finished qr (8.01) and finished 1.10 (was mostly done already) and 1.11. Needs to test however since we would need a separate
+  user for driver. 
+
+
+Tianze
+  Finished 7.0.1 (Got location working)
+  Would be good to add a distance calculator
+  
+Alex N
+  Close to finishing complete or cancel request. 1.08, 1.04, 1.07
+  
+Simon
+  Has the framework to do notifications mostly done. Stuck on how to make it notify when when something changes in database. 
+  Will likely ask TA for help if not solved by Wednesday. 
+  
+  
+For next week or maybe Wednesday:
+  Simon
+    Change singleton into loggedInUser singleton. 
+    
+  As group:
+    change the request list to just pull driver username. 
+
+Reminders!
+  Push and merge working code so we can get updated things! 
+  Do the peer review for Part 2 by Friday

@@ -56,7 +56,7 @@ public class Rider {
      */
     public void cancelRequest(){
         if(this.currentRequest == null){
-            //TODO: Throw an error here, maybe? Cancelling a request doesn't seeeem too bad at first glance.
+            //TODO: Throw an error here, maybe? Cancelling a nonexistent request doesn't seeeem too bad at first glance.
         } else {
             this.currentRequest.setStatus("Cancelled"); //TODO: Ensure consistency with status codes
             this.currentRequest = null;
