@@ -26,8 +26,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/select_location_address_display"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/select_location_confirmation_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_location_title" />
