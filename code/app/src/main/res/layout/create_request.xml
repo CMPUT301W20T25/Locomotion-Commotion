@@ -27,6 +27,7 @@
         android:ems="10"
         android:hint="Start"
         android:inputType="textPersonName"
+        android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/StartLocation"
         app:layout_constraintTop_toBottomOf="@+id/StartLocation" />
@@ -50,6 +51,7 @@
         android:ems="10"
         android:hint="End"
         android:inputType="textPersonName"
+        android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/StartLocation"
         app:layout_constraintTop_toBottomOf="@+id/endLocation" />

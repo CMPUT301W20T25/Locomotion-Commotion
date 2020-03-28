@@ -8,6 +8,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
     private TextView title;
     private TextView addressDisplay;
 
+    private Location addressFull;
     private String locationName;
 
     @Override
@@ -51,6 +53,15 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (marker != null) {
+                    CreateRequest.updateLocation(locationName, addressFull);
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
@@ -74,6 +85,7 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
                     List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
                     String address = addresses.get(0).getAddressLine(0);
                     Log.d("geocoder_address", address);
+                    addressFull = new Location(latLng.latitude, latLng.longitude, address);
                     addressDisplay.setText(address);
                     addressDisplay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 } catch (IOException e) {

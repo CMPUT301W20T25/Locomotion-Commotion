@@ -41,8 +41,8 @@ public class RequestList extends ArrayAdapter<Request> {
         TextView end = view.findViewById(R.id.endLoc_text);
         //Show the user too and have it be clickable?
 
-        start.setText(request.getStartLocation().toString());
-        end.setText(request.getEndLocation().toString());
+        start.setText(request.getStartLocation().getName().toString());
+        end.setText(request.getEndLocation().getName().toString());
 
         return view;
 

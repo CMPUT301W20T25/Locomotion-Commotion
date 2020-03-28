@@ -57,11 +57,7 @@ public class RiderMain extends AppCompatActivity {
                         for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
                             // Only displays requests not completed
                             if (!"Completed".equals((String) doc.getData().get("status"))) {
-                                String start = (String) doc.getData().get("startLocation");
-                                String end = (String) doc.getData().get("endLocation");
-                                int fare = Math.toIntExact((Long) doc.getData().get("fareOffered"));
-                                long timestamp = (Long) doc.getData().get("timestamp");
-                                Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, fare, timestamp);
+                                Request request = doc.toObject(Request.class);
                                 request.setFirebaseID(doc.getId());
                                 requestDataList.add(request);
                             }
@@ -83,8 +79,11 @@ public class RiderMain extends AppCompatActivity {
     }
 
     public void create(View view){
-        Intent intent = new Intent(this, RiderMap.class);
+        Intent intent = new Intent(this, CreateRequest.class);
         startActivity(intent);
+//        Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
+//        intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
+//        startActivity(intent);
     }
 
 

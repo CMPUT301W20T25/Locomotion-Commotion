@@ -3,6 +3,7 @@ package com.example.locomotioncommotion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,9 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     private MapView mapView;
     private GoogleMap map;
 
+    static private Location start;
+    static private Location end;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,51 +62,81 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
 
         db = FirebaseFirestore.getInstance();
 
+        starting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
+                intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "start");
+                startActivity(intent);
+            }
+        });
+
+        ending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
+                intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
+                startActivity(intent);
+            }
+        });
+
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String start = starting.getText().toString();
-                final String end = ending.getText().toString();
+                // Only allow the creation if both start and end are set
+                if (start != null && end != null) {
+                    Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
 
-                Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
+                    db.collection("requests")
+                            .add(request)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
 
-                db.collection("requests")
-                        .add(request)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
-                            }
-                       });
-
-                finish();
+                    finish();
+                }
             }
         });
     }
 
+    static public void updateLocation (String locationName, Location location) {
+        if (locationName.equals("start")) {
+            start = location;
+
+        } else {
+            end = location;
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap){
-        map = googleMap;
-
-        LatLng start = new LatLng(-44, 113);
-        LatLng end = new LatLng(-10, 154);
-
-        map.addPolyline(new PolylineOptions().add(start, end));
-
-        LatLngBounds bounds = new LatLngBounds(start, end);
-        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+//        map = googleMap;
+//
+//        LatLng start = new LatLng(-44, 113);
+//        LatLng end = new LatLng(-10, 154);
+//
+//        map.addPolyline(new PolylineOptions().add(start, end));
+//
+//        LatLngBounds bounds = new LatLngBounds(start, end);
+//        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
+//        Log.d("Location tests", start.getName());
+//        Log.d("Location tests", end.getName());
     }
 
     @Override
