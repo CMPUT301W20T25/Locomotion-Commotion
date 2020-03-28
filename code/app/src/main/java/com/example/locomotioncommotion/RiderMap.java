@@ -78,6 +78,8 @@ public class RiderMap extends AppCompatActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
+        map.getUiSettings().setZoomControlsEnabled(true);
+
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
