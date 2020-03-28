@@ -29,6 +29,8 @@ import java.util.ArrayList;
  * Currently just a stub/placeholder
  */
 public class CreateRequest extends AppCompatActivity implements OnMapReadyCallback {
+    public static final String SELECT_LOCATION_MESSAGE = "com.example.locomotioncommotion.SELECT_LOCATION";
+
     ArrayList<Request> requestDataList;
     ArrayAdapter<Request> requestArrayAdapter;
 
