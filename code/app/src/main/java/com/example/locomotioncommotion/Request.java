@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Request
  * keeping track of all information about rider requests
  */
+//TODO: Be sure that all the request constructors properly initialize all the attributes
 public class Request implements Serializable {
     private String riderUsername;
     private String driverUsername;
@@ -23,6 +24,8 @@ public class Request implements Serializable {
     private String status;
     private long timestamp;
     private String firebaseID;
+    private Boolean driverNotificationIsPending;
+    private Boolean riderNotificationIsPending;
 
     /**
      * test constructor temporary
@@ -45,8 +48,8 @@ public class Request implements Serializable {
     }
 
     /**
-     * Constructor for the request class. Takes all attributes but driver and status.
-     * Driver and status are set to null and pending, respectively
+     * Constructor for the request class. Takes all attributes but driver, status and timestamp.
+     * Driver and status are set to null and pending, respectively, while timestamp is the current time
      * @param rider
      *      The rider who issued the request
      * @param startLocation
@@ -65,7 +68,20 @@ public class Request implements Serializable {
         this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = System.currentTimeMillis();
     }
-
+    /**
+     * Constructor for the request class. Takes all attributes but driver and status
+     * Driver and status are set to null and pending, respectively
+     * @param rider
+     *      The rider who issued the request
+     * @param startLocation
+     *      The start location of the request
+     * @param endLocation
+     *      The ultimate destination of the request
+     * @param fareOffered
+     *      The amount of money offered for this request
+     * @param timestamp
+     *      The timestamp that this request was first issued at
+     */
     public Request(String rider, String startLocation, String endLocation, int fareOffered, long timestamp){
         this.riderUsername = rider;
         this.driverUsername = null;
@@ -98,8 +114,9 @@ public class Request implements Serializable {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-// notificationId is a unique int for each notification that you must define
+        // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1, builder.build()); //ID = 1 for rider notification
+        this.riderNotificationIsPending = false;
     }
 
     public void notifyDriver(String notificationTitle, String notificationMessage, Context context){
@@ -115,6 +132,7 @@ public class Request implements Serializable {
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(2, builder.build()); //ID = 2 for driver notification
+        this.driverNotificationIsPending = false;
     }
 
     /**
@@ -227,6 +245,14 @@ public class Request implements Serializable {
     public void setStatus(String status){
         if(checkStatusCodeValidity(status)) {
             this.status = status;
+            if(status.equals("Accepted")){
+                this.riderNotificationIsPending = true;
+            } else if(status.equals("Confirmed")){
+                this.driverNotificationIsPending = true;
+            } else if(status.equals("Cancelled")){
+                this.driverNotificationIsPending = true;
+            }
+            //TODO: Consider notifying if the request is completed as well
         } else{
             //TODO: Throw an error here, maybe?
         }
@@ -235,6 +261,7 @@ public class Request implements Serializable {
     /**
      * Gets the UNIX timestamp from when the request was made
      * @return
+     *      Returns the UNIX timestamp from when the request was made
      */
     public long getTimestamp() {
         return this.timestamp;
@@ -243,13 +270,24 @@ public class Request implements Serializable {
     /**
      * Gets the fare amount offered
      * @return
+     *      Returns the fare amount of the request, in cents
      */
     public int getFareOffered() {
         return this.fareOffered;
     }
 
+    /**
+     * Gets the firebase ID for the request
+     * @return
+     *      Returns the firebase ID of the request
+     */
     public String getFirebaseID() {return this.firebaseID; }
 
+    /**
+     * Sets the firebase ID for the request
+     * @param id
+     *      A string that represents the ID of the firebase this request is stored in
+     */
     public void setFirebaseID(String id) {this.firebaseID = id; }
 }
 
