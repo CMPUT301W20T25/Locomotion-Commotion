@@ -45,8 +45,8 @@ public class Request implements Serializable {
     }
 
     /**
-     * Constructor for the request class. Takes all attributes but driver and status.
-     * Driver and status are set to null and pending, respectively
+     * Constructor for the request class. Takes all attributes but driver, status and timestamp.
+     * Driver and status are set to null and pending, respectively, while timestamp is the current time
      * @param rider
      *      The rider who issued the request
      * @param startLocation
@@ -65,7 +65,20 @@ public class Request implements Serializable {
         this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = System.currentTimeMillis();
     }
-
+    /**
+     * Constructor for the request class. Takes all attributes but driver and status
+     * Driver and status are set to null and pending, respectively
+     * @param rider
+     *      The rider who issued the request
+     * @param startLocation
+     *      The start location of the request
+     * @param endLocation
+     *      The ultimate destination of the request
+     * @param fareOffered
+     *      The amount of money offered for this request
+     * @param timestamp
+     *      The timestamp that this request was first issued at
+     */
     public Request(String rider, String startLocation, String endLocation, int fareOffered, long timestamp){
         this.riderUsername = rider;
         this.driverUsername = null;
@@ -98,7 +111,7 @@ public class Request implements Serializable {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-// notificationId is a unique int for each notification that you must define
+        // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1, builder.build()); //ID = 1 for rider notification
     }
 
