@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Request
@@ -196,13 +197,39 @@ public class Request implements Serializable {
     }
 
     /**
+     * Checks that the inputted string is a valid Request status code
+     * Valid status codes for Requests and their meanings:
+     * Pending: The request has been created by the Rider, but no Driver has accepted it
+     * Accepted: The request has been accepted by a Driver. but not confirmed by the Rider that issued it
+     * Confirmed: The request has been accepted by a Driver, and the Rider that issued it has confirmed that acceptance
+     * Completed: The request has been successfully completed
+     * Cancelled: The request has been prematurely deleted by the Rider
+     * @return
+     *      Whether the inputted string is a valid Request status code
+     */
+
+    public Boolean checkStatusCodeValidity(String status){
+        ArrayList<String> validStatuses = new ArrayList<String>();
+        validStatuses.add("Pending");
+        validStatuses.add("Accepted");
+        validStatuses.add("Confirmed");
+        validStatuses.add("Completed");
+        validStatuses.add("Cancelled");
+
+        return validStatuses.contains(status);
+    }
+
+    /**
      * Sets the status of the request
-     * TODO: Maybe enforce only a few allowed strings as valid request statuses?
      * @param status
      *      The new status of the request
      */
     public void setStatus(String status){
-        this.status = status;
+        if(checkStatusCodeValidity(status)) {
+            this.status = status;
+        } else{
+            //TODO: Throw an error here, maybe?
+        }
     }
 
     /**
