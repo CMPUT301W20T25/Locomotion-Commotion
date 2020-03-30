@@ -110,16 +110,18 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                                 }
                             });
 
-                //Stack overflow post https://stackoverflow.com/a/18463758 User: https://stackoverflow.com/users/1531657/muhammad-aamir-ali
-                SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 
-                SharedPreferences.Editor prefEditor = preferences.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(request);
-                prefEditor.putString("RiderRequest",json);
-                prefEditor.commit();
+                    //Stack overflow post https://stackoverflow.com/a/18463758 User: https://stackoverflow.com/users/1531657/muhammad-aamir-ali
+                    SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 
-                finish();
+                    SharedPreferences.Editor prefEditor = preferences.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(request);
+                    prefEditor.putString("RiderRequest",json);
+                    prefEditor.commit();
+
+                    finish();
+                }
             }
         });
     }
