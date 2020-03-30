@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -108,8 +110,16 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                                 }
                             });
 
-                    finish();
-                }
+                //Stack overflow post https://stackoverflow.com/a/18463758 User: https://stackoverflow.com/users/1531657/muhammad-aamir-ali
+                SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+                SharedPreferences.Editor prefEditor = preferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(request);
+                prefEditor.putString("RiderRequest",json);
+                prefEditor.commit();
+
+                finish();
             }
         });
     }
