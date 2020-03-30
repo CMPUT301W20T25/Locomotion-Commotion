@@ -12,12 +12,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,6 +53,8 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
 
     private MapView mapView;
     private GoogleMap map;
+    private Marker markerStart;
+    private Marker markerEnd;
 
     private Location start;
     private Location end;
@@ -71,7 +79,6 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
                 intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "start");
-//                startActivity(intent);
                 startActivityForResult(intent, START_REQUEST);
             }
         });
@@ -81,7 +88,6 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
                 intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
-//                startActivity(intent);
                 startActivityForResult(intent, END_REQUEST);
             }
         });
@@ -137,13 +143,71 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             ending.setText(end.getName());
         }
 
+        updateLocation();
+
+    }
+
+    private void updateLocation() {
+        if (start != null) {
+            if (markerStart == null) {
+                markerStart = map.addMarker(new MarkerOptions()
+                        .position(new LatLng(0,0))
+                        .title("Start")
+                        .icon(BitmapDescriptorFactory
+                                .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+            LatLng startLoc = new LatLng(start.getLat(), start.getLng());
+            markerStart.setPosition(startLoc);
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLoc, 13));
+        }
+        if (end != null) {
+            if (markerEnd == null) {
+                markerEnd = map.addMarker(new MarkerOptions()
+                        .position(new LatLng(0,0))
+                        .title("End")
+                        .icon(BitmapDescriptorFactory
+                                .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            }
+            LatLng endLoc = new LatLng(end.getLat(), end.getLng());
+            markerEnd.setPosition(endLoc);
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(endLoc, 13));
+        }
+        if (start != null && end != null) {
+            LatLng endLoc = new LatLng(end.getLat(), end.getLng());
+            LatLng startLoc = new LatLng(start.getLat(), start.getLng());
+
+            // Following code to update camera with two markers from: https://stackoverflow.com/a/14828739
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            builder.include(startLoc);
+            builder.include(endLoc);
+            LatLngBounds bounds = builder.build();
+
+            int padding = 120; // offset from edges of the map in pixels
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            map.moveCamera(cu);
+
+            map.addPolyline(new PolylineOptions().add(startLoc, endLoc));
+        }
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap){
-//        map = googleMap;
-//
+        map = googleMap;
+
+        // Center the map on the classroom
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(53.523983, -113.523249), 13));
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setMapToolbarEnabled(false);
+        uiSettings.setZoomControlsEnabled(true);
+
+        updateLocation();
+
+        // Uncomment to disable map movement
+//        uiSettings.setZoomControlsEnabled(false);
+//        uiSettings.setAllGesturesEnabled(false);
+
+
 //        LatLng start = new LatLng(-44, 113);
 //        LatLng end = new LatLng(-10, 154);
 //
@@ -157,8 +221,6 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     public void onResume() {
         super.onResume();
         mapView.onResume();
-//        Log.d("Location tests", start.getName());
-//        Log.d("Location tests", end.getName());
     }
 
     @Override
