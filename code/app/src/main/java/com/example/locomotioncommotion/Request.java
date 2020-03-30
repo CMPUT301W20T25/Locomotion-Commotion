@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * Request
  * keeping track of all information about rider requests
  */
-//TODO: Be sure that all the request constructors properly initialize all the attributes
 public class Request implements Serializable {
     private String riderUsername;
     private String driverUsername;
@@ -26,14 +25,6 @@ public class Request implements Serializable {
     private String firebaseID;
     private Boolean driverNotificationIsPending;
     private Boolean riderNotificationIsPending;
-
-    /**
-     * test constructor temporary
-     */
-    public Request(Location startLocation, Location endLocation) {
-        this.startLocation = startLocation;
-        this.endLocation = endLocation;
-    }
 
     /**
      * Constructor for the request class. Just makes a blank request
@@ -278,6 +269,24 @@ public class Request implements Serializable {
      */
     public long getTimestamp() {
         return this.timestamp;
+    }
+
+    /**
+     * Gets whether or not a notification is pending for the rider
+     * @return
+     *      Whether there is a pending rider notification
+     */
+    public boolean getRiderNotificationsPending(){
+        return this.riderNotificationIsPending;
+    }
+
+    /**
+     * Gets whether or not a notification is pending for the driver
+     * @return
+     *      Whether there is a pending driver notification
+     */
+    public boolean getDriverNotificationsPending(){
+        return this.driverNotificationIsPending;
     }
 
     /**
