@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * Request
  * keeping track of all information about rider requests
  */
-//TODO: Be sure that all the request constructors properly initialize all the attributes
 public class Request implements Serializable {
     private String riderUsername;
     private String driverUsername;
@@ -28,14 +27,6 @@ public class Request implements Serializable {
     private Boolean riderNotificationIsPending;
 
     /**
-     * test constructor temporary
-     */
-    public Request(Location startLocation, Location endLocation) {
-        this.startLocation = startLocation;
-        this.endLocation = endLocation;
-    }
-
-    /**
      * Constructor for the request class. Just makes a blank request
      */
     public Request() {
@@ -44,7 +35,12 @@ public class Request implements Serializable {
         this.startLocation = null;
         this.endLocation = null;
         this.fareOffered = 0;
-        this.status = "Pending"; //TODO: check that this makes sense
+        this.timestamp = 0; //TODO: Is this a good idea?
+
+        this.firebaseID = "";
+        this.driverNotificationIsPending = false;
+        this.riderNotificationIsPending = false;
+        this.status = "Pending";
     }
 
     /**
@@ -65,8 +61,12 @@ public class Request implements Serializable {
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
-        this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = System.currentTimeMillis();
+
+        this.firebaseID = "";
+        this.driverNotificationIsPending = false;
+        this.riderNotificationIsPending = false;
+        this.status = "Pending";
     }
     /**
      * Constructor for the request class. Takes all attributes but driver and status
@@ -88,8 +88,12 @@ public class Request implements Serializable {
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
-        this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = timestamp;
+
+        this.firebaseID = "";
+        this.driverNotificationIsPending = false;
+        this.riderNotificationIsPending = false;
+        this.status = "Pending";
     }
 
     /**
@@ -265,6 +269,24 @@ public class Request implements Serializable {
      */
     public long getTimestamp() {
         return this.timestamp;
+    }
+
+    /**
+     * Gets whether or not a notification is pending for the rider
+     * @return
+     *      Whether there is a pending rider notification
+     */
+    public boolean getRiderNotificationsPending(){
+        return this.riderNotificationIsPending;
+    }
+
+    /**
+     * Gets whether or not a notification is pending for the driver
+     * @return
+     *      Whether there is a pending driver notification
+     */
+    public boolean getDriverNotificationsPending(){
+        return this.driverNotificationIsPending;
     }
 
     /**
