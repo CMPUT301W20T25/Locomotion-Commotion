@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class Request implements Serializable {
     private String riderUsername;
     private String driverUsername;
-    private String startLocation;
-    private String endLocation;
+    private Location startLocation;
+    private Location endLocation;
     private int fareOffered;
     private String status;
     private long timestamp;
@@ -30,7 +30,7 @@ public class Request implements Serializable {
     /**
      * test constructor temporary
      */
-    public Request(String startLocation, String endLocation) {
+    public Request(Location startLocation, Location endLocation) {
         this.startLocation = startLocation;
         this.endLocation = endLocation;
     }
@@ -59,7 +59,7 @@ public class Request implements Serializable {
      * @param fareOffered
      *      The amount of money offered for this request
      */
-    public Request(String rider, String startLocation, String endLocation, int fareOffered){
+    public Request(String rider, Location startLocation, Location endLocation, int fareOffered){
         this.riderUsername = rider;
         this.driverUsername = null;
         this.startLocation = startLocation;
@@ -82,7 +82,7 @@ public class Request implements Serializable {
      * @param timestamp
      *      The timestamp that this request was first issued at
      */
-    public Request(String rider, String startLocation, String endLocation, int fareOffered, long timestamp){
+    public Request(String rider, Location startLocation, Location endLocation, int fareOffered, long timestamp){
         this.riderUsername = rider;
         this.driverUsername = null;
         this.startLocation = startLocation;
@@ -174,7 +174,7 @@ public class Request implements Serializable {
      * @return
      *      The start location of the request
      */
-    public String getStartLocation(){
+    public Location getStartLocation(){
         return this.startLocation;
     }
 
@@ -183,7 +183,7 @@ public class Request implements Serializable {
      * @return
      *      The end location of the request
      */
-    public String getEndLocation(){
+    public Location getEndLocation(){
         return this.endLocation;
     }
 
@@ -192,7 +192,7 @@ public class Request implements Serializable {
      * @param location
      *      The new location to set as the request's start location
      */
-    public void setStartLocation(String location){
+    public void setStartLocation(Location location){
         this.startLocation = location;
     }
 
@@ -201,7 +201,7 @@ public class Request implements Serializable {
      * @param location
      *      The new location to set as the request's end location
      */
-    public void setEndLocation(String location){
+    public void setEndLocation(Location location){
         this.endLocation = location;
     }
 

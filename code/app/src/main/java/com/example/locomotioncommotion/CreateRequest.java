@@ -16,7 +16,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -33,6 +32,10 @@ import java.util.ArrayList;
  * Currently just a stub/placeholder
  */
 public class CreateRequest extends AppCompatActivity implements OnMapReadyCallback {
+    public static final String SELECT_LOCATION_MESSAGE = "com.example.locomotioncommotion.SELECT_LOCATION";
+    public static final int START_REQUEST = 1;
+    public static final int END_REQUEST = 2;
+
     ArrayList<Request> requestDataList;
     ArrayAdapter<Request> requestArrayAdapter;
 
@@ -45,12 +48,15 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     private MapView mapView;
     private GoogleMap map;
 
+    private Location start;
+    private Location end;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_request);
 
-        mapView = findViewById(R.id.mapView);
+        mapView = findViewById(R.id.create_request_map);
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
@@ -60,31 +66,49 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
 
         db = FirebaseFirestore.getInstance();
 
+        starting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
+                intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "start");
+//                startActivity(intent);
+                startActivityForResult(intent, START_REQUEST);
+            }
+        });
+
+        ending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
+                intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
+//                startActivity(intent);
+                startActivityForResult(intent, END_REQUEST);
+            }
+        });
+
+
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String start = starting.getText().toString();
-                final String end = ending.getText().toString();
+                // Only allow the creation if both start and end are set
+                if (start != null && end != null) {
+                    Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
 
-
-
-                Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
-
-                db.collection("requests")
-                        .add(request)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
-                            }
-                       });
-
+                    db.collection("requests")
+                            .add(request)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
 
                 //Stack overflow post https://stackoverflow.com/a/18463758 User: https://stackoverflow.com/users/1531657/muhammad-aamir-ali
                 SharedPreferences preferences = getPreferences(MODE_PRIVATE);
@@ -101,22 +125,38 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == START_REQUEST) {
+            start = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
+            starting.setText(start.getName());
+        } else if (requestCode == END_REQUEST) {
+            end = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
+            ending.setText(end.getName());
+        }
+
+    }
+
+
+    @Override
     public void onMapReady(GoogleMap googleMap){
-        map = googleMap;
-
-        LatLng start = new LatLng(-44, 113);
-        LatLng end = new LatLng(-10, 154);
-
-        map.addPolyline(new PolylineOptions().add(start, end));
-
-        LatLngBounds bounds = new LatLngBounds(start, end);
-        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+//        map = googleMap;
+//
+//        LatLng start = new LatLng(-44, 113);
+//        LatLng end = new LatLng(-10, 154);
+//
+//        map.addPolyline(new PolylineOptions().add(start, end));
+//
+//        LatLngBounds bounds = new LatLngBounds(start, end);
+//        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
+//        Log.d("Location tests", start.getName());
+//        Log.d("Location tests", end.getName());
     }
 
     @Override

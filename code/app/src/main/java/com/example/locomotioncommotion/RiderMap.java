@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -79,6 +80,9 @@ public class RiderMap extends AppCompatActivity implements OnMapReadyCallback {
         map = googleMap;
 
         map.getUiSettings().setZoomControlsEnabled(true);
+
+        // Center the map on the classroom
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(53.523983, -113.523249), 13));
 
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override

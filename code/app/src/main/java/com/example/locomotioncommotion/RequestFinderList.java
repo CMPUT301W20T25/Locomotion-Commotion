@@ -32,13 +32,13 @@ public class RequestFinderList extends AppCompatActivity {
         setContentView(R.layout.activity_request_finder_list);
 
         requestList = findViewById(R.id.request_list);
-        Request r = new Request();
-        r.setStartLocation("Here");
-        r.setEndLocation("There");
+//        Request r = new Request();
+//        r.setStartLocation("Here");
+//        r.setEndLocation("There");
 
 
         requestDataList = new ArrayList<>();
-        requestDataList.add(r);
+//        requestDataList.add(r);
 
 
         requestAdapter = new RequestList(this, requestDataList);
@@ -53,9 +53,9 @@ public class RequestFinderList extends AppCompatActivity {
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 requestDataList.clear();
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    String start = (String) doc.getData().get("startLocation");
-                    String end = (String) doc.getData().get("endLocation");
-                    requestDataList.add(new Request(start,end));
+                    Request request = doc.toObject(Request.class);
+                    request.setFirebaseID(doc.getId());
+                    requestDataList.add(request);
                 }
                 requestAdapter.notifyDataSetChanged();
             }

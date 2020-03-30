@@ -29,10 +29,10 @@ public class RequestManager  extends AppCompatActivity {
         final Request request = (Request) intent.getExtras().getSerializable(RiderMain.REQUEST_MANAGE_MESSAGE);
 
         TextView startLocation = findViewById(R.id.request_manager_start);
-        startLocation.setText(request.getStartLocation());
+        startLocation.setText(request.getStartLocation().getName());
 
         TextView endLocation = findViewById(R.id.request_manager_end);
-        endLocation.setText(request.getEndLocation());
+        endLocation.setText(request.getEndLocation().getName());
 
         TextView ridePrice = findViewById(R.id.request_manager_price);
         int dollars = request.getFareOffered() / 100;
