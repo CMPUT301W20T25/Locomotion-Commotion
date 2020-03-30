@@ -2,6 +2,7 @@ package com.example.locomotioncommotion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -25,6 +27,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class SelectLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
+    public static final String SELECT_LOCATION_RETURN = "com.example.locomotioncommotion.SELECT_LOCATION_RETURN";
+
     private MapView mapView;
     private GoogleMap map;
     private Marker marker;
@@ -57,7 +61,10 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
             @Override
             public void onClick(View v) {
                 if (marker != null) {
-                    CreateRequest.updateLocation(locationName, addressFull);
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(SELECT_LOCATION_RETURN, addressFull);
+                    setResult(Activity.RESULT_OK, resultIntent);
+
                     finish();
                 }
             }
@@ -70,7 +77,9 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
 
         // Center the map on the classroom
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(53.523983, -113.523249), 13));
-        map.getUiSettings().setZoomControlsEnabled(true);
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setZoomControlsEnabled(true);
+        uiSettings.setMapToolbarEnabled(false);
 
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override

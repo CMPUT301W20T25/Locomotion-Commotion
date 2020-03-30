@@ -31,6 +31,8 @@ import java.util.ArrayList;
  */
 public class CreateRequest extends AppCompatActivity implements OnMapReadyCallback {
     public static final String SELECT_LOCATION_MESSAGE = "com.example.locomotioncommotion.SELECT_LOCATION";
+    public static final int START_REQUEST = 1;
+    public static final int END_REQUEST = 2;
 
     ArrayList<Request> requestDataList;
     ArrayAdapter<Request> requestArrayAdapter;
@@ -44,8 +46,8 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     private MapView mapView;
     private GoogleMap map;
 
-    static private Location start;
-    static private Location end;
+    private Location start;
+    private Location end;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,8 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
                 intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "start");
-                startActivity(intent);
+//                startActivity(intent);
+                startActivityForResult(intent, START_REQUEST);
             }
         });
 
@@ -76,9 +79,11 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
                 intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
-                startActivity(intent);
+//                startActivity(intent);
+                startActivityForResult(intent, END_REQUEST);
             }
         });
+
 
 
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -109,14 +114,19 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
         });
     }
 
-    static public void updateLocation (String locationName, Location location) {
-        if (locationName.equals("start")) {
-            start = location;
-
-        } else {
-            end = location;
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == START_REQUEST) {
+            start = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
+            starting.setText(start.getName());
+        } else if (requestCode == END_REQUEST) {
+            end = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
+            ending.setText(end.getName());
         }
+
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap){
