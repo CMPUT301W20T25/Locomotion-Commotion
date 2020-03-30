@@ -44,7 +44,12 @@ public class Request implements Serializable {
         this.startLocation = null;
         this.endLocation = null;
         this.fareOffered = 0;
-        this.status = "Pending"; //TODO: check that this makes sense
+        this.timestamp = 0; //TODO: Is this a good idea?
+
+        this.firebaseID = "";
+        this.driverNotificationIsPending = false;
+        this.riderNotificationIsPending = false;
+        this.status = "Pending";
     }
 
     /**
@@ -65,8 +70,12 @@ public class Request implements Serializable {
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
-        this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = System.currentTimeMillis();
+
+        this.firebaseID = "";
+        this.driverNotificationIsPending = false;
+        this.riderNotificationIsPending = false;
+        this.status = "Pending";
     }
     /**
      * Constructor for the request class. Takes all attributes but driver and status
@@ -88,8 +97,12 @@ public class Request implements Serializable {
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.fareOffered = fareOffered;
-        this.status = "Pending"; //TODO: check that this makes sense
         this.timestamp = timestamp;
+
+        this.firebaseID = "";
+        this.driverNotificationIsPending = false;
+        this.riderNotificationIsPending = false;
+        this.status = "Pending";
     }
 
     /**
