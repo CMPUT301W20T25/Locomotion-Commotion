@@ -62,6 +62,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
             completeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Log.d(TAG, request.getFirebaseID());
                     db = FirebaseFirestore.getInstance();
                     db.collection("requests")
@@ -79,7 +80,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                     Log.w(TAG, "Error updating document", e);
                                 }
                             });
-                    //completeClick(v);
+                    completeClick(v);
                     finish();
                 }
             });
@@ -108,11 +109,11 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                 Log.w(TAG, "Error deleting document", e);
                             }
                         });
-
                 finish();
             }
         });
     }
+
     public void completeClick(View view){
         Intent intent = new Intent(this, QRCode.class);
         startActivity(intent);
