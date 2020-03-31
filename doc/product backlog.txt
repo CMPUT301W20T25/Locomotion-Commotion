@@ -31,6 +31,7 @@ Because if the information is wrong or I change my mind I want the option
 this will take about 4 hours
 medium risk 
 Alex N
+completed
 
 
 US 01.05.01
@@ -39,6 +40,12 @@ Because I would like to be able to talk about specific details.
 this will take less than 4 hours
 low risk
 Wilson
+
+US 01.06.01
+As a rider, I want an estimate of a fair fare to offer to drivers and I should be able to offer more. 
+Because I want to be able to pay more if i want a ride quicker.
+This will take less than 4 hours
+low risk
 
 US 01.07.01
 As a rider, I want to confirm the completion of a request and enable payment.
@@ -150,6 +157,7 @@ because I want to double check the information or make sure it is correct
 less than 4 hours
 low risk (similar infrastructure as 06.01.01)
 Alex S
+completed
 
 Location
 
@@ -159,6 +167,7 @@ Becuase I don't know the coordinates for the locations and it is easier to find 
 about 4 hours
 high risk 
 Tianze
+completed
 
 US 07.02.01
 As a driver, I want to view start and end geo locations on a map for a request.
@@ -182,3 +191,5 @@ Because I need to recieve the money to continue work and pay bills
 about 4 hours
 medium risk
 Wilson
+completed
+

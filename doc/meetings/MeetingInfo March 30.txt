@@ -1,0 +1,9 @@
+In attendance
+Alex S
+Tainze
+Wilson
+
+Tianze add map with pins to viewing requests
+Alex Fix the driver and make it work witht he new request format 
+
+Need to be able to find distance between locations and then calculate price based off of it
