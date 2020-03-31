@@ -1,5 +1,6 @@
 package com.example.locomotioncommotion;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * The starting screen and main activity
@@ -53,6 +59,45 @@ public class MainActivity extends AppCompatActivity {
         });
 
         developNotificationInfrastructure(this);
+
+        db = FirebaseFirestore.getInstance();
+        final CollectionReference collectionReference = db.collection("requests");
+
+        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                //requestDataList.clear();
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    String riderUserName = (String) doc.getData().get("riderUsername");
+                    String driverUserName = (String) doc.getData().get("driverUsername");
+                    if(CurrentUser.getInstance() != null) {
+                        String currentUserName = CurrentUser.getInstance().getUser().getUserName();
+                        DocumentReference docRef = null;
+                        boolean isRider = false;
+                        if (currentUserName.equals(riderUserName)) {
+                            docRef = doc.getDocumentReference("riderNotificationIsPending");
+                            isRider = true;
+                        } else if (currentUserName.equals(driverUserName)) {//Reasonable assumption: The rider and driver for a request should be different people
+                            docRef = doc.getDocumentReference("driverNotificationIsPending");
+                        }
+                        if(docRef != null && docRef.equals(true)){
+                                String notificationTitle = "Your request has been ";
+                                String requestStatus = (String) doc.getData().get("status");
+                                notificationTitle = notificationTitle.concat(requestStatus);
+                                Context context = getApplicationContext();
+                                if(isRider) {
+                                    CurrentUser.getInstance().getUser().getRider().getCurrentRequest().notifyRider(notificationTitle,notificationTitle, context);
+                                } else {
+                                    CurrentUser.getInstance().getUser().getDriver().getCurrentRequest().notifyDriver(notificationTitle,notificationTitle, context);
+                                }
+                                docRef.set(false);
+                            }
+                            //requestDataList.add(new Request(start,end));
+
+                        }
+                    }
+                }
+        });
     }
 
     public void confirmLogin(View view){
