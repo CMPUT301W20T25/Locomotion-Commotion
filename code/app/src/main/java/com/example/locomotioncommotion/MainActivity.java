@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void confirmLogin(View view){
         String userName = userNameField.getText().toString();
-        String passWord = passWordField.getText().toString();
+         final String passWord = passWordField.getText().toString();
 
         if(userName.equals("")){
             userNameField.setError("Required");
@@ -85,32 +85,24 @@ public class MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 User user = document.toObject(User.class);
                                 Log.d("TEST", user.getUserName());
-                                CurrentUser.getInstance(user);
-                                Intent intent = new Intent(MainActivity.this, DriverOrRider.class);
-                                startActivity(intent);
+                                if (passWord.equals(user.getPassWord())) {
+                                    CurrentUser.getInstance(user);
+                                    Intent intent = new Intent(MainActivity.this, DriverOrRider.class);
+                                    startActivity(intent);
+                                } else {
+                                    passWordField.setError("Wrong password");
+                                }
 
 
 
                             }
                         } else {
                             Log.d("TAG", "Eroor getting document");
+                            userNameField.setError("Username not registered");
                         }
                     }
                 });
-        //if (CurrentUser.getInstance() != null) {
-           // Intent intent = new Intent(this, DriverOrRider.class);
-          //  startActivity(intent);
-      //  }
-         //       .addSnapshotListener(new EventListener<QuerySnapshot>() {
-        //            @Override
-        //            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-       //                 for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
-        //                    User user = doc.toObject(User.class);
-        //                    CurrentUser.getInstance(user);
-        //                    Log.d("TEST",user.getUserName() );
-        //                }
-         //           }
-         //       });
+
 
 
     }
