@@ -1,5 +1,7 @@
 package com.example.locomotioncommotion;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +11,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * The starting screen and main activity
@@ -66,8 +76,41 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        User newUser = new User(userName, passWord);
-        CurrentUser.getInstance(newUser); //TODO: Make sure this doesn't break logging out and then logging back in!
+        db.collection("Users").whereEqualTo("userName", userName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                User user = document.toObject(User.class);
+                                Log.d("TEST", user.getUserName());
+                                CurrentUser.getInstance(user);
+
+                            }
+                        } else {
+                            Log.d("TAG", "Eroor getting document");
+                        }
+                    }
+                });
+        if (CurrentUser.getInstance() != null) {
+            Intent intent = new Intent(this, DriverOrRider.class);
+            startActivity(intent);
+        }
+         //       .addSnapshotListener(new EventListener<QuerySnapshot>() {
+        //            @Override
+        //            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+       //                 for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
+        //                    User user = doc.toObject(User.class);
+        //                    CurrentUser.getInstance(user);
+        //                    Log.d("TEST",user.getUserName() );
+        //                }
+         //           }
+         //       });
+
+
+    }
+    public void login() {
         Intent intent = new Intent(this, DriverOrRider.class);
         startActivity(intent);
     }
