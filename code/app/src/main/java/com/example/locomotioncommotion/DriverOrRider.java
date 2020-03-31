@@ -67,6 +67,7 @@ public class DriverOrRider extends AppCompatActivity {
 
     public void riderClick(View view){
         Intent intent = new Intent(this, RiderMain.class);
+        assert(CurrentUser.getInstance() != null);
         startActivity(intent);
     }
 
