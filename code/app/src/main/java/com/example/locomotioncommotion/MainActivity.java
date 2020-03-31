@@ -86,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                                 User user = document.toObject(User.class);
                                 Log.d("TEST", user.getUserName());
                                 CurrentUser.getInstance(user);
+                                Intent intent = new Intent(MainActivity.this, DriverOrRider.class);
+                                startActivity(intent);
+
+
 
                             }
                         } else {
@@ -93,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-        if (CurrentUser.getInstance() != null) {
-            Intent intent = new Intent(this, DriverOrRider.class);
-            startActivity(intent);
-        }
+        //if (CurrentUser.getInstance() != null) {
+           // Intent intent = new Intent(this, DriverOrRider.class);
+          //  startActivity(intent);
+      //  }
          //       .addSnapshotListener(new EventListener<QuerySnapshot>() {
         //            @Override
         //            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
