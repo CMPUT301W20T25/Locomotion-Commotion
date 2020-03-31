@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         } else if (currentUserName.equals(driverUserName)) {//Reasonable assumption: The rider and driver for a request should be different people
                             docRef = doc.getDocumentReference("driverNotificationIsPending");
                         }
-                        if(docRef.equals(true)){
+                        if(docRef != null && docRef.equals(true)){
                                 String notificationTitle = "Your request has been ";
                                 String requestStatus = (String) doc.getData().get("status");
                                 notificationTitle = notificationTitle.concat(requestStatus);
