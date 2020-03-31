@@ -12,10 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -52,6 +55,10 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         int dollars = request.getFareOffered() / 100;
         int cents = request.getFareOffered() % 100;
         ridePrice.setText(String.format("$ %d.%02d", dollars, cents));
+
+        TextView distance = findViewById(R.id.request_manager_distance);
+        int dis = request.getStartLocation().distance(request.getEndLocation());
+        distance.setText(String.format("%d m", dis));
 
         mapView = findViewById(R.id.request_manager_map);
         mapView.onCreate(null);
@@ -122,36 +129,37 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        double bottom;
-        double upper;
-        double left;
-        double right;
 
-        LatLng start = new LatLng(request.getStartLocation().getLat(), request.getStartLocation().getLng());
-        LatLng end = new LatLng(request.getEndLocation().getLat(), request.getEndLocation().getLng());
+        // Map preference setup
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setMapToolbarEnabled(false);
+        uiSettings.setZoomControlsEnabled(true);
 
-        if(start.latitude < end.latitude){
-            bottom = start.latitude;
-            upper = end.latitude;
-        } else {
-            bottom = end.latitude;
-            upper = start.latitude;
-        }
-        if(start.longitude < end.longitude){
-            left = start.longitude;
-            right = end.longitude;
-        } else {
-            left = end.longitude;
-            right = start.longitude;
-        }
 
-        LatLngBounds bounds = new LatLngBounds(new LatLng(bottom, left), new LatLng(upper, right));
+        LatLng startLoc = new LatLng(request.getStartLocation().getLat(), request.getStartLocation().getLng());
+        LatLng endLoc = new LatLng(request.getEndLocation().getLat(), request.getEndLocation().getLng());
 
-        map.addPolyline(new PolylineOptions().add(start, end));
+        // Following code to update camera with two markers from: https://stackoverflow.com/a/14828739
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(startLoc);
+        builder.include(endLoc);
+        LatLngBounds bounds = builder.build();
 
-        map.addMarker(new MarkerOptions().position(end));
+        int padding = 120; // offset from edges of the map in pixels
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        map.moveCamera(cu);
 
-        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 44));
+        map.addMarker(new MarkerOptions()
+                .position(endLoc)
+                .title("End")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        map.addMarker(new MarkerOptions()
+                .position(startLoc)
+                .title("Start")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        map.addPolyline(new PolylineOptions().add(startLoc, endLoc));
     }
 
     @Override
