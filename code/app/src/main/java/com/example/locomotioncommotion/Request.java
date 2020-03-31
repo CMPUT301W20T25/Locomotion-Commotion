@@ -311,6 +311,10 @@ public class Request implements Serializable {
      *      A string that represents the ID of the firebase this request is stored in
      */
     public void setFirebaseID(String id) {this.firebaseID = id; }
+
+    public int calculateCost(){
+        return (int) (0.002 * startLocation.distance(endLocation) + 5);
+    }
 }
 
 
