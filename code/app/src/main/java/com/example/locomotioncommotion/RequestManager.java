@@ -107,9 +107,14 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                 Log.w(TAG, "Error deleting document", e);
                             }
                         });
+                completeClick(v);
                 finish();
             }
         });
+    }
+    public void completeClick(View view){
+        Intent intent = new Intent(this, QRCode.class);
+        startActivity(intent);
     }
 
     @Override
