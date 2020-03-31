@@ -23,6 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SelectLocationActivity"></activity>
         <activity android:name=".ThumbRating" />
+        <activity android:name=".QRCode"/>
         <activity android:name=".QRCodeScanner" />
         <activity android:name=".Registration" />
         <activity android:name=".RequestFinderList" />

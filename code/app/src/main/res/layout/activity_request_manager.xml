@@ -11,11 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:onClick="completeClick"
         android:text="Complete Request"
         app:layout_constraintBottom_toTopOf="@+id/request_manager_button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/request_manager_user" />
+        app:layout_constraintTop_toBottomOf="@+id/request_manager_user"
+        app:layout_constraintVertical_bias="0.546" />
 
     <Button
         android:id="@+id/request_manager_button_cancel"

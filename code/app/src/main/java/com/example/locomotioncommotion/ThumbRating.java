@@ -46,7 +46,6 @@ public class ThumbRating extends AppCompatActivity {
             }
         });
 
-
     }
     //return back to main Rider page
     public void riderClick(View view){
