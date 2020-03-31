@@ -33,5 +33,16 @@
         android:layout_marginBottom="64dp"
         android:text="Create QR code" />
 
+    <Button
+        android:id="@+id/finishQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="64dp"
+        android:text="Complete" />
+
 
 </LinearLayout>
