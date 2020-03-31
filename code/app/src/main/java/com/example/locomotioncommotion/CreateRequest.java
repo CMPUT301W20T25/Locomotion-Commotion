@@ -3,6 +3,7 @@ package com.example.locomotioncommotion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -129,12 +130,14 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == START_REQUEST) {
-            start = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
-            starting.setText(start.getName());
-        } else if (requestCode == END_REQUEST) {
-            end = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
-            ending.setText(end.getName());
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == START_REQUEST) {
+                start = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
+                starting.setText(start.getName());
+            } else if (requestCode == END_REQUEST) {
+                end = (Location) data.getExtras().getSerializable(SelectLocationActivity.SELECT_LOCATION_RETURN);
+                ending.setText(end.getName());
+            }
         }
 
     }
