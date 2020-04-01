@@ -98,6 +98,7 @@ public class UserProfile extends AppCompatActivity {
 
         user = CurrentUser.getInstance().getUser();
         email.setText(newAddress);
+        emailField.setText("");
         user.setEmail(newAddress);
     }
 
