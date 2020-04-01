@@ -51,6 +51,7 @@ public class InspectProfile extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 user = document.toObject(User.class);
+                                finishSetup();
                             }
                         } else {
                             Log.d("TAG", "Error getting document");
@@ -58,6 +59,10 @@ public class InspectProfile extends AppCompatActivity {
                     }
                 });
 
+
+    }
+
+    private void finishSetup() {
         thumbsDown1 = findViewById(R.id.user_profile_thumbs_down1);
         thumbsDown2 = findViewById(R.id.user_profile_thumbs_down2);
         thumbsUp1 = findViewById(R.id.user_profile_thumbs_up1);
