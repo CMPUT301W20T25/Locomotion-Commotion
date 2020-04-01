@@ -138,8 +138,8 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
 
     public void inspectRider(View view){
         Intent intent = new Intent(this, InspectProfile.class);
-        TextView riderText = (TextView) view;
-        intent.putExtra("username",riderText.getText().toString());
+        //TextView riderText = (TextView) view;
+        //intent.putExtra("username",riderText.getText().toString());
         startActivity(intent);
     }
 

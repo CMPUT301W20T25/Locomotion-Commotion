@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/user_profile_thumbs_down1"
+            android:id="@+id/inspect_user_profile_thumbs_down1"
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:layout_marginTop="324dp"
@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/user_profile_thumbs_down2"
+            android:id="@+id/inspect_user_profile_thumbs_down2"
             android:layout_width="111dp"
             android:layout_height="26dp"
             android:layout_marginTop="324dp"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/user_profile_phone_number1"
+                android:id="@+id/inspect_user_profile_phone_number1"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginTop="210dp"
@@ -47,7 +47,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/user_profile_phone_number2"
+                android:id="@+id/inspect_user_profile_phone_number2"
                 android:layout_width="110dp"
                 android:layout_height="33dp"
                 android:layout_marginTop="210dp"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/user_profile_email1"
+                android:id="@+id/inspect_user_profile_email1"
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:layout_marginTop="120dp"
@@ -79,7 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/user_profile_email2"
+                android:id="@+id/inspect_user_profile_email2"
                 android:layout_width="110dp"
                 android:layout_height="31dp"
                 android:layout_marginTop="120dp"
@@ -97,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/user_profile_name1"
+            android:id="@+id/inspect_user_profile_name1"
             android:layout_width="83dp"
             android:layout_height="35dp"
             android:layout_marginTop="80dp"
@@ -106,7 +106,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/user_profile_name2"
+            android:id="@+id/inspect_user_profile_name2"
             android:layout_width="83dp"
             android:layout_height="35dp"
             android:layout_marginTop="80dp"
@@ -120,7 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/user_profile_thumbs_up1"
+            android:id="@+id/inspect_user_profile_thumbs_up1"
             android:layout_width="107dp"
             android:layout_height="26dp"
             android:layout_marginStart="4dp"
@@ -129,7 +129,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/user_profile_thumbs_up2"
+            android:id="@+id/inspect_user_profile_thumbs_up2"
             android:layout_width="107dp"
             android:layout_height="26dp"
             android:layout_marginStart="0dp"
