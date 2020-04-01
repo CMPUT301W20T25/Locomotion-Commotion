@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 /**
- * Custom list class for displaying request objeects
+ * Custom list class for displaying request objects
  */
 
 public class RequestList extends ArrayAdapter<Request> {
@@ -39,11 +39,13 @@ public class RequestList extends ArrayAdapter<Request> {
 
         TextView start = view.findViewById(R.id.startLoc_text);
         TextView end = view.findViewById(R.id.endLoc_text);
-        //Show the user too and have it be clickable?
+        TextView riderText = view.findViewById(R.id.rider_text);
+        TextView driverText = view.findViewById(R.id.driver_text);
 
         start.setText(request.getStartLocation().getName().toString());
         end.setText(request.getEndLocation().getName().toString());
-
+        riderText.setText(request.getRiderUsername());
+        driverText.setText(request.getDriverUsername());
         return view;
 
     }
