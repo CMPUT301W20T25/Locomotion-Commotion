@@ -65,18 +65,18 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
-        TextView riderText = findViewById(R.id.request_manager_user);
+        TextView driverText = findViewById(R.id.request_manager_user);
 
-        if(request.getRiderUsername() != null) {
-            riderText.setText(request.getRiderUsername().toString());
-            riderText.setOnClickListener(new View.OnClickListener() {
+        if(request.getDriverUsername() != null) {
+            driverText.setText(request.getDriverUsername());
+            driverText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     inspectRider(v);
                 }
             });
-        } else{
-            riderText.setText("N/A");
+        } else {
+            driverText.setText("N/A");
         }
 
         final Button completeButton = findViewById(R.id.request_manager_button_complete);
