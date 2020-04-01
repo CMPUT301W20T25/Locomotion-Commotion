@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ViewDriverRequest extends AppCompatActivity {
@@ -21,11 +22,21 @@ public class ViewDriverRequest extends AppCompatActivity {
 
         TextView startLocation = findViewById(R.id.view_driver_request_start_location);
         TextView endLocation = findViewById(R.id.view_driver_request_end_location);
+        TextView price = findViewById(R.id.view_driver_request_price);
+        Button username = findViewById(R.id.view_driver_request_username);
+
+        int dollars = request.getFareOffered() / 100;
+        int cents = request.getFareOffered() % 100;
 
 
 
+
+        price.setText(String.format("%d.%02d", dollars, cents));
         startLocation.setText(request.getStartLocation().getName());
         endLocation.setText(request.getEndLocation().getName());
+        username.setText(request.getRiderUsername());
+
+
 
 
     }
