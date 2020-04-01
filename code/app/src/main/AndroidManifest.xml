@@ -46,6 +46,7 @@
         <activity android:name=".RequestManager" />
         <activity android:name=".CreateRequest" />
         <activity android:name=".RiderMap" />
+        <activity android:name=".ViewDriverRequest" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
