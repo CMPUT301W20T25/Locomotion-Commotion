@@ -47,6 +47,7 @@ public class RiderMain extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        assert CurrentUser.getInstance() != null;
         db.collection("requests")
                 .whereEqualTo("riderUsername", CurrentUser.getInstance().getUser().getUserName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {

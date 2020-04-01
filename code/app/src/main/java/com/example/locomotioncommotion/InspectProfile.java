@@ -39,10 +39,8 @@ public class InspectProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspect_user_profile);
-
         Intent intent = getIntent();
         String userName = intent.getExtras().getString("username");
-
         db = FirebaseFirestore.getInstance();
 
         db.collection("Users").whereEqualTo("userName", userName)
