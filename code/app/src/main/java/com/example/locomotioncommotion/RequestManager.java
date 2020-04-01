@@ -65,7 +65,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
-        TextView riderText = findViewById(R.id.rider_text);
+        TextView riderText = findViewById(R.id.request_manager_user);
 
         if(request.getRiderUsername() != null) {
             riderText.setText(request.getRiderUsername().toString());

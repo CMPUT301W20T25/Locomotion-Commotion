@@ -52,10 +52,10 @@ public class InspectProfile extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                User user = document.toObject(User.class);
+                                user = document.toObject(User.class);
                             }
                         } else {
-                            Log.d("TAG", "Eroor getting document");
+                            Log.d("TAG", "Error getting document");
                         }
                     }
                 });
