@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class DriverRequestsAll extends AppCompatActivity {
+    public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
     private Button scanCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,12 @@ public class DriverRequestsAll extends AppCompatActivity {
     }
     public void scanQR(View view){
         Intent intent = new Intent(this, QRCodeScanner.class);
+        startActivity(intent);
+    }
+    public void viewRequest(View view) {
+        Intent intent = new Intent(getApplicationContext(), ViewDriverRequest.class);
+        Request request = CurrentUser.getInstance().getUser().getDriver().getCurrentRequest();
+        intent.putExtra(REQUEST_MANAGE_MESSAGE, request);
         startActivity(intent);
     }
 
