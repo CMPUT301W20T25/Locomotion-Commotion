@@ -7,17 +7,6 @@
     tools:context=".ViewDriverRequest">
 
     <TextView
-        android:id="@+id/view-driver-request-drop-off-location"
-        android:layout_width="248dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="120dp"
-        android:text="Location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/Pick-up-location"
         android:layout_width="63dp"
         android:layout_height="29dp"
@@ -48,17 +37,6 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="80dp"
         android:text="Start"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/view-driver-request-pick-up-lat"
-        android:layout_width="248dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="80dp"
-        android:text="Location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,5 +81,27 @@
         android:text="Total price"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view_driver_request_start_location"
+        android:layout_width="272dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="80dp"
+        android:text="location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/view_driver_request_end_location"
+        android:layout_width="282dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="120dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
