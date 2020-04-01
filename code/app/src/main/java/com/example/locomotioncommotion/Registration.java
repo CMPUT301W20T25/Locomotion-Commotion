@@ -63,6 +63,7 @@ public class Registration extends AppCompatActivity {
         User user = new User(userString, passString);
         user.setEmail(emailString);
         user.setPhoneNumber(phoneNumberString);
+        user.setDriver(new Driver());
         db = FirebaseFirestore.getInstance();
         db.collection("Users").document(user.getUserName()).set(user);
         finish();

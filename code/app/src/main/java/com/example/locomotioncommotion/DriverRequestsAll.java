@@ -15,13 +15,7 @@ public class DriverRequestsAll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_requests_all);
 
-        //User user = User.getInstance();
-       // if(user.getDriver().requestStatus() == null) {
-            //hide stuff
-        //} else {
-         //   TextView pickUp = findViewById(R.id.driver_requests_all_dropoff);
-         //   pickUp.setText(user.getDriver().getCurrentRequest().getStartLocation());
-        //}
+
 
         scanCode = findViewById(R.id.driver_requests_all_scan);
         scanCode.setOnClickListener(new View.OnClickListener() {
