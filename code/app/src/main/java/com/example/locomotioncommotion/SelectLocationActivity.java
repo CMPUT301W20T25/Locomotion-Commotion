@@ -84,22 +84,14 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                if(marker != null) {
-                    marker.remove();
+                if(marker == null) {
+                    marker = map.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .title(locationName)
+                            .draggable(true));
                 }
-                marker = map.addMarker(new MarkerOptions().position(latLng).title(locationName));
-
-                Geocoder geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
-                try {
-                    List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-                    String address = addresses.get(0).getAddressLine(0);
-                    Log.d("geocoder_address", address);
-                    addressFull = new Location(latLng.latitude, latLng.longitude, address);
-                    addressDisplay.setText(address);
-                    addressDisplay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                marker.setPosition(latLng);
+                updateLocationText(latLng);
 
                 // Maybe unnecessary, remove late?
                 map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -116,9 +108,37 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
             }
         });
 
+        map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) { }
 
+            @Override
+            public void onMarkerDrag(Marker marker) { }
 
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                updateLocationText(marker.getPosition());
+            }
+        });
+    }
 
+    private void updateLocationText(LatLng latLng) {
+        Geocoder geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
+        String address;
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            address = addresses.get(0).getAddressLine(0);
+            Log.d("geocoder_address", address);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            address = String.valueOf(latLng.latitude) + " " + String.valueOf(latLng.longitude);
+            Log.d("geocoder_address", "Error: goecoder not working");
+        }
+
+        addressFull = new Location(latLng.latitude, latLng.longitude, address);
+        addressDisplay.setText(address);
+        addressDisplay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 
     @Override

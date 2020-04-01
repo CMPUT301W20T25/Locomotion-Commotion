@@ -30,10 +30,12 @@ public class Registration extends AppCompatActivity {
         EditText userName = findViewById(R.id.registration_username);
         EditText password = findViewById(R.id.registration_password);
         EditText email = findViewById(R.id.registration_email);
+        EditText phoneNumber = findViewById(R.id.registration_phone_number);
 
         String userString = userName.getText().toString();
         String passString = password.getText().toString();
         String emailString = email.getText().toString();
+        String phoneNumberString = phoneNumber.getText().toString();
 
         boolean valid = true;
 
@@ -49,6 +51,10 @@ public class Registration extends AppCompatActivity {
             email.setError("Required");
             valid = false;
         }
+        if(phoneNumberString.equals("")) {
+            phoneNumber.setError("Required");
+            valid = false;
+        }
 
         if(!valid){
             return;
@@ -56,6 +62,7 @@ public class Registration extends AppCompatActivity {
 
         User user = new User(userString, passString);
         user.setEmail(emailString);
+        user.setPhoneNumber(phoneNumberString);
         db = FirebaseFirestore.getInstance();
         db.collection("Users").document(user.getUserName()).set(user);
         finish();

@@ -13,6 +13,16 @@ public class User {
     private Rider rider;
     private static User userInstance;
 
+    public User() {
+        this.userName = "";
+        this.passWord = "";
+        this.phoneNumber = "";
+        this.email = "";
+        this.driver = null;
+        this.rider = null;
+
+    }
+
     /**
      * Makes a new user.
      * @param userName

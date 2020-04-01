@@ -1,5 +1,6 @@
 package com.example.locomotioncommotion;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +11,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void confirmLogin(View view){
         String userName = userNameField.getText().toString();
-        String passWord = passWordField.getText().toString();
+         final String passWord = passWordField.getText().toString();
 
         if(userName.equals("")){
             userNameField.setError("Required");
@@ -111,8 +116,37 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        User newUser = new User(userName, passWord);
-        CurrentUser.getInstance(newUser); //TODO: Make sure this doesn't break logging out and then logging back in!
+        db.collection("Users").whereEqualTo("userName", userName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                User user = document.toObject(User.class);
+                                Log.d("TEST", user.getUserName());
+                                if (passWord.equals(user.getPassWord())) {
+                                    CurrentUser.getInstance(user);
+                                    Intent intent = new Intent(MainActivity.this, DriverOrRider.class);
+                                    startActivity(intent);
+                                } else {
+                                    passWordField.setError("Wrong password");
+                                }
+
+
+
+                            }
+                        } else {
+                            Log.d("TAG", "Eroor getting document");
+                            userNameField.setError("Username not registered");
+                        }
+                    }
+                });
+
+
+
+    }
+    public void login() {
         Intent intent = new Intent(this, DriverOrRider.class);
         startActivity(intent);
     }
