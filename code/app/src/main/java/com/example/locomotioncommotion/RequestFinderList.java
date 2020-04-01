@@ -19,6 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class RequestFinderList extends AppCompatActivity {
     public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
@@ -26,6 +27,8 @@ public class RequestFinderList extends AppCompatActivity {
     ListView requestList;
     ArrayAdapter<Request> requestAdapter;
     ArrayList<Request> requestDataList;
+
+    Location currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class RequestFinderList extends AppCompatActivity {
         requestAdapter = new RequestList(this, requestDataList);
         requestList.setAdapter(requestAdapter);
 
+        currentLocation = new Location();
 
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
@@ -51,12 +55,16 @@ public class RequestFinderList extends AppCompatActivity {
                         requestDataList.clear();
                         for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                             Request request = doc.toObject(Request.class);
-                            request.setFirebaseID(doc.getId());
-                            requestDataList.add(request);
+                            if (!request.getRiderUsername().equals(CurrentUser.getInstance().getUser().getUserName())) {
+                                request.setFirebaseID(doc.getId());
+                                requestDataList.add(request);
+                            }
                         }
                         requestAdapter.notifyDataSetChanged();
                     }
                 });
+
+        //Collections.sort(requestDataList, new SortByDistance(currentLocation));
 
         requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

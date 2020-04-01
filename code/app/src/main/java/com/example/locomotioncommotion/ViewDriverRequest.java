@@ -10,15 +10,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ViewDriverRequest extends AppCompatActivity {
+public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCallback {
     String TAG = "viewDriverRequest";
     Request request;
     FirebaseFirestore db;
 
+    MapView mapView;
+    GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +57,9 @@ public class ViewDriverRequest extends AppCompatActivity {
         endLocation.setText(request.getEndLocation().getName());
         username.setText(request.getRiderUsername());
 
-
+        mapView = findViewById(R.id.view_driver_request_map);
+        mapView.onCreate(null);
+        mapView.getMapAsync(this);
 
 
     }
@@ -88,11 +103,84 @@ public class ViewDriverRequest extends AppCompatActivity {
     }
 
     public void clickUserName(View view) {
-        Intent intent = new Intent(this, UserProfile.class);
+        Intent intent = new Intent(this, InspectProfile.class);
+        intent.putExtra("username",request.getRiderUsername());
         startActivity(intent);
     }
 
     public void backButton(View view) {
         finish();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+
+        // Map preference setup
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setMapToolbarEnabled(false);
+        uiSettings.setZoomControlsEnabled(true);
+
+
+        LatLng startLoc = new LatLng(request.getStartLocation().getLat(), request.getStartLocation().getLng());
+        LatLng endLoc = new LatLng(request.getEndLocation().getLat(), request.getEndLocation().getLng());
+
+        // Following code to update camera with two markers from: https://stackoverflow.com/a/14828739
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(startLoc);
+        builder.include(endLoc);
+        LatLngBounds bounds = builder.build();
+
+        int padding = 120; // offset from edges of the map in pixels
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        map.moveCamera(cu);
+
+        map.addMarker(new MarkerOptions()
+                .position(endLoc)
+                .title("End")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        map.addMarker(new MarkerOptions()
+                .position(startLoc)
+                .title("Start")
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        map.addPolyline(new PolylineOptions().add(startLoc, endLoc));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        mapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mapView.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }

@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RequestManager  extends AppCompatActivity implements OnMapReadyCallback {
     String TAG = "request_manager";
     FirebaseFirestore db;
+    TextView driverText;
 
     Request request;
 
@@ -64,6 +65,20 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         mapView = findViewById(R.id.request_manager_map);
         mapView.onCreate(null);
         mapView.getMapAsync(this);
+
+        driverText = findViewById(R.id.request_manager_user);
+
+        if(request.getDriverUsername() != null) {
+            driverText.setText(request.getDriverUsername());
+            driverText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    inspectDriver(v);
+                }
+            });
+        } else {
+            driverText.setText("N/A");
+        }
 
         final Button completeButton = findViewById(R.id.request_manager_button_complete);
 //        if (request.getStatus() == "In Progress") {
@@ -120,6 +135,12 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                 finish();
             }
         });
+    }
+
+    public void inspectDriver(View view){
+        Intent intent = new Intent(this, InspectProfile.class);
+        intent.putExtra("username",driverText.getText().toString());
+        startActivity(intent);
     }
 
     public void completeClick(View view){

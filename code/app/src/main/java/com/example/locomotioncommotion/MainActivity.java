@@ -133,8 +133,6 @@ public class MainActivity extends AppCompatActivity {
                                     passWordField.setError("Wrong password");
                                 }
 
-
-
                             }
                         } else {
                             Log.d("TAG", "Eroor getting document");
