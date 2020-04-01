@@ -49,6 +49,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     private String TAG = "Request_create";
     private EditText starting;
     private EditText ending;
+    private EditText ridePrice;
     private Button createButton;
     private FirebaseFirestore db;
 
@@ -71,6 +72,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
 
         starting = findViewById(R.id.start_edit_create);
         ending = findViewById(R.id.end_edit_create);
+        ridePrice = findViewById(R.id.create_request_price);
         createButton = findViewById(R.id.create_request_button);
 
         db = FirebaseFirestore.getInstance();
@@ -100,7 +102,8 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 // Only allow the creation if both start and end are set
                 if (start != null && end != null) {
-                    Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, 0);
+                    int fare = Math.round(Float.parseFloat(ridePrice.getText().toString()) * 100);
+                    Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, fare);
 
                     db.collection("requests")
                             .add(request)
@@ -190,6 +193,11 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             map.moveCamera(cu);
 
             map.addPolyline(new PolylineOptions().add(startLoc, endLoc));
+
+            int total = (int) (0.2 * start.distance(end) + 5);
+            int dollars = total / 100;
+            int cents = total % 100;
+            ridePrice.setText(String.format("%d.%02d", dollars, cents));
         }
     }
 
