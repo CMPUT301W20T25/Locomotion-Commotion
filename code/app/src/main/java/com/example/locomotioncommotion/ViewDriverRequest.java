@@ -22,6 +22,8 @@ public class ViewDriverRequest extends AppCompatActivity {
         TextView startLocation = findViewById(R.id.view_driver_request_start_location);
         TextView endLocation = findViewById(R.id.view_driver_request_end_location);
 
+
+
         startLocation.setText(request.getStartLocation().getName());
         endLocation.setText(request.getEndLocation().getName());
 

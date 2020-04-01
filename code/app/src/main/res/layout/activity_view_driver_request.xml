@@ -17,18 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/view-driver-request-username"
-        android:layout_width="178dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:onClick="clickUserName"
-        android:text="Username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/view-driver-request-drop-off-text-view"
         android:layout_width="63dp"
@@ -62,22 +50,12 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/view-driver-request-price-text-view"
-        android:layout_width="178dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="84dp"
-        android:text="price"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/view-driver-request-price-title"
-        android:layout_width="88dp"
-        android:layout_height="34dp"
+        android:layout_width="85dp"
+        android:layout_height="19dp"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="76dp"
         android:text="Total price"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -103,5 +81,28 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/view_driver_request_username"
+        android:layout_width="161dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="16dp"
+        android:onClick="clickUserName"
+        android:text="Username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/view_driver_request_price"
+        android:layout_width="91dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginBottom="76dp"
+        android:text="price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
