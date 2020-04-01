@@ -65,6 +65,20 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
+        TextView riderText = findViewById(R.id.rider_text);
+
+        if(request.getRiderUsername() != null) {
+            riderText.setText(request.getRiderUsername().toString());
+            riderText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    inspectRider(v);
+                }
+            });
+        } else{
+            riderText.setText("N/A");
+        }
+
         final Button completeButton = findViewById(R.id.request_manager_button_complete);
 //        if (request.getStatus() == "In Progress") {
             completeButton.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +134,13 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                 finish();
             }
         });
+    }
+
+    public void inspectRider(View view){
+        Intent intent = new Intent(this, InspectProfile.class);
+        TextView riderText = (TextView) view;
+        intent.putExtra("username",riderText.getText().toString());
+        startActivity(intent);
     }
 
     public void completeClick(View view){
