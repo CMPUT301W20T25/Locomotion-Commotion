@@ -1,6 +1,7 @@
 package com.example.locomotioncommotion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,10 +45,36 @@ public class RequestList extends ArrayAdapter<Request> {
 
         start.setText(request.getStartLocation().getName().toString());
         end.setText(request.getEndLocation().getName().toString());
-        riderText.setText(request.getRiderUsername());
-        driverText.setText(request.getDriverUsername());
+        riderText.setText(request.getRiderUsername().toString());
+        riderText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inspectRider(v);
+            }
+        });
+        driverText.setText(request.getDriverUsername().toString());
+        riderText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inspectDriver(v);
+            }
+        });
         return view;
 
+    }
+
+    public void inspectRider(View view){
+        Intent intent = new Intent(context, InspectProfile.class);
+        TextView riderText = (TextView) view;
+        intent.putExtra("username",riderText.getText().toString());
+        context.startActivity(intent);
+    }
+
+    public void inspectDriver(View view){
+        Intent intent = new Intent(context, InspectProfile.class);
+        TextView driverText = (TextView) view;
+        intent.putExtra("username",driverText.getText().toString());
+        context.startActivity(intent);
     }
 
 }
