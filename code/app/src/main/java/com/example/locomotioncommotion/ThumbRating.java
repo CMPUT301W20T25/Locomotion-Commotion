@@ -18,7 +18,7 @@ public class ThumbRating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thumb_rating);
 
-        driver.getDriver();
+        driver = CurrentUser.getInstance().getUser();
         rateUp = findViewById(R.id.thumbsUp);
         rateDown = findViewById(R.id.thumbsDown);
 

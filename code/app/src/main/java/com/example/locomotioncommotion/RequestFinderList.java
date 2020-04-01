@@ -51,8 +51,10 @@ public class RequestFinderList extends AppCompatActivity {
                         requestDataList.clear();
                         for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                             Request request = doc.toObject(Request.class);
-                            request.setFirebaseID(doc.getId());
-                            requestDataList.add(request);
+                            if (!request.getRiderUsername().equals(CurrentUser.getInstance().getUser().getUserName())) {
+                                request.setFirebaseID(doc.getId());
+                                requestDataList.add(request);
+                            }
                         }
                         requestAdapter.notifyDataSetChanged();
                     }
