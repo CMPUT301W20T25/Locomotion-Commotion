@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".DriverRequestsAll">
 
+    <ListView
+        android:id="@+id/driver_requests_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Active-Request" />
+
     <Button
         android:id="@+id/driver-request-all-back-button"
         android:layout_width="wrap_content"
@@ -18,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/driver-requests-all-scan"
+        android:id="@+id/driver_requests_all_scan"
         android:layout_width="147dp"
         android:layout_height="46dp"
         android:layout_marginTop="16dp"
@@ -44,22 +54,10 @@
         android:id="@+id/Active-Request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="376dp"
+        android:layout_marginTop="32dp"
         android:text="Active Request"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/driver_request_all_view_request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="436dp"
-        android:onClick="viewRequest"
-        android:text="View "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/driver-requests-all-find-request-button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
