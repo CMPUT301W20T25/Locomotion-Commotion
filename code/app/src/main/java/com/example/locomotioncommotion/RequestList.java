@@ -45,7 +45,7 @@ public class RequestList extends ArrayAdapter<Request> {
 
         start.setText(request.getStartLocation().getName().toString());
         end.setText(request.getEndLocation().getName().toString());
-        if(request.getRiderUsername() == null) {
+        if(request.getRiderUsername() != null) {
             riderText.setText(request.getRiderUsername().toString());
             riderText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -56,7 +56,7 @@ public class RequestList extends ArrayAdapter<Request> {
         } else{
             riderText.setText("N/A");
         }
-        if(request.getDriverUsername() == null){
+        if(request.getDriverUsername() != null){
             driverText.setText(request.getDriverUsername().toString());
             driverText.setOnClickListener(new View.OnClickListener() {
                 @Override
