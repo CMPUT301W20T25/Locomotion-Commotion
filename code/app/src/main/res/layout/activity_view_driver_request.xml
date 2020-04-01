@@ -8,21 +8,23 @@
 
     <TextView
         android:id="@+id/view-driver-request-drop-off-location"
-        android:layout_width="80dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="176dp"
+        android:layout_width="248dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="120dp"
         android:text="Location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Pick-up-location"
-        android:layout_width="126dp"
-        android:layout_height="39dp"
+        android:layout_width="63dp"
+        android:layout_height="29dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="176dp"
-        android:text="Drop off location"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="120dp"
+        android:text="End"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,26 +36,28 @@
         android:onClick="clickUserName"
         android:text="Username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/view-driver-request-drop-off-text-view"
-        android:layout_width="130dp"
-        android:layout_height="36dp"
+        android:layout_width="63dp"
+        android:layout_height="27dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="100dp"
-        android:text="Pick up location"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="80dp"
+        android:text="Start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/view-driver-request-pick-up-lat"
-        android:layout_width="80dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="248dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="80dp"
         android:text="Location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
