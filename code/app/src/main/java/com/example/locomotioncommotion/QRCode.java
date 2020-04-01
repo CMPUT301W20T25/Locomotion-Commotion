@@ -1,5 +1,6 @@
 package com.example.locomotioncommotion;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class QRCode extends AppCompatActivity {
     Button qrButton;
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
+    Button completeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -65,7 +67,18 @@ public class QRCode extends AppCompatActivity {
                 }
             }
         });
+        completeButton = findViewById(R.id.finishQR);
+        completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                completeQR(v);
+            }
+        });
+    }
 
+    public void completeQR(View view){
+        Intent intent = new Intent(this, ThumbRating.class);
+        startActivity(intent);
     }
 
 }

@@ -32,14 +32,8 @@ public class RequestFinderList extends AppCompatActivity {
         setContentView(R.layout.activity_request_finder_list);
 
         requestList = findViewById(R.id.request_list);
-//        Request r = new Request();
-//        r.setStartLocation("Here");
-//        r.setEndLocation("There");
-
 
         requestDataList = new ArrayList<>();
-//        requestDataList.add(r);
-
 
         requestAdapter = new RequestList(this, requestDataList);
         requestList.setAdapter(requestAdapter);
@@ -48,18 +42,20 @@ public class RequestFinderList extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
 
-        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                requestDataList.clear();
-                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    Request request = doc.toObject(Request.class);
-                    request.setFirebaseID(doc.getId());
-                    requestDataList.add(request);
-                }
-                requestAdapter.notifyDataSetChanged();
-            }
-        });
+        collectionReference
+                .whereEqualTo("status", "Pending")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        requestDataList.clear();
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            Request request = doc.toObject(Request.class);
+                            request.setFirebaseID(doc.getId());
+                            requestDataList.add(request);
+                        }
+                        requestAdapter.notifyDataSetChanged();
+                    }
+                });
 
         requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
