@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class RequestFinderList extends AppCompatActivity {
+    public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
     private FirebaseFirestore db;
     ListView requestList;
     ArrayAdapter<Request> requestAdapter;
@@ -61,14 +62,11 @@ public class RequestFinderList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("TESTITEMCLICK","I am here");
-                //Log.d("TESTITEMCLICK", requestDataList.get(position).getStartLocation());
-                //Log.d("TESTITEMCLICK", requestDataList.get(position).getRiderUsername());
-                //Intent intent = new Intent (this, ViewDriverRequest.class);
-                //Intent intent = new Intent(this , ViewDriverRequest.class );
-                //startActivity(intent);
-                //Intent intent = new Intent(this,ViewDriverRequest.class );
-                //Request request = requestDataList.get(position);
-                //User.getInstance().getDriver().acceptRequest(request);
+                Intent intent = new Intent(getApplicationContext(), ViewDriverRequest.class);
+                Request request = requestAdapter.getItem(position);
+                intent.putExtra(REQUEST_MANAGE_MESSAGE, request);
+                startActivity(intent);
+
 
             }
         });
