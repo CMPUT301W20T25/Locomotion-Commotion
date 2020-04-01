@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RequestManager  extends AppCompatActivity implements OnMapReadyCallback {
     String TAG = "request_manager";
     FirebaseFirestore db;
+    TextView driverText;
 
     Request request;
 
@@ -65,7 +66,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
-        TextView driverText = findViewById(R.id.request_manager_user);
+        driverText = findViewById(R.id.request_manager_user);
 
         if(request.getDriverUsername() != null) {
             driverText.setText(request.getDriverUsername());
@@ -138,7 +139,6 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
 
     public void inspectDriver(View view){
         Intent intent = new Intent(this, InspectProfile.class);
-        TextView driverText = (TextView) view;
         intent.putExtra("username",driverText.getText().toString());
         startActivity(intent);
     }
