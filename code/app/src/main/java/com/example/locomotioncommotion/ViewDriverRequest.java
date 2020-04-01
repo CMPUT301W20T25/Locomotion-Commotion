@@ -88,7 +88,8 @@ public class ViewDriverRequest extends AppCompatActivity {
     }
 
     public void clickUserName(View view) {
-        Intent intent = new Intent(this, UserProfile.class);
+        Intent intent = new Intent(this, InspectProfile.class);
+        intent.putExtra("username",request.getRiderUsername());
         startActivity(intent);
     }
 
