@@ -72,7 +72,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
             driverText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    inspectRider(v);
+                    inspectDriver(v);
                 }
             });
         } else {
@@ -136,10 +136,10 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         });
     }
 
-    public void inspectRider(View view){
+    public void inspectDriver(View view){
         Intent intent = new Intent(this, InspectProfile.class);
-        //TextView riderText = (TextView) view;
-        //intent.putExtra("username",riderText.getText().toString());
+        TextView driverText = (TextView) view;
+        intent.putExtra("username",driverText.getText().toString());
         startActivity(intent);
     }
 
