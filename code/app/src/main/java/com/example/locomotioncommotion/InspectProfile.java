@@ -37,9 +37,7 @@ public class InspectProfile extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_inspect_user_profile);
         Intent intent = getIntent();
         String userName = intent.getExtras().getString("username");
@@ -53,6 +51,7 @@ public class InspectProfile extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 user = document.toObject(User.class);
+                                finishSetup();
                             }
                         } else {
                             Log.d("TAG", "Error getting document");
@@ -60,6 +59,10 @@ public class InspectProfile extends AppCompatActivity {
                     }
                 });
 
+
+    }
+
+    private void finishSetup() {
         thumbsDown1 = findViewById(R.id.inspect_user_profile_thumbs_down1);
         thumbsDown2 = findViewById(R.id.inspect_user_profile_thumbs_down2);
         thumbsUp1 = findViewById(R.id.inspect_user_profile_thumbs_up1);
@@ -82,6 +85,5 @@ public class InspectProfile extends AppCompatActivity {
         name.setText(user.getUserName());
         email.setText(user.getEmail());
         phoneNumber.setText(user.getPhoneNumber());
-
     }
 }
