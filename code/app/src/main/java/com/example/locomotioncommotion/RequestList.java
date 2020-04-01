@@ -40,9 +40,21 @@ public class RequestList extends ArrayAdapter<Request> {
 
         TextView start = view.findViewById(R.id.startLoc_text);
         TextView end = view.findViewById(R.id.endLoc_text);
+        TextView riderText = view.findViewById(R.id.rider_text);
+        TextView driverText = view.findViewById(R.id.driver_text);
 
         start.setText(request.getStartLocation().getName().toString());
         end.setText(request.getEndLocation().getName().toString());
+        if(request.getRiderUsername() != null) {
+            riderText.setText(request.getRiderUsername().toString());
+        } else{
+            riderText.setText("N/A");
+        }
+        if(request.getDriverUsername() != null){
+            driverText.setText(request.getDriverUsername().toString());
+        } else{
+            driverText.setText("N/A");
+        }
 
         return view;
 
