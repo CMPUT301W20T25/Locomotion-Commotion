@@ -1,19 +1,26 @@
 package com.example.locomotioncommotion;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 /**
  * Activity to handle viewing the user attributes of other users
  */
 public class InspectProfile extends AppCompatActivity {
 
-
+    private FirebaseFirestore db;
     private TextView thumbsDown1;
     private TextView thumbsDown2;
     private TextView thumbsUp1;
@@ -33,7 +40,25 @@ public class InspectProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspect_user_profile);
 
-        user = (User) savedInstanceState.get("username");
+        Intent intent = getIntent();
+        String userName = intent.getExtras().getString("username");
+
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("Users").whereEqualTo("userName", userName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                User user = document.toObject(User.class);
+                            }
+                        } else {
+                            Log.d("TAG", "Eroor getting document");
+                        }
+                    }
+                });
 
         thumbsDown1 = findViewById(R.id.user_profile_thumbs_down1);
         thumbsDown2 = findViewById(R.id.user_profile_thumbs_down2);
