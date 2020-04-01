@@ -84,7 +84,7 @@
     <EditText
         android:id="@+id/create_request_price"
         android:layout_width="119dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:ems="10"
