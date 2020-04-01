@@ -45,20 +45,29 @@ public class RequestList extends ArrayAdapter<Request> {
 
         start.setText(request.getStartLocation().getName().toString());
         end.setText(request.getEndLocation().getName().toString());
-        riderText.setText(request.getRiderUsername().toString());
-        riderText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inspectRider(v);
-            }
-        });
-        driverText.setText(request.getDriverUsername().toString());
-        riderText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inspectDriver(v);
-            }
-        });
+        if(request.getRiderUsername() == null) {
+            riderText.setText(request.getRiderUsername().toString());
+            riderText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    inspectRider(v);
+                }
+            });
+        } else{
+            riderText.setText("N/A");
+        }
+        if(request.getDriverUsername() == null){
+            driverText.setText(request.getDriverUsername().toString());
+            driverText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    inspectDriver(v);
+                }
+            });
+        } else{
+            driverText.setText("N/A");
+        }
+
         return view;
 
     }
