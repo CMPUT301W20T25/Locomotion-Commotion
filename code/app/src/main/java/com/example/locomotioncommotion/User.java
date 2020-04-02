@@ -1,5 +1,9 @@
 package com.example.locomotioncommotion;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+
 /**
  * User
  * All data associated with Users
@@ -11,7 +15,7 @@ public class User {
     private String email;
     private Driver driver;
     private Rider rider;
-    private static User userInstance;
+    private ArrayList<String> notificationList;
 
     public User() {
         this.userName = "";
@@ -37,6 +41,14 @@ public class User {
         this.phoneNumber = "";
         this.driver = null;
         this.rider = null;
+    }
+
+    /**
+     * Updates the database entry corresponding to this user
+     */
+    public void updateDatabase(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Users").document(this.getUserName()).set(this);
     }
 
     /**
