@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -75,6 +77,22 @@ public class MainActivity extends AppCompatActivity {
                     if(CurrentUser.getInstance() != null) {
                         if(CurrentUser.getInstance().getUser().getUserName().equals(doc.getId())){
                             CurrentUser.getInstance().setUser(doc.toObject(User.class));
+                            String notification = CurrentUser.getInstance().getUser().popNotification();
+                            if(notification.equals("No notifications pending") == false){
+                                Context context = getApplicationContext();
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "LocomotionCommotion")
+                                        //.setSmallIcon(R.drawable.notification_icon) TODO: Add an icon for this
+                                        .setContentTitle(notification)
+                                        .setContentText(notification)
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                        .setAutoCancel(true); // Just make the notification go away when you tap it for now
+
+                                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+
+                                // notificationId is a unique int for each notification that you must define
+                                notificationManager.notify(1, builder.build());
+                                CurrentUser.getInstance().getUser().updateDatabase(); //If I've done this right then this won't cause an infinite loop
+                            }
                         }
                     }
                 }
