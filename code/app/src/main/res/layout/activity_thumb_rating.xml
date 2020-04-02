@@ -10,13 +10,30 @@
     <TextView
         android:id="@+id/RateDriverTitle"
         android:layout_width="wrap_content"
-        android:layout_height="173dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="0dp"
+        android:text="Ride finished!         How would you rate"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="36dp" />
+
+
+    <TextView
+        android:id="@+id/driverNameRate"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="12dp"
-        android:text="Ride finished.
-        How would you rate the driver today?"
+        android:text="name"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="36dp" />
 
     <Button
