@@ -67,7 +67,7 @@ public class User {
      *      Returns either the latest notification from the user's notification list, or "No notifications pending" if there are none
      */
     public String popNotification(){
-        if(this.notificationList.size() == 0){
+        if(this.notificationList == null || this.notificationList.size() == 0){
             return "No notifications pending";
         } else {
             String notification = this.notificationList.get(this.notificationList.size()-1);
