@@ -71,10 +71,11 @@ public class MainActivity extends AppCompatActivity {
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                //requestDataList.clear();
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                     if(CurrentUser.getInstance() != null) {
-
+                        if(CurrentUser.getInstance().getUser().getUserName().equals(doc.getId())){
+                            CurrentUser.getInstance().setUser(doc.toObject(User.class));
+                        }
                     }
                 }
             }
