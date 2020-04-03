@@ -67,5 +67,8 @@ public class CurrentUser {
         this.user = user;
     }
 
+    /**
+     * Used to clear the current user when logging out
+     */
     public static void clearUser() { CurrentUser.currentUserInstance = null;}
 }

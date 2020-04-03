@@ -34,7 +34,10 @@ public class RiderMain extends AppCompatActivity {
     ArrayList<Request> requestDataList;
     FirebaseFirestore db;
 
-
+    /**
+     * Called when the activity is initialized. Assigns views to variables and sets onClickListeners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +48,13 @@ public class RiderMain extends AppCompatActivity {
         requestDataList = new ArrayList<>();
 
         requestArrayAdapter = new RequestList(this, requestDataList);
-        //show the data on this layout??
         requestList.setAdapter(requestArrayAdapter);
 
         db = FirebaseFirestore.getInstance();
 
         assert CurrentUser.getInstance() != null;
+
+        // Retrieves all requests which the rider matches the current user and adds them to a requestList
         db.collection("requests")
                 .whereEqualTo("riderUsername", CurrentUser.getInstance().getUser().getUserName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -70,6 +74,7 @@ public class RiderMain extends AppCompatActivity {
                     }
                 });
 
+        // Starts an activity for the request manager for the clicked request
         requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -85,9 +90,6 @@ public class RiderMain extends AppCompatActivity {
     public void create(View view){
         Intent intent = new Intent(this, CreateRequest.class);
         startActivity(intent);
-//        Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
-//        intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
-//        startActivity(intent);
     }
 
 
