@@ -89,13 +89,4 @@ public class Rider {
 
     }
 
-    /**
-     * Generates a QRCode
-     * //TODO: Turn this stub into a real function
-     * @return
-     */
-    public QRCode generateQRPrice(){
-        return null;
-    }
-
 }

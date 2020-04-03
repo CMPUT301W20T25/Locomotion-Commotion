@@ -82,13 +82,4 @@ public class Driver {
      *      The current request of the driver
      */
     public Request getCurrentRequest(){ return this.currentRequest; }
-
-    /**
-     * Placeholder method for now, just returns a failure message no matter what
-     * @return
-     *      returns "scan failed" 100% of the time
-     */
-    public String scanQR(){
-        return "scan failed";
-    }
 }
