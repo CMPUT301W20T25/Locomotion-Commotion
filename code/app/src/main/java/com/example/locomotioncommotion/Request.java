@@ -87,48 +87,6 @@ public class Request implements Serializable {
         this.status = "Pending";
     }
 
-/*    *//**
-     * Notifies the rider that their ride request is progressing
-     * Function called in some kind of thingy that interfaces with the database
-     * @param notificationTitle
-     *      The title of generated notification
-     * @param notificationMessage
-     *      The message of the generated notification
-     * @param context
-     *      The context that the notification is to be put to
-     *//*
-    public void notifyRider(String notificationTitle, String notificationMessage, Context context){
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "LocomotionCommotion")
-                //.setSmallIcon(R.drawable.notification_icon) TODO: Add an icon for this
-                .setContentTitle(notificationTitle)
-                .setContentText(notificationMessage)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Just make the notification go away when you tap it for now
-                .setAutoCancel(true);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(1, builder.build()); //ID = 1 for rider notification
-    }
-
-    public void notifyDriver(String notificationTitle, String notificationMessage, Context context){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "LocomotionCommotion")
-                //.setSmallIcon(R.drawable.notification_icon) TODO: Add an icon for this
-                .setContentTitle(notificationTitle)
-                .setContentText(notificationMessage)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Just make the notification go away when you tap it for now
-                .setAutoCancel(true);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(2, builder.build()); //ID = 2 for driver notification
-        this.driverNotificationIsPending = false;
-    }*/
-
     /**
      * Returns the rider currently attached to the request
      * @return
@@ -239,14 +197,6 @@ public class Request implements Serializable {
     public void setStatus(String status){
         if(checkStatusCodeValidity(status)) {
             this.status = status;
-            if(status.equals("Accepted")){
-                //this.riderNotificationIsPending = true;
-            } else if(status.equals("Confirmed")){
-                //this.driverNotificationIsPending = true;
-            } else if(status.equals("Cancelled")){
-               // this.driverNotificationIsPending = true;
-            }
-            //TODO: Consider notifying if the request is completed as well
         } else{
             //TODO: Throw an error here, maybe?
         }

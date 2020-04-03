@@ -24,7 +24,7 @@ public class User {
         this.email = "";
         this.driver = null;
         this.rider = null;
-
+        this.notificationList = new ArrayList<String>();
     }
 
     /**
@@ -41,6 +41,7 @@ public class User {
         this.phoneNumber = "";
         this.driver = null;
         this.rider = null;
+        this.notificationList = new ArrayList<String>();
     }
 
     /**
@@ -49,6 +50,30 @@ public class User {
     public void updateDatabase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Users").document(this.getUserName()).set(this);
+    }
+
+    /**
+     * Adds a pending notification to the list
+     * @param notification
+     *      A string representing the notification
+     */
+    public void addNotification(String notification){
+        this.notificationList.add(notification);
+    }
+
+    /**
+     * Pops the latest notification off of the user's notification list
+     * @return
+     *      Returns either the latest notification from the user's notification list, or "No notifications pending" if there are none
+     */
+    public String popNotification(){
+        if(this.notificationList == null || this.notificationList.size() == 0){
+            return "No notifications pending";
+        } else {
+            String notification = this.notificationList.get(this.notificationList.size()-1);
+            this.notificationList.remove(this.notificationList.size()-1);
+            return notification;
+        }
     }
 
     /**

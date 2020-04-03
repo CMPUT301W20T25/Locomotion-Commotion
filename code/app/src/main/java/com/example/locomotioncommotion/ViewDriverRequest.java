@@ -21,9 +21,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCallback {
     String TAG = "viewDriverRequest";
@@ -81,6 +85,24 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
                         Log.d(TAG,"Error updating document",e);
                     }
                 });
+
+        db.collection("users").whereEqualTo("userName",request.getRiderUsername())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        User user = document.toObject(User.class);
+                        user.addNotification("Your Ride Request has been accepted.");
+                        user.updateDatabase();
+                    }
+                } else {
+                    Log.d("TAG", "Error getting document");
+                }
+            }
+        });
+
         db.collection("requests")
                 .document(request.getFirebaseID())
                 .update("driverUsername", CurrentUser.getInstance().getUser().getUserName())
