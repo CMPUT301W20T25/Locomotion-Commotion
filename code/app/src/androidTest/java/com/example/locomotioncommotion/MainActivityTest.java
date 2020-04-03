@@ -28,26 +28,70 @@ public class MainActivityTest {
     public ActivityTestRule<MainActivity> rule =
             new ActivityTestRule<>(MainActivity.class, true, true);
 
-    // Before
     @Before
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
     }
-    //tests
-   // @Test
-    public void testChangeContactInfo() {
+
+    @Test
+    public void loginRegisterProfileTest() {
+        // Login with invalid information should fail
+        solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+
+        solo.clickOnButton("Login");
         solo.assertCurrentActivity("Wrong activity", MainActivity.class);
 
         solo.enterText((EditText)solo.getView(R.id.username),"TestUsername");
         solo.clickOnButton("Login");
-        solo.assertCurrentActivity("wrong activity", DriverOrRider.class);
-        solo.clickOnButton("VIEW PROFILE");
-        solo.assertCurrentActivity("Wrong activity",UserProfile.class );
-        assertTrue(solo.waitForText("TestUsername",1,2000));
+        solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+
+        solo.enterText((EditText)solo.getView(R.id.password),"TestPassword");
+        solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+        ///////////////////////////////////////////////////////////////////////////
+
+        // Tests Registration
+        solo.clickOnButton("Register");
+        solo.assertCurrentActivity("Wrong activity", Registration.class);
+
+        solo.clickOnButton("Create Account");
+        solo.assertCurrentActivity("Wrong activity", Registration.class);
+
+        solo.enterText((EditText)solo.getView(R.id.registration_username),"TestUsername");
+        solo.enterText((EditText)solo.getView(R.id.registration_password),"TestPassword");
+        solo.clickOnButton("Create Account");
+        solo.assertCurrentActivity("Wrong activity", Registration.class);
+
+        solo.enterText((EditText)solo.getView(R.id.registration_email),"test@test.com.");
+        solo.enterText((EditText)solo.getView(R.id.registration_phone_number),"1112223333");
+        solo.clickOnButton("Create Account");
+        solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+        /////////////////////////////////////////////////////////////////////////////////
+
+        // Test login with new created user
+        solo.clearEditText((EditText)solo.getView(R.id.password));
+        solo.enterText((EditText)solo.getView(R.id.password),"Test");
+        solo.clickOnButton("Login");
+        solo.assertCurrentActivity("Wrong activity", MainActivity.class);
+
+        solo.clearEditText((EditText)solo.getView(R.id.password));
+        solo.enterText((EditText)solo.getView(R.id.password),"TestPassword");
+        solo.clickOnButton("Login");
+        solo.assertCurrentActivity("Wrong activity", DriverOrRider.class);
+        /////////////////////////////////////////////////////////////////////////////////
+
+        // Test Profile page
+        solo.clickOnButton("View Profile");
+        solo.assertCurrentActivity("Wrong activity", UserProfile.class);
+
+        assertTrue(solo.searchText("TestUsername"));
+        assertTrue(solo.searchText("test@test.com"));
+        assertTrue(solo.searchText("1112223333"));
+
+        solo.clickOnButton("Back");
+        solo.assertCurrentActivity("Wrong activity", DriverOrRider.class);
+        /////////////////////////////////////////////////////////////////////////////////
     }
 
-
-    //After
     @After
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();
