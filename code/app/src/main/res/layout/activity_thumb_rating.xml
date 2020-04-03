@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ThumbRating">
+    tools:context=".activities.rider.ThumbRating">
 
     <TextView
         android:id="@+id/RateDriverTitle"

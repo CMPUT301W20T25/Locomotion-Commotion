@@ -4,7 +4,7 @@
  * This class holds the information related to a driver
  * it is not implemented at the moment
  */
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.model;
 
 /**
  * The driver class keep's track of all of a user's driver related information
