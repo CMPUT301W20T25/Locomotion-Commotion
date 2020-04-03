@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         developNotificationInfrastructure(this);
 
         db = FirebaseFirestore.getInstance();
-        final CollectionReference collectionReference = db.collection("user");
+        final CollectionReference collectionReference = db.collection("users");
 
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
