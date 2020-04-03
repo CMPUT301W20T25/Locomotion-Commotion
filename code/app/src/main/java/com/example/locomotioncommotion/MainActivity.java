@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
                                 notificationTitle = notificationTitle.concat(requestStatus);
                                 Context context = getApplicationContext();
                                 if(isRider) {
-                                    CurrentUser.getInstance().getUser().getRider().getCurrentRequest().notifyRider(notificationTitle,notificationTitle, context);
+                                    CurrentUser.getInstance().getUser().getRider().getCurrentRequest();
                                 } else {
-                                    CurrentUser.getInstance().getUser().getDriver().getCurrentRequest().notifyDriver(notificationTitle,notificationTitle, context);
+                                    CurrentUser.getInstance().getUser().getDriver().getCurrentRequest();
                                 }
                                 docRef.set(false);
                             }

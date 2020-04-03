@@ -48,7 +48,7 @@ public class DriverRequestsAll extends AppCompatActivity {
                 scanQR(v);
             }
         });
-
+        /*
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
 
@@ -68,6 +68,8 @@ public class DriverRequestsAll extends AppCompatActivity {
                         requestAdapter.notifyDataSetChanged();
                     }
                 });
+
+         */
 
     }
 

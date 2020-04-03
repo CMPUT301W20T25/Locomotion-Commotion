@@ -14,11 +14,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ThumbRating extends AppCompatActivity {
+import io.opencensus.tags.Tag;
 
+public class ThumbRating extends AppCompatActivity {
+    String TAG = "ThumbRating";
     Button rateUp;
     Button rateDown;
-    User currentRider;
+    User currentDriver;
 
     Driver driver;
 
@@ -35,10 +37,10 @@ public class ThumbRating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thumb_rating);
 
-        currentRider = CurrentUser.getInstance().getUser();
+        currentDriver = CurrentUser.getInstance().getUser();
         rateUp = findViewById(R.id.thumbsUp);
         rateDown = findViewById(R.id.thumbsDown);
-        driver = currentRider.getDriver();
+        driver = currentDriver.getDriver();
 
         Intent intent = getIntent();
         request = (Request) intent.getExtras().getSerializable(RiderMain.REQUEST_MANAGE_MESSAGE);
@@ -50,10 +52,9 @@ public class ThumbRating extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int current;
-                current = driver.getThumbsUp();
+                current = currentDriver.getThumbsUp();
                 current += 1;
-                driver.setThumbsUp(current);
-
+                currentDriver.setThumbsUp(current);
                 Log.d(TAG, request.getFirebaseID());
                 db = FirebaseFirestore.getInstance();
                 db.collection("requests")
@@ -71,53 +72,38 @@ public class ThumbRating extends AppCompatActivity {
                                 Log.w(TAG, "Error updating document", e);
                             }
                         });
-                completeClick(v);
-                finish();
-
                 riderClick(v);
-            }
-        });
-
-        final Button completeButton = findViewById(R.id.request_manager_button_complete);
-//        if (request.getStatus() == "In Progress") {
-        completeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Log.d(TAG, request.getFirebaseID());
-                db = FirebaseFirestore.getInstance();
-                db.collection("requests")
-                        .document(request.getFirebaseID())
-                        .update("status", "Completed")
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully updated!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating document", e);
-                            }
-                        });
-                completeClick(v);
                 finish();
             }
         });
-//        } else {
-//            completeButton.setVisibility(View.GONE);
-//        }
+
 
         rateDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int current;
-                current = driver.getThumbsDown();
+                current = currentDriver.getThumbsDown();
                 current += 1;
-                driver.setThumbsUp(current);
-
+                currentDriver.setThumbsUp(current);
+                Log.d(TAG, request.getFirebaseID());
+                db = FirebaseFirestore.getInstance();
+                db.collection("requests")
+                        .document(request.getFirebaseID())
+                        .update("status", "Completed")
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully updated!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error updating document", e);
+                            }
+                        });
                 riderClick(v);
+                finish();
             }
         });
 

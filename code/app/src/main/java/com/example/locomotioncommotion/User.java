@@ -15,6 +15,7 @@ public class User {
     private String email;
     private Driver driver;
     private Rider rider;
+    private static User userInstance;
     private ArrayList<String> notificationList;
 
     public User() {
