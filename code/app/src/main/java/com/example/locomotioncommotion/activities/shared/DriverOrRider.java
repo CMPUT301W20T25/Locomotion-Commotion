@@ -11,6 +11,8 @@ import com.example.locomotioncommotion.R;
 import com.example.locomotioncommotion.activities.driver.DriverRequestsAll;
 import com.example.locomotioncommotion.activities.rider.RiderMain;
 import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.Driver;
+import com.example.locomotioncommotion.model.Rider;
 
 /**
  * DriverOrRider
