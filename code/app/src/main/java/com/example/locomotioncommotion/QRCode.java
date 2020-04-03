@@ -77,7 +77,7 @@ public class QRCode extends AppCompatActivity {
     }
 
     public void completeQR(View view){
-        Intent intent = new Intent(this, ThumbRating.class);
+        Intent intent = new Intent(this, RideHistory.class);
         startActivity(intent);
     }
 

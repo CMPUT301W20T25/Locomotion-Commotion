@@ -10,6 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,7 +40,8 @@ public class ThumbRating extends AppCompatActivity {
     FirebaseFirestore db;
     Request request; //need to get driver profile
 
-
+    MapView mapView;
+    GoogleMap map;
 
 
     @Override
@@ -37,29 +49,37 @@ public class ThumbRating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thumb_rating);
 
-        currentDriver = CurrentUser.getInstance().getUser();
-        rateUp = findViewById(R.id.thumbsUp);
-        rateDown = findViewById(R.id.thumbsDown);
-        driver = currentDriver.getDriver();
-
         Intent intent = getIntent();
-        request = (Request) intent.getExtras().getSerializable(RiderMain.REQUEST_MANAGE_MESSAGE);
+        request = (Request) intent.getExtras().getSerializable(RideHistory.REQUEST_MANAGE_MESSAGE);
 
-        driverName = findViewById(R.id.driverNameRate);
-        driverName.setText(request.getDriverUsername());
+        rateUp = findViewById(R.id.thumbs_up_Button);
+        rateDown = findViewById(R.id.rate_down_button);
+        TextView startLocation = findViewById(R.id.ride_history_start_location);
+        TextView endLocation = findViewById(R.id.ride_history_end_location);
+        TextView price = findViewById(R.id.ride_history_price);
+        Button username = findViewById(R.id.ride_history_driver);
+
+        int dollars = request.getFareOffered() / 100;
+        int cents = request.getFareOffered() % 100;
+
+
+        price.setText(String.format("%d.%02d", dollars, cents));
+        startLocation.setText(request.getStartLocation().getName());
+        endLocation.setText(request.getEndLocation().getName());
+        username.setText(request.getDriverUsername());
+
+
 
         rateUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int current;
-                current = currentDriver.getThumbsUp();
-                current += 1;
-                currentDriver.setThumbsUp(current);
                 Log.d(TAG, request.getFirebaseID());
                 db = FirebaseFirestore.getInstance();
-                db.collection("requests")
-                        .document(request.getFirebaseID())
-                        .update("status", "Completed")
+
+                db.collection("Users")
+                        .document(request.getDriverUsername())
+                        .update("Thumbs Up", "1")
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -82,14 +102,12 @@ public class ThumbRating extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int current;
-                current = currentDriver.getThumbsDown();
-                current += 1;
-                currentDriver.setThumbsUp(current);
                 Log.d(TAG, request.getFirebaseID());
                 db = FirebaseFirestore.getInstance();
-                db.collection("requests")
-                        .document(request.getFirebaseID())
-                        .update("status", "Completed")
+
+                db.collection("Users")
+                        .document(request.getDriverUsername())
+                        .update("Thumbs Down", "-1")
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -108,9 +126,16 @@ public class ThumbRating extends AppCompatActivity {
         });
 
     }
+
+    public void driverInfo(View view){
+        Intent intent = new Intent(this, InspectProfile.class);
+        startActivity(intent);
+    }
     //return back to main Rider page
     public void riderClick(View view){
         Intent intent = new Intent(this, RiderMain.class);
         startActivity(intent);
     }
+
+
 }

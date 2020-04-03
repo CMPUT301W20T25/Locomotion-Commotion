@@ -21,9 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectLocationActivity"></activity>
+        <activity android:name=".RideHistory"></activity>
+        <activity android:name=".SelectLocationActivity" />
         <activity android:name=".ThumbRating" />
-        <activity android:name=".QRCode"/>
+        <activity android:name=".QRCode" />
         <activity android:name=".QRCodeScanner" />
         <activity android:name=".Registration" />
         <activity android:name=".RequestFinderList" />

@@ -1,61 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ThumbRating">
+    tools:context=".ViewDriverRequest">
 
     <TextView
-        android:id="@+id/RateDriverTitle"
+        android:id="@+id/ride_history_location"
+        android:layout_width="63dp"
+        android:layout_height="29dp"
+        android:text="End"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ride_history_end_location"
+        app:layout_constraintEnd_toEndOf="@+id/ride_history_drop_off" />
+
+    <TextView
+        android:id="@+id/ride_history_drop_off"
+        android:layout_width="63dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="Start"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ride_history_start_location"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/rate_down_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="0dp"
-        android:text="Ride finished!         How would you rate"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="36dp" />
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="backButton"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/thumbs_up_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="acceptButton"
+        android:text="Thumbs Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/driverNameRate"
-        android:layout_width="172dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:id="@+id/ride_history_price_title"
+        android:layout_width="85dp"
+        android:layout_height="19dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="Total price"
+        app:layout_constraintBottom_toTopOf="@+id/view-driver-request-back-button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ride_history_start_location"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="12dp"
-        android:text="name"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="36dp" />
+        android:layout_marginRight="32dp"
+        android:text="location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ride_history_drop_off"
+        app:layout_constraintTop_toBottomOf="@+id/ride_history_driver" />
+
+    <TextView
+        android:id="@+id/ride_history_end_location"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ride_history_location"
+        app:layout_constraintTop_toBottomOf="@+id/ride_history_start_location" />
 
     <Button
-        android:id="@+id/thumbsUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
+        android:id="@+id/ride_history_driver"
+        android:layout_width="161dp"
+        android:layout_height="39dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="12dp"
-        android:text="Thumbs Up" />
-    <Button
-        android:id="@+id/thumbsDown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="12dp"
-        android:text="Thumbs Down" />
+        android:onClick="clickUserName"
+        android:text="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/ride_history_price"
+        android:layout_width="91dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="price"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ride_history_price_title"
+        app:layout_constraintStart_toEndOf="@+id/ride_history_price_title" />
 
-</LinearLayout>
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/ride_history_map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/ride_history_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ride_history_end_location" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
