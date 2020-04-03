@@ -30,6 +30,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Lists requests that have not been accepted yet, can click on editText location to pick a location that it will organize the requests by that geolocation
+ */
 public class RequestFinderList extends AppCompatActivity {
     public static final String SELECT_LOCATION_MESSAGE = "com.example.locomotioncommotion.SELECT_LOCATION";
     public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
@@ -70,6 +73,7 @@ public class RequestFinderList extends AppCompatActivity {
             }
         });
 
+        //gets the requests and shows them in a list
         collectionReference
                 .whereEqualTo("status", "Pending")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -87,10 +91,10 @@ public class RequestFinderList extends AppCompatActivity {
                     }
                 });
 
+        //goes to view the clicked request
         requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("TESTITEMCLICK","I am here");
                 Intent intent = new Intent(getApplicationContext(), ViewDriverRequest.class);
                 Request request = requestAdapter.getItem(position);
                 intent.putExtra(REQUEST_MANAGE_MESSAGE, request);
@@ -105,6 +109,7 @@ public class RequestFinderList extends AppCompatActivity {
         finish();
     }
 
+    // gets the result from the acctivity that gets the geolocation and sorts the list based on closest start locations to that chosen geolocation
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);

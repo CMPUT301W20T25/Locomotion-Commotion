@@ -17,6 +17,9 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+/**
+ * Scans QR codes and shows the text of QR code
+ */
 public class QRCodeScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView scannerView;
