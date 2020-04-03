@@ -104,6 +104,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                 if (start != null && end != null) {
                     int fare = Math.round(Float.parseFloat(ridePrice.getText().toString()) * 100);
                     Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, fare);
+                    CurrentUser.getInstance().getUser().getRider().setCurrentRequest(request);
 
                     db.collection("requests")
                             .add(request)
@@ -119,7 +120,6 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                                     Log.w(TAG, "Error adding document", e);
                                 }
                             });
-
 
                     //Stack overflow post https://stackoverflow.com/a/18463758 User: https://stackoverflow.com/users/1531657/muhammad-aamir-ali
                     SharedPreferences preferences = getPreferences(MODE_PRIVATE);
