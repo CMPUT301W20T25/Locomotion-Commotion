@@ -95,8 +95,6 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-
-
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +103,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
                     int fare = Math.round(Float.parseFloat(ridePrice.getText().toString()) * 100);
                     Request request = new Request(CurrentUser.getInstance().getUser().getUserName(), start, end, fare);
                     CurrentUser.getInstance().getUser().getRider().setCurrentRequest(request);
+                    CurrentUser.getInstance().getUser().updateDatabase();
 
                     db.collection("requests")
                             .add(request)

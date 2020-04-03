@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        developNotificationInfrastructure(this);
+        developNotificationInfrastructure(getApplicationContext());
 
         db = FirebaseFirestore.getInstance();
-        final CollectionReference collectionReference = db.collection("users");
+        final CollectionReference collectionReference = db.collection("Users");
 
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                             if(notification.equals("No notifications pending") == false){
                                 Context context = getApplicationContext();
                                 NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "LocomotionCommotion")
-                                        //.setSmallIcon(R.drawable.notification_icon) TODO: Add an icon for this
+                                        .setSmallIcon(R.drawable.notification_icon)
                                         .setContentTitle(notification)
                                         .setContentText(notification)
                                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -123,8 +123,9 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("TEST", user.getUserName());
                                 if (passWord.equals(user.getPassWord())) {
                                     CurrentUser.getInstance(user);
+                                    completeLoginClick();
                                     Intent intent = new Intent(MainActivity.this, DriverOrRider.class);
-                                    startActivity(intent);
+                                    //startActivity(intent);
                                 } else {
                                     passWordField.setError("Wrong password");
                                 }
@@ -137,12 +138,42 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
     }
+
     public void login() {
         Intent intent = new Intent(this, DriverOrRider.class);
         startActivity(intent);
+    }
+
+    public void completeLoginClick(){
+        String notification = CurrentUser.getInstance().getUser().getNotification();
+        String channelID = "LocomotionCommotion";
+        String channelName = "Locomotion Request Channel";
+        if(notification.equals("No notifications pending") == false){
+            Context context = getApplicationContext();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID)
+                    .setSmallIcon(R.drawable.notification_icon)
+                    .setContentTitle(notification)
+                    .setContentText(notification)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true); // Just make the notification go away when you tap it for now
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+            //NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel notificationChannel = new NotificationChannel(channelID, channelName, importance);
+            }
+            //If the API is below 26 then notifications don't need a channel, happy ending
+            //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ builder.setChannelId("LocomotionCommotion"); }
+
+            //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            //NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(13, builder.build());
+            CurrentUser.getInstance().getUser().setNotification("");
+            CurrentUser.getInstance().getUser().updateDatabase(); //If I've done this right then this won't cause an infinite loop
+        }
     }
 
     public void register(View view){
@@ -151,14 +182,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void developNotificationInfrastructure(Context context){
-        String channelID = "LocomotionCommotion";
-        String channelName = "Locomotion Request Channel";
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(channelID, channelName, importance);
-        }
-        //If the API is below 26 then notifications don't need a channel, happy ending
+
     }
 
 }
