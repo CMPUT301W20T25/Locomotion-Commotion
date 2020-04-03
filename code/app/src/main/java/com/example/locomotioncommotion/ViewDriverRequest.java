@@ -94,7 +94,7 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         User user = document.toObject(User.class);
-                        user.addNotification("Your Ride Request has been accepted.");
+                        user.setNotification("Your Ride Request has been accepted.");
                         user.updateDatabase();
                     }
                 } else {
