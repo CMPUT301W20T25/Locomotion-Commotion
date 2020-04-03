@@ -39,7 +39,7 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        user = CurrentUser.getInstance().getUser(); //TODO: Make sure that it's impossible for no currentUserInstance to exist when this line runs
+        user = CurrentUser.getInstance().getUser();
 
         thumbsDown1 = findViewById(R.id.user_profile_thumbs_down1);
         thumbsDown2 = findViewById(R.id.user_profile_thumbs_down2);
@@ -100,6 +100,7 @@ public class UserProfile extends AppCompatActivity {
         email.setText(newAddress);
         emailField.setText("");
         user.setEmail(newAddress);
+        user.updateDatabase();
     }
 
     /**
@@ -119,6 +120,7 @@ public class UserProfile extends AppCompatActivity {
         phoneNumber.setText(newPhone);
         phoneNumberField.setText("");
         user.setPhoneNumber(newPhone);
+        user.updateDatabase();
     }
 
     /**

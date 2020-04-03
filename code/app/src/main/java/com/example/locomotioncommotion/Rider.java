@@ -47,7 +47,7 @@ public class Rider {
         if(this.currentRequest == null){
             //TODO: Throw an error here
         } else {
-            this.currentRequest.setStatus("Completed"); //TODO: Ensure consistency with status codes
+            this.currentRequest.setStatus("Completed");
         }
     }
 
@@ -58,7 +58,7 @@ public class Rider {
         if(this.currentRequest == null){
             //TODO: Throw an error here, maybe? Cancelling a nonexistent request doesn't seeeem too bad at first glance.
         } else {
-            this.currentRequest.setStatus("Cancelled"); //TODO: Ensure consistency with status codes
+            this.currentRequest.setStatus("Cancelled");
             this.currentRequest = null;
         }
     }

@@ -57,4 +57,13 @@ public class CurrentUser {
     public User getUser(){
         return this.user;
     }
+
+    /**
+     * Setter for the .user attribute
+     * @param user
+     *      The new user to be assigned to the current user
+     */
+    public void setUser(User user){
+        this.user = user;
+    }
 }
