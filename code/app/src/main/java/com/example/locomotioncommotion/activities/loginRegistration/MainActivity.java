@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("Users");
 
+        // to check if the user needs to be notified
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // checks if the username is in the firebase and if the password matches, is so gets that user and instantiates CurrentUser with it
     public void confirmLogin(View view){
         String userName = userNameField.getText().toString();
          final String passWord = passWordField.getText().toString();
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         } else {
+                            // doesn't work for some reason, maybe needs a timeout?
                             Log.d("TAG", "Eror getting document");
                             userNameField.setError("Username not registered");
                         }
