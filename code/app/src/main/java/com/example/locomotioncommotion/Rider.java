@@ -47,7 +47,7 @@ public class Rider {
         if(this.currentRequest == null){
             //TODO: Throw an error here
         } else {
-            this.currentRequest.setStatus("Completed"); //TODO: Ensure consistency with status codes
+            this.currentRequest.setStatus("Completed");
         }
     }
 

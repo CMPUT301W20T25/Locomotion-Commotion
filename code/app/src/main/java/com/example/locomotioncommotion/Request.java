@@ -197,14 +197,6 @@ public class Request implements Serializable {
     public void setStatus(String status){
         if(checkStatusCodeValidity(status)) {
             this.status = status;
-            if(status.equals("Accepted")){
-                //this.riderNotificationIsPending = true;
-            } else if(status.equals("Confirmed")){
-                //this.driverNotificationIsPending = true;
-            } else if(status.equals("Cancelled")){
-               // this.driverNotificationIsPending = true;
-            }
-            //TODO: Consider notifying if the request is completed as well
         } else{
             //TODO: Throw an error here, maybe?
         }
