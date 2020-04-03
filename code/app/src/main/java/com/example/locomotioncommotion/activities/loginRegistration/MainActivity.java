@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                                     CurrentUser.getInstance(user);
                                     checkNotifications();
                                     login();
+                                    Log.d("Login", CurrentUser.getInstance().getUser().getUserName());
                                 } else {
                                     passWordField.setError("Wrong password");
                                 }

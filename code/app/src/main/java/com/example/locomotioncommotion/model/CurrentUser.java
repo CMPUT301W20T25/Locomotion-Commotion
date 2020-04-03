@@ -66,4 +66,6 @@ public class CurrentUser {
     public void setUser(User user){
         this.user = user;
     }
+
+    public static void clearUser() { CurrentUser.currentUserInstance = null;}
 }
