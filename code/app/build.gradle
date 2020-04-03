@@ -45,6 +45,4 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
 
     implementation 'com.google.code.gson:gson:2.8.5'
-
-    androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.3.1'
 }
