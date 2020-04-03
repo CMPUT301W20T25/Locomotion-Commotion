@@ -125,6 +125,10 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                 }
                             });
 
+                    User user = CurrentUser.getInstance().getUser();
+                    user.getRider().notifyRequestComplete();
+                    user.updateDatabase();
+
                     completeClick(v);
 
                     finish();
