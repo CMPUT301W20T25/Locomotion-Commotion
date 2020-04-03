@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -66,42 +68,35 @@ public class MainActivity extends AppCompatActivity {
         developNotificationInfrastructure(this);
 
         db = FirebaseFirestore.getInstance();
-        final CollectionReference collectionReference = db.collection("requests");
+        final CollectionReference collectionReference = db.collection("user");
 
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                //requestDataList.clear();
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    String riderUserName = (String) doc.getData().get("riderUsername");
-                    String driverUserName = (String) doc.getData().get("driverUsername");
                     if(CurrentUser.getInstance() != null) {
-                        String currentUserName = CurrentUser.getInstance().getUser().getUserName();
-                        DocumentReference docRef = null;
-                        boolean isRider = false;
-                        if (currentUserName.equals(riderUserName)) {
-                            docRef = doc.getDocumentReference("riderNotificationIsPending");
-                            isRider = true;
-                        } else if (currentUserName.equals(driverUserName)) {//Reasonable assumption: The rider and driver for a request should be different people
-                            docRef = doc.getDocumentReference("driverNotificationIsPending");
-                        }
-                        if(docRef != null && docRef.equals(true)){
-                                String notificationTitle = "Your request has been ";
-                                String requestStatus = (String) doc.getData().get("status");
-                                notificationTitle = notificationTitle.concat(requestStatus);
+                        if(CurrentUser.getInstance().getUser().getUserName().equals(doc.getId())){
+                            CurrentUser.getInstance().setUser(doc.toObject(User.class));
+                            String notification = CurrentUser.getInstance().getUser().popNotification();
+                            if(notification.equals("No notifications pending") == false){
                                 Context context = getApplicationContext();
-                                if(isRider) {
-                                    CurrentUser.getInstance().getUser().getRider().getCurrentRequest();
-                                } else {
-                                    CurrentUser.getInstance().getUser().getDriver().getCurrentRequest();
-                                }
-                                docRef.set(false);
-                            }
-                            //requestDataList.add(new Request(start,end));
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "LocomotionCommotion")
+                                        //.setSmallIcon(R.drawable.notification_icon) TODO: Add an icon for this
+                                        .setContentTitle(notification)
+                                        .setContentText(notification)
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                        .setAutoCancel(true); // Just make the notification go away when you tap it for now
 
+                                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+
+                                // notificationId is a unique int for each notification that you must define
+                                notificationManager.notify(1, builder.build());
+                                CurrentUser.getInstance().getUser().updateDatabase(); //If I've done this right then this won't cause an infinite loop
+                            }
                         }
                     }
                 }
+            }
         });
     }
 
