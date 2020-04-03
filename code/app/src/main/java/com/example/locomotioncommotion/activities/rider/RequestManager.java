@@ -109,6 +109,22 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                 }
                             });
 
+                    db.collection("Users")
+                            .document(request.getDriverUsername())
+                            .update("currentRequest", null)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG,"Document Successfully updated");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG,"Error updating document",e);
+                                }
+                            });
+
                     completeClick(v);
 
                     finish();
