@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,14 +52,14 @@ public class DriverRequestsAll extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
-/*
+
         collectionReference
-                .whereEqualTo("status", "Accepted")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .whereEqualTo("driverUsername", CurrentUser.getInstance().getUser().getUserName())
+               .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         requestDataList.clear();
-                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                      for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                             Request request = doc.toObject(Request.class);
                             if (request.getDriverUsername().equals(CurrentUser.getInstance().getUser().getUserName())) {
                                 request.setFirebaseID(doc.getId());
@@ -68,7 +69,14 @@ public class DriverRequestsAll extends AppCompatActivity {
                         requestAdapter.notifyDataSetChanged();
                     }
                 });
-*/
+
+
+        requestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                viewRequest(view);
+            }
+        });
     }
 
     public void goToRequestFinder(View view) {

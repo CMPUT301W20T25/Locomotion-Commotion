@@ -65,6 +65,10 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
+        if (request.getStatus().equals("Accepted")== true) {
+            Button accept = findViewById(R.id.view_driver_request_accept_button);
+            accept.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -118,9 +122,13 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
                         Log.d(TAG,"Error updating document",e);
                     }
                 });
+
         Log.d(TAG, request.getFirebaseID());
         //update current request
+        request.setDriverUsername(CurrentUser.getInstance().getUser().getUserName());
+        request.setStatus("Accepted");
         CurrentUser.getInstance().getUser().getDriver().acceptRequest(request);
+        CurrentUser.getInstance().getUser().updateDatabase();
         finish();
     }
 
