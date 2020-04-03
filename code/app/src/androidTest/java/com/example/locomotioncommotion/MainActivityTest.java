@@ -90,6 +90,36 @@ public class MainActivityTest {
         solo.clickOnButton("Back");
         solo.assertCurrentActivity("Wrong activity", DriverOrRider.class);
         /////////////////////////////////////////////////////////////////////////////////
+
+        createRequestTest();
+    }
+
+    public void createRequestTest() {
+        solo.clickOnButton("Rider");
+        solo.assertCurrentActivity("Wrong activity", RiderMain.class);
+
+        assertTrue(solo.searchText("Create Request"));
+        solo.clickOnButton("Create Request");
+        solo.assertCurrentActivity("Wrong activity", CreateRequest.class);
+
+        solo.clickOnView(solo.getView(R.id.start_edit_create));
+        solo.assertCurrentActivity("Wrong activity", SelectLocationActivity.class);
+
+        solo.clickOnView(solo.getView(R.id.select_location_map));
+        solo.clickOnScreen(200,800);
+        solo.clickOnButton("Confirm");
+        solo.assertCurrentActivity("Wrong activity", CreateRequest.class);
+
+        solo.clickOnView(solo.getView(R.id.end_edit_create));
+        solo.assertCurrentActivity("Wrong activity", SelectLocationActivity.class);
+
+        solo.clickOnView(solo.getView(R.id.select_location_map));
+        solo.clickOnScreen(400,600);
+        solo.clickOnButton("Confirm");
+        solo.assertCurrentActivity("Wrong activity", CreateRequest.class);
+
+        solo.clickOnButton("Create Request");
+        solo.assertCurrentActivity("Wrong activity", RiderMain.class);
     }
 
     @After

@@ -29,8 +29,10 @@
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/select_location_confirmation_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_location_title" />
+        app:layout_constraintTop_toBottomOf="@+id/select_location_title"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/select_location_confirmation_button"
