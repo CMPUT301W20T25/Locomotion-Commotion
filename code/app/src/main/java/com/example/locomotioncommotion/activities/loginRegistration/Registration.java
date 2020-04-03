@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.locomotioncommotion.R;
 import com.example.locomotioncommotion.model.Driver;
+import com.example.locomotioncommotion.model.Rider;
 import com.example.locomotioncommotion.model.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -67,6 +68,7 @@ public class Registration extends AppCompatActivity {
         user.setEmail(emailString);
         user.setPhoneNumber(phoneNumberString);
         user.setDriver(new Driver());
+        user.setRider(new Rider());
         db = FirebaseFirestore.getInstance();
         db.collection("Users").document(user.getUserName()).set(user);
         finish();
