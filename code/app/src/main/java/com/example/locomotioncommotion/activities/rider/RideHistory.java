@@ -22,6 +22,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+
+//view previous rides taken and choose to rate them.
 public class RideHistory extends AppCompatActivity {
     public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
     String TAG = "Get_request_list";

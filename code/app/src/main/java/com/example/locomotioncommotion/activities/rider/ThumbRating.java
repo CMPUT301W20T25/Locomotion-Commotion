@@ -45,8 +45,10 @@ public class ThumbRating extends AppCompatActivity {
     Request request; //need to get driver profile
 
 
-    int currentUp;
+    int currentUp = 0;
     int currentDown;
+    int newCurrentUp;
+    int newCurrentDown;
 
 
     @Override
@@ -80,34 +82,33 @@ public class ThumbRating extends AppCompatActivity {
             }
         });
 
-        db.collection("Users").whereEqualTo("userName", CurrentUser.getInstance().getUser().getUserName())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                user = document.toObject(User.class);
-                                currentUp = user.getThumbsUp();
-                                currentDown = user.getThumbsDown();
-                            }
-                        } else {
-                            Log.d("TAG", "Error getting document");
-                        }
-                    }
-                });
+//        db.collection("Users").whereEqualTo("userName", username)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                user = document.toObject(User.class);
+//                                currentUp = user.getThumbsUp();
+//                                currentDown = user.getThumbsDown();
+//                            }
+//                        } else {
+//                            Log.d("TAG", "Error getting document");
+//                        }
+//                    }
+//                });
 
         rateUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int current;
                 Log.d(TAG, request.getFirebaseID());
                 db = FirebaseFirestore.getInstance();
 
 
                 db.collection("Users")
                         .document(request.getDriverUsername())
-                        .update("thumbsUp", currentUp++)
+                        .update("thumbsUp", 1)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -121,6 +122,7 @@ public class ThumbRating extends AppCompatActivity {
                             }
                         });
                 riderClick(v);
+
                 finish();
             }
         });
@@ -128,13 +130,12 @@ public class ThumbRating extends AppCompatActivity {
         rateDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int current;
                 Log.d(TAG, request.getFirebaseID());
                 db = FirebaseFirestore.getInstance();
 
                 db.collection("Users")
                         .document(request.getDriverUsername())
-                        .update("thumbsDown", currentDown--)
+                        .update("thumbsDown", -1)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
