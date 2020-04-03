@@ -31,7 +31,6 @@ public class Driver {
      */
     public void acceptRequest(Request request){
         this.currentRequest = request;
-        //TODO: Check that there isn't already a current request
         this.currentRequest.setStatus("Accepted");
     }
 
