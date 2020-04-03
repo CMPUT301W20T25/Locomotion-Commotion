@@ -100,6 +100,7 @@ public class UserProfile extends AppCompatActivity {
         email.setText(newAddress);
         emailField.setText("");
         user.setEmail(newAddress);
+        user.updateDatabase();
     }
 
     /**
@@ -119,6 +120,7 @@ public class UserProfile extends AppCompatActivity {
         phoneNumber.setText(newPhone);
         phoneNumberField.setText("");
         user.setPhoneNumber(newPhone);
+        user.updateDatabase();
     }
 
     /**
