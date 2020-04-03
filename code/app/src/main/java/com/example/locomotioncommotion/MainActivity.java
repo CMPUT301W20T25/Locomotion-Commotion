@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     if(CurrentUser.getInstance() != null) {
                         if(CurrentUser.getInstance().getUser().getUserName().equals(doc.getId())){
                             CurrentUser.getInstance().setUser(doc.toObject(User.class));
-                            String notification = CurrentUser.getInstance().getUser().popNotification();
+                            String notification = CurrentUser.getInstance().getUser().getNotification();
                             if(notification.equals("No notifications pending") == false){
                                 Context context = getApplicationContext();
                                 NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "LocomotionCommotion")
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 // notificationId is a unique int for each notification that you must define
                                 notificationManager.notify(1, builder.build());
+                                CurrentUser.getInstance().getUser().setNotification("");
                                 CurrentUser.getInstance().getUser().updateDatabase(); //If I've done this right then this won't cause an infinite loop
                             }
                         }
