@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("Users");
 
+        //Adds an application-wide listener that notifies the user if the notification field attached to their account is changed
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // checks if the username is in the firebase and if the password matches, is so gets that user and instantiates CurrentUser with it
     public void confirmLogin(View view){
         String userName = userNameField.getText().toString();
          final String passWord = passWordField.getText().toString();
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("TEST", user.getUserName());
                                 if (passWord.equals(user.getPassWord())) {
                                     CurrentUser.getInstance(user);
-                                    checkNotifications();
+                                    checkNotifications(); //If there have been any changes to your notifications since you last logged in, notify
                                     login();
                                     Log.d("Login", CurrentUser.getInstance().getUser().getUserName());
                                 } else {
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         } else {
+                            // doesn't work for some reason, maybe needs a timeout?
                             Log.d("TAG", "Eror getting document");
                             userNameField.setError("Username not registered");
                         }
@@ -144,24 +147,19 @@ public class MainActivity extends AppCompatActivity {
                     .setContentTitle(notificationTitle)
                     .setContentText(notification)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setAutoCancel(true); // Just make the notification go away when you tap it for now
+                    .setAutoCancel(true); // Just make the notification go away when you tap it
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-            //NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 int importance = NotificationManager.IMPORTANCE_HIGH;
                 NotificationChannel notificationChannel = new NotificationChannel(channelID, channelName, importance);
                 notificationManager.createNotificationChannel(notificationChannel);
             }
             //If the API is below 26 then notifications don't need a channel, happy ending
-            //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ builder.setChannelId("LocomotionCommotion"); }
 
-            //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-            //NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-            // notificationId is a unique int for each notification that you must define
             notificationManager.notify(13, builder.build());
             CurrentUser.getInstance().getUser().setNotification("");
-            CurrentUser.getInstance().getUser().updateDatabase(); //If I've done this right then this won't cause an infinite loop
+            CurrentUser.getInstance().getUser().updateDatabase();
         }
     }
 

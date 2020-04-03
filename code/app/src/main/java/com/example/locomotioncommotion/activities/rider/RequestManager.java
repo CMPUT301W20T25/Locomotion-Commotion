@@ -86,7 +86,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         }
 
         final Button completeButton = findViewById(R.id.request_manager_button_complete);
-//        if (request.getStatus() == "In Progress") {
+        if (request.getStatus().equals("Confirmed")) {
             completeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,14 +109,94 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                 }
                             });
 
+                    db.collection("Users")
+                            .document(request.getDriverUsername())
+                            .update("currentRequest", null)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG,"Document Successfully updated");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG,"Error updating document",e);
+                                }
+                            });
+
                     completeClick(v);
 
                     finish();
                 }
             });
-//        } else {
-//            completeButton.setVisibility(View.GONE);
-//        }
+        } else {
+            completeButton.setVisibility(View.GONE);
+        }
+
+        final Button confirmButton = findViewById(R.id.request_manager_button_confirm);
+        if (request.getStatus().equals("Accepted")) {
+            confirmButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Log.d(TAG, request.getFirebaseID());
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("requests")
+                            .document(request.getFirebaseID())
+                            .update("status", "Confirmed")
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error updating document", e);
+                                }
+                            });
+                    request.setStatus("Confirmed");
+
+                    db.collection("Users")
+                            .document(request.getDriverUsername())
+                            .update("currentRequest", request)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error updating document", e);
+                                }
+                            });
+
+                    db.collection("Users")
+                            .document(request.getDriverUsername())
+                            .update("notification", "Your Drive Request has been accepted!")
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG,"Document Successfully updated");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG,"Error updating document",e);
+                                }
+                            });
+
+                    finish();
+                }
+            });
+        } else {
+            confirmButton.setVisibility(View.GONE);
+        }
 
         /**
          * Deletes the request from the firebase database
@@ -144,6 +224,38 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                             }
                         });
 
+                db.collection("Users")
+                        .document(request.getDriverUsername())
+                        .update("notification", "Your Drive Request has been cancelled!")
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG,"Document Successfully updated");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG,"Error updating document",e);
+                            }
+                        });
+
+                db.collection("Users")
+                        .document(request.getDriverUsername())
+                        .update("currentRequest", null)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG,"Document Successfully updated");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG,"Error updating document",e);
+                            }
+                        });
+
                 User user = CurrentUser.getInstance().getUser();
                 user.getRider().cancelRequest();
                 user.updateDatabase();
@@ -161,6 +273,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
 
     public void completeClick(View view){
         Intent intent = new Intent(this, QRCode.class);
+        intent.putExtra("username",request.getDriverUsername());
         startActivity(intent);
     }
 

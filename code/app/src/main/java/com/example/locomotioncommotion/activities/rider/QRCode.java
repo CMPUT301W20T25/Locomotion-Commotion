@@ -33,11 +33,14 @@ public class QRCode extends AppCompatActivity {
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
     Button completeButton;
+    String driverUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_qr);
+        Intent intent = getIntent();
+        driverUserName = intent.getExtras().getString("username");
 
         qrImage = (ImageView)findViewById(R.id.qrcode);
         editValue = (EditText)findViewById(R.id.editQrText);
@@ -80,6 +83,7 @@ public class QRCode extends AppCompatActivity {
 
     public void completeQR(View view){
         Intent intent = new Intent(this, ThumbRating.class);
+        intent.putExtra("username",driverUserName);
         startActivity(intent);
     }
 

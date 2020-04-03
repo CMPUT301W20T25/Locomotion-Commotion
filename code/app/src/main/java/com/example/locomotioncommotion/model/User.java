@@ -87,7 +87,6 @@ public class User {
 
     /**
      * Sets the username of the user
-     * TODO: investigate whether this should even be a public method since username is so important
      * @param userName
      *      The new username to be set
      */
@@ -97,7 +96,6 @@ public class User {
 
     /**
      * Gets the password of the user
-     * TODO: investigate whether this is a massive security vulnerability
      * @return
      *      The password of the user
      */
@@ -107,7 +105,6 @@ public class User {
 
     /**
      * Sets the password of the user
-     * TODO: investigate whether this is a massive security vulnerability
      * @param passWord
      *      The new password to be set
      */
@@ -203,13 +200,12 @@ public class User {
 
     /**
      * If the user has a driver object associated with them, set the positive ratings of that object
-     * //TODO: Make this throw an error if the user has no driver object associated with them
      * @param thumbs
      *      The new amount of positive ratings
      */
     public void setThumbsUp(int thumbs){
         if(this.getDriver()== null){
-            //TODO: Have this throw an error or something
+            throw new NullPointerException("the driver associated with this user cannot be null");
         }else{
             this.driver.setPositiveRatings(thumbs);
         }
@@ -229,13 +225,12 @@ public class User {
     }
     /**
      * If the user has a driver object associated with them, set the negative ratings of that object
-     * //TODO: Make this throw an error if the user has no driver object associated with them
      * @param thumbs
      *      The new amount of positive ratings
      */
     public void setThumbsDown(int thumbs){
         if(this.getDriver() == null){
-            //TODO: Have this throw an error?
+            throw new NullPointerException("user.driver cannot be null");
         } else{
             this.driver.setNegativeRatings(thumbs);
         }

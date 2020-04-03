@@ -24,6 +24,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * Page to see the current request the driver has open, find new requests and scan a QR code.
+ * Can click on the current request to view details
+ *
+ */
 public class DriverRequestsAll extends AppCompatActivity {
     public static final String REQUEST_MANAGE_MESSAGE = "com.example.locomotioncommotion.MANAGE_REQUEST";
     private Button scanCode;
@@ -45,6 +50,7 @@ public class DriverRequestsAll extends AppCompatActivity {
 
 
 
+
         scanCode = findViewById(R.id.driver_requests_all_scan);
         scanCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +59,7 @@ public class DriverRequestsAll extends AppCompatActivity {
             }
         });
 
+        //gets the current active request(s)
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
 
@@ -91,6 +98,9 @@ public class DriverRequestsAll extends AppCompatActivity {
         Intent intent = new Intent(this, QRCodeScanner.class);
         startActivity(intent);
     }
+    /**
+    Once user clicks the active request this gets the request and moves to the next class
+     */
     public void viewRequest(View view) {
         Intent intent = new Intent(getApplicationContext(), ViewDriverRequest.class);
         Request request = CurrentUser.getInstance().getUser().getDriver().getCurrentRequest();

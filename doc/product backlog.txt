@@ -23,14 +23,13 @@ As a rider, I want to be notified if my request is accepted.
 Becuase I wnat to know when my ride is arriving
 this will take about 4 hours
 medium risk (have not learned this yet)
-Simon
+completed
 
 US 01.04.01
 As a rider, I want to cancel requests.
 Because if the information is wrong or I change my mind I want the option
 this will take about 4 hours
 medium risk 
-Alex N
 completed
 
 
@@ -52,7 +51,7 @@ As a rider, I want to confirm the completion of a request and enable payment.
 because otherwise the driver could say they drove the route without actually doing it.
 this will take about 4 hours
 high risk (interacts with many parts)
-Alex N
+completed
 
 US 01.08.01
 As a rider, I want to cancel a ride before the rider picks me up.
@@ -73,7 +72,7 @@ As a rider, I want to rate a driver for his/her service thumbs up or thumbs down
 Because I want to let others know if the driver was good or not.
 this will take about 4 hours
 medium risk (similar to getting driver ratings but need to adjust data rather than just get the data)
-Wilson
+completed
 
 Status
 
@@ -82,7 +81,7 @@ As a rider or driver, I want to see the status of a request that I am involved i
 Because i want to review information and check if it has been accepted by the other user
 this will take more than 4 hours
 high risk (this is important for many other tasks and other things will depend on it)
-in progress
+completed
 
 User profile
 
@@ -115,7 +114,7 @@ As a driver, I want to browse and search for open requests by geo-location.
 because I want to find requests closest to me or by somewhere I am already going.
 more than 4 hours
 high risk (compilicated and important)
-tianze
+completed
 
 
 Accepting
@@ -125,7 +124,6 @@ As a driver,  I want to accept a request I agree with and accept that offered pa
 Because I want to see what the route is, who the person is and what the payment is before accepting.
 about 4 hours
 high risk (interacts with many things and is important)
-Alex S
 completed
 
 US 05.02.01
@@ -133,14 +131,14 @@ As a driver, I want to view the current active request.
 Because I want to see the route and double check the locations and details
 less than 4 hours
 low risk (should be able to use infrastructure built in 05.01.01)
-Alex S
+completed
 
 US 05.03.01
 As a driver, I want to be notified if my ride offer was accepted.
 Because I will need to drive there as soon as possible
 less than 4 hours
 medium risk (communicating a change in state)
-Simon
+completed
 
 
 Offline behavior
@@ -150,14 +148,13 @@ As an driver, I want to see requests that I already accepted while offline.
 Because I might not have internet access while on the road
 about 4 hours
 medium risk (storing the data locally)
-Alex S
+completed
 
 US 06.02.01
 As a rider, I want to see the current request, even if I am offline.
 because I want to double check the information or make sure it is correct
 less than 4 hours
 low risk (similar infrastructure as 06.01.01)
-Alex S
 completed
 
 Location
@@ -167,7 +164,6 @@ As a rider, I want to specify a start and end geo locations on a map for a reque
 Becuase I don't know the coordinates for the locations and it is easier to find on a map
 about 4 hours
 high risk 
-Tianze
 completed
 
 US 07.02.01
@@ -175,7 +171,6 @@ As a driver, I want to view start and end geo locations on a map for a request.
 Because I want to better visualise where the locations are
 less than 4 hours
 medium risk (similar to 07.01.01)
-Tianze
 completed 
 
 Payment
