@@ -254,6 +254,7 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
 
     public void completeClick(View view){
         Intent intent = new Intent(this, QRCode.class);
+        intent.putExtra("username",request.getDriverUsername());
         startActivity(intent);
     }
 
