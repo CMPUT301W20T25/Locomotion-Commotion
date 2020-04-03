@@ -52,7 +52,7 @@ public class DriverRequestsAll extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
 
-        collectionReference
+        /*collectionReference
                 .whereEqualTo("status", "Accepted")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
@@ -67,7 +67,7 @@ public class DriverRequestsAll extends AppCompatActivity {
                         }
                         requestAdapter.notifyDataSetChanged();
                     }
-                });
+                });*/
 
     }
 
