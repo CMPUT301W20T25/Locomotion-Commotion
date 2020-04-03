@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.driver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.locomotioncommotion.R;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-
-import javax.xml.transform.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 

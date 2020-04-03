@@ -1,8 +1,7 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.loginRegistration;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -18,10 +17,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.activities.shared.DriverOrRider;
+import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         } else {
-                            Log.d("TAG", "Eroor getting document");
+                            Log.d("TAG", "Eror getting document");
                             userNameField.setError("Username not registered");
                         }
                     }

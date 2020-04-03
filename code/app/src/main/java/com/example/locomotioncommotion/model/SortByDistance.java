@@ -1,4 +1,7 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.model;
+
+import com.example.locomotioncommotion.model.Location;
+import com.example.locomotioncommotion.model.Request;
 
 import java.util.Comparator;
 

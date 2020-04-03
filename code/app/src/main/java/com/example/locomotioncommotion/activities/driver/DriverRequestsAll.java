@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.driver;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.Request;
+import com.example.locomotioncommotion.model.RequestList;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -80,7 +83,7 @@ public class DriverRequestsAll extends AppCompatActivity {
     }
 
     public void goToRequestFinder(View view) {
-        Intent intent = new Intent(this,RequestFinderList.class);
+        Intent intent = new Intent(this, RequestFinderList.class);
         startActivity(intent);
 
     }

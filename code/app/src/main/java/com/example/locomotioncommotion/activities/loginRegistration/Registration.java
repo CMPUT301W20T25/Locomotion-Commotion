@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.loginRegistration;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.model.Driver;
+import com.example.locomotioncommotion.model.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 /**

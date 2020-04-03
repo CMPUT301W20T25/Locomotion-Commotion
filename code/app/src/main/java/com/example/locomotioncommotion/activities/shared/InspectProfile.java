@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.shared;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;

@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.driver;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.activities.shared.SelectLocationActivity;
+import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.Location;
+import com.example.locomotioncommotion.model.Request;
+import com.example.locomotioncommotion.model.RequestList;
+import com.example.locomotioncommotion.model.SortByDistance;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;

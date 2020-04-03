@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.shared;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.activities.rider.CreateRequest;
+import com.example.locomotioncommotion.model.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;

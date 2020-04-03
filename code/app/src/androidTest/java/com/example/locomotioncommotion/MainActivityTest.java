@@ -4,13 +4,14 @@ import android.widget.EditText;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.locomotioncommotion.activities.shared.DriverOrRider;
+import com.example.locomotioncommotion.activities.loginRegistration.MainActivity;
+import com.example.locomotioncommotion.activities.shared.UserProfile;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 
 import static junit.framework.TestCase.assertEquals;
@@ -42,7 +43,7 @@ public class MainActivityTest {
         solo.clickOnButton("Login");
         solo.assertCurrentActivity("wrong activity", DriverOrRider.class);
         solo.clickOnButton("VIEW PROFILE");
-        solo.assertCurrentActivity("Wrong activity",UserProfile.class );
+        solo.assertCurrentActivity("Wrong activity", UserProfile.class );
         assertTrue(solo.waitForText("TestUsername",1,2000));
     }
 
