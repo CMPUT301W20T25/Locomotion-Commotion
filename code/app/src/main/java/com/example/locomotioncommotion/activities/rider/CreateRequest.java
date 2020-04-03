@@ -220,15 +220,6 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
         // Uncomment to disable map movement
 //        uiSettings.setZoomControlsEnabled(false);
 //        uiSettings.setAllGesturesEnabled(false);
-
-
-//        LatLng start = new LatLng(-44, 113);
-//        LatLng end = new LatLng(-10, 154);
-//
-//        map.addPolyline(new PolylineOptions().add(start, end));
-//
-//        LatLngBounds bounds = new LatLngBounds(start, end);
-//        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
     }
 
     @Override
