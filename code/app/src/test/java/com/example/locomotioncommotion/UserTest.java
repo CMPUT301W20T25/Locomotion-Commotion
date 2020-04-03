@@ -1,4 +1,5 @@
 package com.example.locomotioncommotion;
+import com.example.locomotioncommotion.model.CurrentUser;
 import com.example.locomotioncommotion.model.Driver;
 import com.example.locomotioncommotion.model.Rider;
 import com.example.locomotioncommotion.model.User;
@@ -9,7 +10,7 @@ import static org.junit.Assert.*;
 public class UserTest {
     @Test
     public void testThumbsUpAndDown() {
-       User user =  User.getInstance("testUser","testPassword");
+       User user =  new User("testUser","testPassword");
 
         assertEquals(-1,user.getThumbsUp());
         assertEquals(-1,user.getThumbsDown());
@@ -38,7 +39,7 @@ public class UserTest {
 
     @Test
     public void editDetails(){
-        User user = User.getInstance("testUser","testPass");
+        User user = new User("testUser","testPass");
         assertEquals("testUser", user.getUserName());
         assertEquals("testPass", user.getPassWord());
 
