@@ -103,7 +103,9 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                     Log.w(TAG, "Error updating document", e);
                                 }
                             });
+
                     completeClick(v);
+
                     finish();
                 }
             });
