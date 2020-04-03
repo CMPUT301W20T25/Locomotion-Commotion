@@ -37,7 +37,7 @@ public class RideHistory extends AppCompatActivity {
         requestDataList = new ArrayList<>();
 
         requestArrayAdapter = new RequestList(this, requestDataList);
-        //show the data on this layout??
+
         requestList.setAdapter(requestArrayAdapter);
 
         db = FirebaseFirestore.getInstance();
@@ -45,6 +45,7 @@ public class RideHistory extends AppCompatActivity {
         assert CurrentUser.getInstance() != null;
         db.collection("requests")
                 .whereEqualTo("status", "Completed")
+                .whereEqualTo("riderUsername", CurrentUser.getInstance().getUser().getUserName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -74,12 +75,5 @@ public class RideHistory extends AppCompatActivity {
 
     }
 
-//    public void create(View view){
-//        Intent intent = new Intent(this, ThumbRating.class);
-//        startActivity(intent);
-////        Intent intent = new Intent(getApplicationContext(), SelectLocationActivity.class);
-////        intent.putExtra(CreateRequest.SELECT_LOCATION_MESSAGE, "end");
-////        startActivity(intent);
-//    }
 
 }
