@@ -27,7 +27,7 @@ public class Request implements Serializable {
         this.startLocation = null;
         this.endLocation = null;
         this.fareOffered = 0;
-        this.timestamp = 0; //TODO: Is this a good idea?
+        this.timestamp = 0;
 
         this.firebaseID = "";
         this.status = "Pending";
@@ -193,7 +193,7 @@ public class Request implements Serializable {
         if(checkStatusCodeValidity(status)) {
             this.status = status;
         } else{
-            //TODO: Throw an error here, maybe?
+            throw new IllegalArgumentException("status must be on the list of allowed statuses");
         }
     }
 

@@ -56,7 +56,7 @@ public class Rider {
      */
     public void notifyRequestComplete(){
         if(this.currentRequest == null){
-            //TODO: Throw an error here
+            throw new NullPointerException("currentrequest cannot be null");
         } else {
             this.currentRequest.setStatus("Completed");
             this.currentRequest = null;
@@ -68,7 +68,7 @@ public class Rider {
      */
     public void cancelRequest(){
         if(this.currentRequest == null){
-            //TODO: Throw an error here, maybe? Cancelling a nonexistent request doesn't seeeem too bad at first glance.
+            throw new NullPointerException("currentrequest cannot be null");
         } else {
             this.currentRequest.setStatus("Cancelled");
             this.currentRequest = null;
@@ -87,15 +87,6 @@ public class Rider {
             return this.getCurrentRequest().getStatus();
         }
 
-    }
-
-    /**
-     * Generates a QRCode
-     * //TODO: Turn this stub into a real function
-     * @return
-     */
-    public QRCode generateQRPrice(){
-        return null;
     }
 
 }

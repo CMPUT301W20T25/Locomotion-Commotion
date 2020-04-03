@@ -6,11 +6,21 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/request_manager_button_complete"
+    android:id="@+id/request_manager_button_complete"
+    android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:layout_marginBottom="8dp"
+    android:text="Complete Request"
+    app:layout_constraintBottom_toTopOf="@+id/request_manager_button_cancel"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/request_manager_button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
-        android:text="Complete Request"
+        android:text="Confirm Driver"
         app:layout_constraintBottom_toTopOf="@+id/request_manager_button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

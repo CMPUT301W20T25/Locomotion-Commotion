@@ -71,7 +71,7 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         mapView.getMapAsync(this);
 
         // so the class can be reused to view an already accepted request
-        if (request.getStatus().equals("Accepted")== true) {
+        if (request.getStatus().equals("Pending") != true) {
             Button accept = findViewById(R.id.view_driver_request_accept_button);
             accept.setVisibility(View.INVISIBLE);
         }
@@ -110,7 +110,6 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.d(TAG,"Error updating document",e);
-                        assert(false);
                     }
                 });
 
