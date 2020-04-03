@@ -202,6 +202,9 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
             confirmButton.setVisibility(View.GONE);
         }
 
+        /**
+         * Deletes the request from the firebase database
+         */
         final Button deleteButton = findViewById(R.id.request_manager_button_cancel);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,6 +281,12 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         startActivity(intent);
     }
 
+    /**
+     * Called when the map is initialized. Handles settings being updated.
+     * Creates markers for both locations and centers map on them.
+     * @param googleMap
+     *      The googleMap object to assign to our map variable
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;

@@ -42,6 +42,10 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
     private Location addressFull;
     private String locationName;
 
+    /**
+     * Called when the activity is initialized. Assigns views to variables and sets onClickListeners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +78,12 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
         });
     }
 
+    /**
+     * Called when the map is initialized. Handles settings being updated.
+     * Adds onMapClickListener to add markers
+     * @param googleMap
+     *      The googleMap object to assign to our map variable
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
@@ -84,6 +94,7 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
         uiSettings.setZoomControlsEnabled(true);
         uiSettings.setMapToolbarEnabled(false);
 
+        // Places the marker when the map is clicked on
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -96,7 +107,7 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
                 marker.setPosition(latLng);
                 updateLocationText(latLng);
 
-                // Maybe unnecessary, remove late?
+                // Shows the marker title when clicked upon
                 map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
@@ -111,6 +122,7 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
             }
         });
 
+        // Sets the address when the marker gets dragged
         map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override
             public void onMarkerDragStart(Marker marker) { }
@@ -125,7 +137,13 @@ public class SelectLocationActivity extends AppCompatActivity implements OnMapRe
         });
     }
 
+    /**
+     * Uses a geocoder to update the address from the given coordinates
+     * @param latLng
+     *      the coordinates of the location to retrieve
+     */
     private void updateLocationText(LatLng latLng) {
+        // Youtube: https://www.youtube.com/watch?v=Ut_VK92QqEQ  Channel: https://www.youtube.com/channel/UCMNM0n24Yn59OLQYPyd3hNA
         Geocoder geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
         String address;
         try {

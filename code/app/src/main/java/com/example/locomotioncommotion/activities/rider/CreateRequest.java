@@ -40,7 +40,6 @@ import java.util.ArrayList;
 
 /**
  * Activity for creating a request, as a rider.
- * Currently just a stub/placeholder
  */
 public class CreateRequest extends AppCompatActivity implements OnMapReadyCallback {
     public static final String SELECT_LOCATION_MESSAGE = "com.example.locomotioncommotion.SELECT_LOCATION";
@@ -65,6 +64,10 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     private Location start;
     private Location end;
 
+    /**
+     * Called when the activity is initialized. Assigns views to variables and sets onClickListeners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,9 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
 
         db = FirebaseFirestore.getInstance();
 
+        /**
+         * Starts the activity to get the starting location
+         */
         starting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +96,9 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
+        /**
+         * Starts the activity to get the ending location
+         */
         ending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +108,9 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
+        /**
+         * Creates the request and adds it to the firebase database
+         */
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +151,15 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
         });
     }
 
+    /**
+     * Used to retrive the result from SelectLocationActivity and update the relevant location
+     * @param requestCode
+     *      What distinguishes the start and end requests
+     * @param resultCode
+     *      Indicates success on RESULT_OK. Differentiates finishing vs back button
+     * @param data
+     *      The result which contains the location
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,7 +177,12 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
 
     }
 
+    /**
+     * Updates the markers on the map and centers the map on the markers.
+     * If both locations are set, price is calculated and a connecting line is drawn
+     */
     private void updateLocation() {
+        // Creates and updates start marker
         if (start != null) {
             if (markerStart == null) {
                 markerStart = map.addMarker(new MarkerOptions()
@@ -169,6 +195,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             markerStart.setPosition(startLoc);
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(startLoc, 13));
         }
+        // Creates and updates end marker
         if (end != null) {
             if (markerEnd == null) {
                 markerEnd = map.addMarker(new MarkerOptions()
@@ -195,6 +222,7 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
             CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
             map.moveCamera(cu);
 
+
             map.addPolyline(new PolylineOptions().add(startLoc, endLoc));
 
             int total = (int) (0.2 * start.distance(end) + 5);
@@ -205,6 +233,11 @@ public class CreateRequest extends AppCompatActivity implements OnMapReadyCallba
     }
 
 
+    /**
+     * Called when the map is initialized. Handles settings being updated
+     * @param googleMap
+     *      The googleMap object to assign to our map variable
+     */
     @Override
     public void onMapReady(GoogleMap googleMap){
         map = googleMap;

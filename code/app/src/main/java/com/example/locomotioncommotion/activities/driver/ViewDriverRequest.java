@@ -78,7 +78,11 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
 
     }
 
-    //sets the needed data in the firebase and updates the model with the new request
+    /**
+     * Accepts a request for a driver.
+     * Sends notification to rider
+     * @param view
+     */
     public void acceptButton(View view) {
         db = FirebaseFirestore.getInstance();
         db.collection("requests")
@@ -138,17 +142,30 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         finish();
     }
 
+    /**
+     * Start the activity to view a rider's profile
+     * @param view
+     */
     public void clickUserName(View view) {
         Intent intent = new Intent(this, InspectProfile.class);
         intent.putExtra("username",request.getRiderUsername());
         startActivity(intent);
     }
 
+    /**
+     * returns to the previous activity
+     * @param view
+     */
     public void backButton(View view) {
         finish();
     }
 
-    // code for the google map
+    /**
+     * Called when the map is initialized. Handles settings being updated.
+     * Creates markers for both locations and centers map on them.
+     * @param googleMap
+     *      The googleMap object to assign to our map variable
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
