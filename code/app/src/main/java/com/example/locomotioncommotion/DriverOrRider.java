@@ -55,12 +55,22 @@ public class DriverOrRider extends AppCompatActivity {
     public void riderClick(View view){
         Intent intent = new Intent(this, RiderMain.class);
         assert(CurrentUser.getInstance() != null);
+        if(CurrentUser.getInstance().getUser().getRider() == null){
+            Rider rider = new Rider();
+            CurrentUser.getInstance().getUser().setRider(rider);
+            CurrentUser.getInstance().getUser().updateDatabase();
+        }
         startActivity(intent);
     }
 
     public void driverClick(View view) {
         Intent intent = new Intent(this,DriverRequestsAll.class );
         startActivity(intent);
+        if(CurrentUser.getInstance().getUser().getDriver() == null){
+            Driver driver = new Driver();
+            CurrentUser.getInstance().getUser().setDriver(driver);
+            CurrentUser.getInstance().getUser().updateDatabase();
+        }
     }
 
     public void profileClick(View view) {

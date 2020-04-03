@@ -123,10 +123,6 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                 Log.d(TAG, request.getFirebaseID());
                 db = FirebaseFirestore.getInstance();
 
-                User user = CurrentUser.getInstance().getUser();
-                user.getRider().cancelRequest();
-                user.updateDatabase();
-
                 db.collection("requests")
                         .document(request.getFirebaseID())
                         .delete()
@@ -142,6 +138,11 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
                                 Log.w(TAG, "Error deleting document", e);
                             }
                         });
+
+                User user = CurrentUser.getInstance().getUser();
+                user.getRider().cancelRequest();
+                user.updateDatabase();
+
                 finish();
             }
         });

@@ -15,7 +15,7 @@ public class User {
     private String email;
     private Driver driver;
     private Rider rider;
-    private ArrayList<String> notificationList;
+    private String notification;
 
     public User() {
         this.userName = "";
@@ -24,7 +24,7 @@ public class User {
         this.email = "";
         this.driver = null;
         this.rider = null;
-        this.notificationList = new ArrayList<String>();
+        this.notification = "";
     }
 
     /**
@@ -41,7 +41,7 @@ public class User {
         this.phoneNumber = "";
         this.driver = null;
         this.rider = null;
-        this.notificationList = new ArrayList<String>();
+        this.notification = "";
     }
 
     /**
@@ -53,12 +53,12 @@ public class User {
     }
 
     /**
-     * Adds a pending notification to the list
+     * Sets the pending notification to a new favlue
      * @param notification
      *      A string representing the notification
      */
-    public void addNotification(String notification){
-        this.notificationList.add(notification);
+    public void setNotification(String notification){
+        this.notification = notification;
     }
 
     /**
@@ -66,13 +66,11 @@ public class User {
      * @return
      *      Returns either the latest notification from the user's notification list, or "No notifications pending" if there are none
      */
-    public String popNotification(){
-        if(this.notificationList == null || this.notificationList.size() == 0){
+    public String getNotification(){
+        if(this.notification == ""){
             return "No notifications pending";
         } else {
-            String notification = this.notificationList.get(this.notificationList.size()-1);
-            this.notificationList.remove(this.notificationList.size()-1);
-            return notification;
+            return this.notification;
         }
     }
 

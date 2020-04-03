@@ -89,22 +89,22 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
                     }
                 });
 
-        db.collection("users").whereEqualTo("userName",request.getRiderUsername())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        User user = document.toObject(User.class);
-                        user.addNotification("Your Ride Request has been accepted.");
-                        user.updateDatabase();
+        db.collection("Users")
+                .document(request.getRiderUsername())
+                .update("notification", "Your Ride Request has been accepted!")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG,"Document Successfully updated");
                     }
-                } else {
-                    Log.d("TAG", "Error getting document");
-                }
-            }
-        });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG,"Error updating document",e);
+                        assert(false);
+                    }
+                });
 
         db.collection("requests")
                 .document(request.getFirebaseID())
