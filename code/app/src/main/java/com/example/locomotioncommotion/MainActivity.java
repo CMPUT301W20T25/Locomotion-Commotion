@@ -133,11 +133,12 @@ public class MainActivity extends AppCompatActivity {
         String notification = CurrentUser.getInstance().getUser().getNotification();
         String channelID = "LocomotionCommotion";
         String channelName = "Locomotion Request Channel";
+        String notificationTitle = "Locomotion Commotion Ride Request Update";
         if(notification.equals("No notifications pending") == false){
             Context context = getApplicationContext();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID)
                     .setSmallIcon(R.drawable.notification_icon)
-                    .setContentTitle(notification)
+                    .setContentTitle(notificationTitle)
                     .setContentText(notification)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setAutoCancel(true); // Just make the notification go away when you tap it for now
