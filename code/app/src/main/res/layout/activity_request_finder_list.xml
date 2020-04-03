@@ -49,6 +49,7 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="128dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
         android:text="Location"
         app:layout_constraintStart_toStartOf="parent"

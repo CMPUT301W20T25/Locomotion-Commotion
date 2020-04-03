@@ -33,7 +33,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+//views the current Request the Driver Accepted
 public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCallback {
     String TAG = "viewDriverRequest";
     Request request;
@@ -50,6 +50,7 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         Intent intent = getIntent();
         request = (Request) intent.getExtras().getSerializable(RequestFinderList.REQUEST_MANAGE_MESSAGE);
 
+        // displaying  all of the relevant information from the request
         TextView startLocation = findViewById(R.id.view_driver_request_start_location);
         TextView endLocation = findViewById(R.id.view_driver_request_end_location);
         TextView price = findViewById(R.id.view_driver_request_price);
@@ -69,6 +70,7 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         mapView.onCreate(null);
         mapView.getMapAsync(this);
 
+        // so the class can be reused to view an already accepted request
         if (request.getStatus().equals("Pending") != true) {
             Button accept = findViewById(R.id.view_driver_request_accept_button);
             accept.setVisibility(View.INVISIBLE);
@@ -76,6 +78,7 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+    //sets the needed data in the firebase and updates the model with the new request
     public void acceptButton(View view) {
         db = FirebaseFirestore.getInstance();
         db.collection("requests")
@@ -145,6 +148,7 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         finish();
     }
 
+    // code for the google map
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;

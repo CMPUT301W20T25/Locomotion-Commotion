@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.locomotioncommotion.R;
 import com.example.locomotioncommotion.activities.driver.DriverRequestsAll;
+import com.example.locomotioncommotion.activities.loginRegistration.MainActivity;
 import com.example.locomotioncommotion.activities.rider.RiderMain;
 import com.example.locomotioncommotion.model.CurrentUser;
 import com.example.locomotioncommotion.model.Driver;
@@ -24,6 +25,7 @@ public class DriverOrRider extends AppCompatActivity {
     private Button riderSide;
     private Button driverSide;
     private Button profileButton;
+    private Button logoutButton;
 
 
     @Override
@@ -55,6 +57,14 @@ public class DriverOrRider extends AppCompatActivity {
             }
         });
 
+        logoutButton = findViewById(R.id.logout);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutClick(v);
+            }
+        });
+
     }
 
     public void riderClick(View view){
@@ -80,6 +90,13 @@ public class DriverOrRider extends AppCompatActivity {
 
     public void profileClick(View view) {
         Intent intent = new Intent(this,UserProfile.class );
+        startActivity(intent);
+    }
+
+    public void logoutClick(View view) {
+        CurrentUser.clearUser();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // checks if the username is in the firebase and if the password matches, is so gets that user and instantiates CurrentUser with it
     public void confirmLogin(View view){
         String userName = userNameField.getText().toString();
          final String passWord = passWordField.getText().toString();
@@ -113,12 +114,14 @@ public class MainActivity extends AppCompatActivity {
                                     CurrentUser.getInstance(user);
                                     checkNotifications(); //If there have been any changes to your notifications since you last logged in, notify
                                     login();
+                                    Log.d("Login", CurrentUser.getInstance().getUser().getUserName());
                                 } else {
                                     passWordField.setError("Wrong password");
                                 }
 
                             }
                         } else {
+                            // doesn't work for some reason, maybe needs a timeout?
                             Log.d("TAG", "Eror getting document");
                             userNameField.setError("Username not registered");
                         }
