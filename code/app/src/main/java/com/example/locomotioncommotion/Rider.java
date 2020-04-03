@@ -41,6 +41,15 @@ public class Rider {
     }
 
     /**
+     * Sets the current request of the rider
+     * @param request
+     *      The rider's new current request
+     */
+    public void setCurrentRequest(Request request){
+        this.currentRequest = request;
+    }
+
+    /**
      * Sets the rider's current request status to complete
      */
     public void notifyRequestComplete(){
@@ -48,6 +57,7 @@ public class Rider {
             //TODO: Throw an error here
         } else {
             this.currentRequest.setStatus("Completed");
+            this.currentRequest = null;
         }
     }
 
