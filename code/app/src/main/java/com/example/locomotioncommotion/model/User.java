@@ -1,5 +1,7 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.model;
 
+import com.example.locomotioncommotion.model.Driver;
+import com.example.locomotioncommotion.model.Rider;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;

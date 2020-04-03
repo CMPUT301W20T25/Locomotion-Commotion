@@ -1,13 +1,18 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.shared;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.activities.driver.DriverRequestsAll;
+import com.example.locomotioncommotion.activities.rider.RiderMain;
+import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.Driver;
+import com.example.locomotioncommotion.model.Rider;
 
 /**
  * DriverOrRider
@@ -64,7 +69,7 @@ public class DriverOrRider extends AppCompatActivity {
     }
 
     public void driverClick(View view) {
-        Intent intent = new Intent(this,DriverRequestsAll.class );
+        Intent intent = new Intent(this, DriverRequestsAll.class );
         startActivity(intent);
         if(CurrentUser.getInstance().getUser().getDriver() == null){
             Driver driver = new Driver();

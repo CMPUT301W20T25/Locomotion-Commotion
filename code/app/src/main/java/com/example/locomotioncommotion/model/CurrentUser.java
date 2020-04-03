@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.model;
 
 //Singleton implementation based on
 //https://stackoverflow.com/a/12587124

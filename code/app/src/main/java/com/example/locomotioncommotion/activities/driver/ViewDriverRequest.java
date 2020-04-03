@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.driver;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.activities.shared.InspectProfile;
+import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.Request;
+import com.example.locomotioncommotion.model.User;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

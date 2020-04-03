@@ -1,4 +1,4 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.activities.shared;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.locomotioncommotion.R;
+import com.example.locomotioncommotion.model.CurrentUser;
+import com.example.locomotioncommotion.model.User;
 
 /**
  * Activity to handle viewing and changing user attributes like contact information, ratings and username

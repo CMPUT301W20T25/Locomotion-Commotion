@@ -21,12 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectLocationActivity"></activity>
-        <activity android:name=".ThumbRating" />
-        <activity android:name=".QRCode"/>
-        <activity android:name=".QRCodeScanner" />
-        <activity android:name=".Registration" />
-        <activity android:name=".RequestFinderList" />
+        <activity android:name=".activities.shared.SelectLocationActivity"></activity>
+        <activity android:name=".activities.rider.ThumbRating" />
+        <activity android:name=".activities.rider.QRCode"/>
+        <activity android:name=".activities.driver.QRCodeScanner" />
+        <activity android:name=".activities.loginRegistration.Registration" />
+        <activity android:name=".activities.driver.RequestFinderList" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,22 +39,22 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".UserProfile" />
-        <activity android:name=".DriverRequestsAll" />
-        <activity android:name=".DriverOrRider" />
-        <activity android:name=".RiderMain" />
-        <activity android:name=".RequestManager" />
-        <activity android:name=".CreateRequest" />
-        <activity android:name=".RiderMap" />
-        <activity android:name=".ViewDriverRequest" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.shared.UserProfile" />
+        <activity android:name=".activities.driver.DriverRequestsAll" />
+        <activity android:name=".activities.shared.DriverOrRider" />
+        <activity android:name=".activities.rider.RiderMain" />
+        <activity android:name=".activities.rider.RequestManager" />
+        <activity android:name=".activities.rider.CreateRequest" />
+        <activity android:name=".activities.rider.RiderMap" />
+        <activity android:name=".activities.driver.ViewDriverRequest" />
+        <activity android:name=".activities.loginRegistration.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InspectProfile" />
+        <activity android:name=".activities.shared.InspectProfile" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"

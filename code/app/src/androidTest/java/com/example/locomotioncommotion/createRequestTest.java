@@ -1,8 +1,8 @@
 package com.example.locomotioncommotion;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.locomotioncommotion.activities.rider.CreateRequest;
 import com.robotium.solo.Solo;
 
 import org.junit.Before;

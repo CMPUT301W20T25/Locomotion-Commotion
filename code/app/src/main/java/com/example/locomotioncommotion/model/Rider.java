@@ -1,4 +1,6 @@
-package com.example.locomotioncommotion;
+package com.example.locomotioncommotion.model;
+
+import com.example.locomotioncommotion.activities.rider.QRCode;
 
 /**
  * Rider
