@@ -1,4 +1,8 @@
 package com.example.locomotioncommotion;
+import com.example.locomotioncommotion.model.Driver;
+import com.example.locomotioncommotion.model.Rider;
+import com.example.locomotioncommotion.model.User;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 

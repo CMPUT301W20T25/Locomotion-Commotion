@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectLocationActivity">
+    tools:context=".activities.shared.SelectLocationActivity">
 
     <TextView
         android:id="@+id/select_location_title"
@@ -29,8 +29,10 @@
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/select_location_confirmation_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_location_title" />
+        app:layout_constraintTop_toBottomOf="@+id/select_location_title"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/select_location_confirmation_button"

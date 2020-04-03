@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewDriverRequest">
+    tools:context=".activities.driver.ViewDriverRequest">
 
     <TextView
         android:id="@+id/Pick-up-location"
@@ -36,26 +36,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/view-driver-request-accept-button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="acceptButton"
-        android:text="Accept"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <TextView
         android:id="@+id/view-driver-request-price-title"
-        android:layout_width="85dp"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="16dp"
-        android:text="Total price"
+        android:text="Total price:"
         app:layout_constraintBottom_toTopOf="@+id/view-driver-request-back-button"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -100,7 +88,7 @@
 
     <TextView
         android:id="@+id/view_driver_request_price"
-        android:layout_width="91dp"
+        android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
@@ -122,5 +110,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_driver_request_end_location" />
+
+    <Button
+        android:id="@+id/view_driver_request_accept_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="acceptButton"
+        android:text="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/view_driver_request_status_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Status:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/view_driver_request_status"
+        app:layout_constraintEnd_toStartOf="@+id/view_driver_request_status" />
+
+    <TextView
+        android:id="@+id/view_driver_request_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pending"
+        app:layout_constraintBaseline_toBaselineOf="@+id/view_driver_request_price"
+        app:layout_constraintEnd_toEndOf="@+id/view_driver_request_accept_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
