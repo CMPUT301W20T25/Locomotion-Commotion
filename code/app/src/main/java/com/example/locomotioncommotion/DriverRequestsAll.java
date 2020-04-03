@@ -52,22 +52,22 @@ public class DriverRequestsAll extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("requests");
 
-        collectionReference
-                .whereEqualTo("status", "Accepted")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        requestDataList.clear();
-                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                            Request request = doc.toObject(Request.class);
-                            if (request.getDriverUsername().equals(CurrentUser.getInstance().getUser().getUserName())) {
-                                request.setFirebaseID(doc.getId());
-                                requestDataList.add(request);
-                            }
-                        }
-                        requestAdapter.notifyDataSetChanged();
-                    }
-                });
+       // collectionReference
+       //         .whereEqualTo("status", "Accepted")
+       //         .addSnapshotListener(new EventListener<QuerySnapshot>() {
+       //             @Override
+        //            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+        //                requestDataList.clear();
+        //                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+        //                    Request request = doc.toObject(Request.class);
+        //                    if (request.getDriverUsername().equals(CurrentUser.getInstance().getUser().getUserName())) {
+         //                       request.setFirebaseID(doc.getId());
+          //                      requestDataList.add(request);
+          //                  }
+           //             }
+          //              requestAdapter.notifyDataSetChanged();
+          //          }
+         //       });
 
     }
 

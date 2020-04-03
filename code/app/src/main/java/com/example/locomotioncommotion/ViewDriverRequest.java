@@ -118,9 +118,13 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
                         Log.d(TAG,"Error updating document",e);
                     }
                 });
+
         Log.d(TAG, request.getFirebaseID());
         //update current request
+        request.setDriverUsername(CurrentUser.getInstance().getUser().getUserName());
+        request.setStatus("Accepted");
         CurrentUser.getInstance().getUser().getDriver().acceptRequest(request);
+        CurrentUser.getInstance().getUser().updateDatabase();
         finish();
     }
 
