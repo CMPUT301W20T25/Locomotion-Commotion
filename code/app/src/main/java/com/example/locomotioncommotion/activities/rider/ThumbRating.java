@@ -69,7 +69,7 @@ public class ThumbRating extends AppCompatActivity {
                 int current;
                 current = driver.getThumbsDown();
                 current += 1;
-                driver.setThumbsUp(current);
+                driver.setThumbsDown(current);
                 driver.updateDatabase();
                 riderClick(v);
             }
