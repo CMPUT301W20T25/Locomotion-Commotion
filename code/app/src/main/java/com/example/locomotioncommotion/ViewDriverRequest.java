@@ -48,18 +48,17 @@ public class ViewDriverRequest extends AppCompatActivity implements OnMapReadyCa
         TextView startLocation = findViewById(R.id.view_driver_request_start_location);
         TextView endLocation = findViewById(R.id.view_driver_request_end_location);
         TextView price = findViewById(R.id.view_driver_request_price);
+        TextView statusText = findViewById(R.id.view_driver_request_status);
         Button username = findViewById(R.id.view_driver_request_username);
 
         int dollars = request.getFareOffered() / 100;
         int cents = request.getFareOffered() % 100;
 
-
-
-
         price.setText(String.format("%d.%02d", dollars, cents));
         startLocation.setText(request.getStartLocation().getName());
         endLocation.setText(request.getEndLocation().getName());
         username.setText(request.getRiderUsername());
+        statusText.setText(request.getStatus());
 
         mapView = findViewById(R.id.view_driver_request_map);
         mapView.onCreate(null);

@@ -52,6 +52,9 @@ public class RequestManager  extends AppCompatActivity implements OnMapReadyCall
         TextView endLocation = findViewById(R.id.request_manager_end);
         endLocation.setText(request.getEndLocation().getName());
 
+        TextView statusText = findViewById(R.id.request_manager_status);
+        statusText.setText(request.getStatus());
+
         // Displays cost as dollars and cents
         TextView ridePrice = findViewById(R.id.request_manager_price);
         int dollars = request.getFareOffered() / 100;
